@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message received — YardScale Digital</title>
+<meta name="description" content="Your message reached YardScale Digital. We reply within one working day.">
+<meta name="theme-color" content="#131313">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/brand/yardscale-mark-ink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#131313;--hair-dark:#2e2e2b;--paper:#f9f8f4;--lime:#c3fc0f;--muted-dark:#8f8f86;
+  --display:'Archivo','Archivo Expanded',Helvetica Neue,Arial,sans-serif;
+  --body:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gutter:clamp(20px,5vw,64px);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--ink);color:var(--paper);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow-x:hidden
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:2px}
+::selection{background:var(--lime);color:var(--ink)}
+main{
+  flex:1;display:flex;align-items:center;
+  padding:clamp(64px,10vw,120px) var(--gutter);position:relative;overflow:hidden
+}
+main::after{
+  content:"";position:absolute;top:-30%;right:-14%;width:52%;height:150%;
+  background:linear-gradient(180deg,rgba(195,252,15,.12),rgba(195,252,15,0) 72%);
+  transform:skewX(-20deg);pointer-events:none
+}
+.in{max-width:640px;margin-inline:auto;width:100%;position:relative;z-index:1}
+.eyebrow{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted-dark);display:flex;align-items:center;gap:10px;margin:0 0 22px
+}
+.tick{width:15px;height:11px;background:var(--lime);transform:skewX(-20deg);flex:none;display:inline-block}
+h1{
+  margin:0;font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(2.4rem,7.5vw,4.6rem);line-height:.88;letter-spacing:-.03em;
+  font-variation-settings:'wdth' 118
+}
+h1 .em{color:var(--lime)}
+p.lead{font-size:clamp(1.05rem,2.1vw,1.28rem);line-height:1.5;color:#d5d4cc;margin:26px 0 0;max-width:38ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 26px;text-decoration:none;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;
+  border:1px solid transparent;border-radius:2px;transition:transform .18s,border-color .18s,color .18s
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:var(--hair-dark);color:var(--paper)}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(4px)}
+footer{
+  border-top:1px solid var(--hair-dark);padding:26px var(--gutter);
+  display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-dark)
+}
+footer a{text-decoration:none}
+footer a:hover{color:var(--lime)}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="in">
+    <p class="eyebrow"><span class="tick"></span> Message received</p>
+    <h1>Got it<span class="em">.</span><br>Talk soon</h1>
+    <p class="lead">Your message is in. You'll get a reply within one working day — with one thing you can fix this week, whether or not we end up working together.</p>
+    <div class="cta">
+      <a class="btn btn-lime" href="/#book">Book a call while you're here <span class="arw">→</span></a>
+      <a class="btn btn-ghost" href="/">Back to the site</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© <span id="yr">2026</span> YardScale Digital</span>
+  <a href="mailto:yardscaledigital@gmail.com">yardscaledigital@gmail.com</a>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
