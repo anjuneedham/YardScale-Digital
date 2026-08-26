@@ -6,6 +6,10 @@
  * MTA, so this needs no library, no API key and no third-party form service.
  * Drop it in public_html next to index.html and it works.
  *
+ * Requires PHP 7.4 or newer — deliberately, since a parse error on an older
+ * version shows up as a blank 500 with nothing to go on. Check the account's
+ * version under cPanel -> Software -> MultiPHP Manager if the form 500s.
+ *
  * Two entry points post here:
  *   source=booking   the gate in front of the calendar — replies with the
  *                    Google Calendar link once the details are captured
@@ -42,11 +46,11 @@ const MIN_SECONDS = 3;
 function wants_json(): bool {
     $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
     $xhr    = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
-    return str_contains($accept, 'application/json') || $xhr === 'XMLHttpRequest';
+    return strpos($accept, 'application/json') !== false || $xhr === 'XMLHttpRequest';
 }
 
 /** Ends the request, in whichever shape the caller asked for. */
-function finish(bool $ok, string $message, int $status = 200, array $extra = []): never {
+function finish(bool $ok, string $message, int $status = 200, array $extra = []): void {
     if (wants_json()) {
         http_response_code($status);
         header('Content-Type: application/json; charset=utf-8');
