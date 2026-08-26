@@ -1,30 +1,112 @@
 #!/usr/bin/env bash
-# Stamps the live site URL into the pages at deploy time.
+# Packages the site for Namecheap cPanel.
 #
-# Netlify sets URL to the site's primary address (your custom domain once you
-# add one, the .netlify.app address until then) and DEPLOY_PRIME_URL to the
-# per-branch address on deploy previews. WhatsApp, iMessage and most link
-# unfurlers only follow ABSOLUTE og:image URLs, so this has to be resolved
-# before the HTML ships — it cannot be done in the browser.
+# There is no build step on shared hosting — whatever you upload is what gets
+# served — so this just collects the files that belong on the server into
+# dist/ and zips them. cPanel's File Manager can extract a zip in place, which
+# is far quicker and more reliable than dragging 200 files through a browser.
 #
-# Nothing here is required for local viewing: open index.html straight from
-# disk and it works, the placeholder just sits unresolved in the meta tags.
+#   ./build.sh          → dist/ and yardscale-site.zip
+#   ./build.sh --check  → validate only, build nothing
+#
+# Upload yardscale-site.zip to public_html, then Extract. See README.md.
 
 set -euo pipefail
+cd "$(dirname "$0")"
 
-SITE_URL="${DEPLOY_PRIME_URL:-${URL:-}}"
+DIST="dist"
+ZIP="yardscale-site.zip"
+DOMAIN="yardscaledigital.com"
 
-if [ -z "$SITE_URL" ]; then
-  echo "build.sh: no URL/DEPLOY_PRIME_URL in the environment — skipping URL stamping."
+# Everything that belongs on the server. Anything not listed here — README,
+# build.sh, the deploy scripts, .git — deliberately stays off it.
+FILES=(
+  index.html
+  thanks.html
+  404.html
+  contact.php
+  .htaccess
+  robots.txt
+  sitemap.xml
+  og-image.png
+)
+DIRS=(brand)
+
+fail=0
+note() { printf '  %s\n' "$1"; }
+bad()  { printf '  ✗ %s\n' "$1"; fail=1; }
+
+echo "Checking…"
+
+for f in "${FILES[@]}"; do
+  [ -f "$f" ] || bad "missing: $f"
+done
+for d in "${DIRS[@]}"; do
+  [ -d "$d" ] || bad "missing directory: $d"
+done
+
+# A leftover placeholder means link previews ship broken, and it is invisible
+# in a browser — so it has to be caught here rather than after upload.
+if grep -rl '__SITE_URL__' index.html thanks.html 404.html robots.txt sitemap.xml 2>/dev/null | grep -q .; then
+  bad "__SITE_URL__ placeholder still present — meta tags would ship unresolved"
+fi
+
+# The two booking URLs have to agree, or people with JavaScript off get sent
+# to a different calendar than everyone else.
+js_url=$(grep -oP 'const BOOKING_URL = "\K[^"]+' index.html 2>/dev/null || true)
+php_url=$(grep -oP "const BOOKING_URL = '\K[^']+" contact.php 2>/dev/null || true)
+if [ -n "$js_url" ] && [ -n "$php_url" ] && [ "$js_url" != "$php_url" ]; then
+  bad "BOOKING_URL differs: index.html has $js_url, contact.php has $php_url"
+fi
+
+# PHP syntax, if a local php is around. The server has one either way.
+if command -v php >/dev/null 2>&1; then
+  php -l contact.php >/dev/null || bad "contact.php has a syntax error"
+else
+  note "no local php — skipping the syntax check"
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo
+  echo "Not packaging. Fix the above first."
+  exit 1
+fi
+
+note "✓ files present"
+note "✓ URLs stamped for $DOMAIN"
+note "✓ booking links agree"
+
+if [ "${1:-}" = "--check" ]; then
+  echo
+  echo "Checks passed. Nothing built (--check)."
   exit 0
 fi
 
-SITE_URL="${SITE_URL%/}"   # never leave a double slash in a canonical URL
-echo "build.sh: stamping site URL -> $SITE_URL"
+echo
+echo "Packaging…"
+rm -rf "$DIST" "$ZIP"
+mkdir -p "$DIST"
+cp -p "${FILES[@]}" "$DIST"/
+for d in "${DIRS[@]}"; do cp -Rp "$d" "$DIST"/; done
 
-for f in index.html thanks.html 404.html robots.txt sitemap.xml; do
-  [ -f "$f" ] || continue
-  sed -i "s|__SITE_URL__|${SITE_URL}|g" "$f"
-done
+# _private is where contact.php keeps the enquiry log. Ship it pre-denied so
+# there is no window where the CSV is reachable over the web.
+mkdir -p "$DIST/_private"
+cat > "$DIST/_private/.htaccess" <<'DENY'
+Require all denied
+<IfModule !mod_authz_core.c>
+Deny from all
+</IfModule>
+DENY
 
-echo "build.sh: done."
+# -x nothing, but keep dotfiles: .htaccess is the whole server config.
+( cd "$DIST" && zip -qr "../$ZIP" . ) || {
+  echo "  zip isn't installed — dist/ is ready, upload that folder instead."
+  exit 0
+}
+
+echo
+echo "  dist/            $(find "$DIST" -type f | wc -l | tr -d ' ') files"
+echo "  $ZIP   $(du -h "$ZIP" | cut -f1)"
+echo
+echo "Next: upload $ZIP to public_html in cPanel File Manager, then Extract."

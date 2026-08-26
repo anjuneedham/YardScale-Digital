@@ -1,4 +1,14 @@
 .DS_Store
 node_modules/
-.netlify/
 .claude/settings.local.json
+
+# Build output — regenerate with ./build.sh, never commit it.
+dist/
+yardscale-site.zip
+
+# Live enquiries written by contact.php on the server.
+_private/
+
+# Credentials for the deploy scripts. These hold passwords and API keys.
+deploy/.ftp-credentials
+deploy/.namecheap-credentials

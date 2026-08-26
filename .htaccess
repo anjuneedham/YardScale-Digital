@@ -1,0 +1,113 @@
+# YardScale Digital — Apache / LiteSpeed config for Namecheap cPanel hosting.
+# This file replaces everything netlify.toml used to do. It has to sit in
+# public_html alongside index.html; cPanel hides dotfiles by default, so tick
+# "Show Hidden Files" in File Manager if you can't see it after uploading.
+
+# ─────────────── canonical host + https ───────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # .well-known must stay reachable and unrewritten — Let's Encrypt renewal
+  # depends on it, so it is excluded before any other rule gets a look in.
+  RewriteRule ^\.well-known/ - [L]
+
+  # Force https. HTTP_HOST is carried through so it works before and after
+  # the domain is pointed, and on the temporary cPanel URL.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # One canonical host: strip the www. Duplicate hosts split your SEO and
+  # make the og:image URL mismatch, which breaks WhatsApp link previews.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # /index.html → / so only one URL is ever indexed.
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # Tidy URLs, matching the old Netlify redirects.
+  RewriteRule ^book/?$ /#book [R=302,NE,L]
+  RewriteRule ^thanks/?$ /thanks.html [L]
+
+  # Extensionless: /privacy serves privacy.html if it exists.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+ErrorDocument 404 /404.html
+DirectoryIndex index.html index.php
+
+# ─────────────── security headers ───────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Never leak the PHP version in response headers.
+  Header always unset X-Powered-By
+</IfModule>
+
+# Nobody needs to browse a directory listing of the site.
+Options -Indexes
+
+# The enquiry log and rate-limit counters live here. Deny outright.
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(csv|log)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# Block access to source control and editor leftovers if any ever get uploaded.
+<FilesMatch "^\.|(\.(bak|config|dist|sh|inc|orig|log|sql|swp|yml|toml|md)|~)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ─────────────── caching ───────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML revalidates every time, so a re-upload is live immediately.
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Images and fonts are content-stable — cache them hard.
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(png|jpe?g|svg|webp|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ─────────────── compression ───────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddCharset UTF-8 .html .css .js .json .xml .txt
+</IfModule>

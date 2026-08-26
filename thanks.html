@@ -75,11 +75,11 @@ footer a:hover{color:var(--lime)}
 
 <main>
   <div class="in">
-    <p class="eyebrow"><span class="tick"></span> Message received</p>
-    <h1>Got it<span class="em">.</span><br>Talk soon</h1>
-    <p class="lead">Your message is in. You'll get a reply within one working day — with one thing you can fix this week, whether or not we end up working together.</p>
+    <p class="eyebrow"><span class="tick"></span> <span id="kicker">Message received</span></p>
+    <h1 id="head">Got it<span class="em">.</span><br>Talk soon</h1>
+    <p class="lead" id="lead">Your message is in. You'll get a reply within one working day — with one thing you can fix this week, whether or not we end up working together.</p>
     <div class="cta">
-      <a class="btn btn-lime" href="/#book">Book a call while you're here <span class="arw">→</span></a>
+      <a class="btn btn-lime" id="primary" href="/#book">Book a call while you're here <span class="arw">→</span></a>
       <a class="btn btn-ghost" href="/">Back to the site</a>
     </div>
   </div>
@@ -87,9 +87,37 @@ footer a:hover{color:var(--lime)}
 
 <footer>
   <span>© <span id="yr">2026</span> YardScale Digital</span>
-  <a href="mailto:yardscaledigital@gmail.com">yardscaledigital@gmail.com</a>
+  <a href="mailto:andrew@yardscaledigital.com">andrew@yardscaledigital.com</a>
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* This page is where contact.php lands anyone without JavaScript. A booking
+   submit has to arrive somewhere that still offers the calendar, so the copy
+   and the button switch when ?source=booking is on the URL. */
+(function(){
+  var q = new URLSearchParams(window.location.search);
+  if(q.get('source') !== 'booking') return;
+
+  // Never take a redirect target from the query string on trust — only the
+  // two hosts Google actually serves appointment schedules from get through.
+  var url = q.get('booking_url') || '';
+  if(!/^https:\/\/(calendar\.google\.com|calendar\.app\.google)\//.test(url)){
+    url = 'https://calendar.app.google/Lr4EwPBgc7azDz7X7';
+  }
+
+  document.getElementById('kicker').textContent = 'Details captured';
+  document.getElementById('head').innerHTML = 'Pick your<br>time<span class="em">.</span>';
+  document.getElementById('lead').textContent =
+    "Your details are with us. Pick whichever twenty minutes suits you and the invite lands in your inbox automatically.";
+
+  var btn = document.getElementById('primary');
+  btn.href = url;
+  btn.target = '_blank';
+  btn.rel = 'noopener';
+  btn.innerHTML = 'Open the calendar <span class="arw">→</span>';
+})();
+</script>
 </body>
 </html>
