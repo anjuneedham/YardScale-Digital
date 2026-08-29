@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proposal — Design Container JA website &amp; lead system — YardScale Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fonts" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#131313;--ink-2:#1c1c1a;--hair-dark:#2e2e2b;
+  --paper:#f9f8f4;--paper-2:#efeee8;--hair:#dedbd2;
+  --lime:#c3fc0f;--muted-dark:#8f8f86;--muted:#6b6b62;
+  --display:'Archivo','Archivo Expanded',Helvetica Neue,Arial,sans-serif;
+  --body:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
+html,body{background:#8d8d8d}
+body{font-family:var(--body);color:var(--ink);font-size:10.4pt;line-height:1.62;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.page{width:210mm;height:297mm;background:var(--paper);position:relative;overflow:hidden;
+  padding:21mm 19mm 25mm;page-break-after:always;break-after:page;margin:0 auto 8mm;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto;break-after:auto;margin-bottom:0}
+.page.dark{background:var(--ink);color:var(--paper)}
+
+.rh{position:absolute;top:11mm;left:19mm;right:19mm;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:6.6pt;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.rf{position:absolute;bottom:10mm;left:19mm;right:19mm;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:6.6pt;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.dark .rh,.dark .rf{color:var(--muted-dark)}
+
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.92;
+  letter-spacing:-.02em;font-variation-settings:'wdth' 118}
+h1{font-size:32pt;letter-spacing:-.03em;line-height:.9}
+h2{font-size:20pt;margin-bottom:4mm}
+h3{font-size:11.6pt;font-weight:700;font-variation-settings:'wdth' 112;margin:6mm 0 2.4mm}
+h3:first-child{margin-top:0}
+h4{font-family:var(--body);font-size:10.4pt;font-weight:600;margin-bottom:1.2mm;text-transform:none;letter-spacing:-.01em}
+p{margin-bottom:3.2mm}
+p:last-child{margin-bottom:0}
+strong{font-weight:600}
+
+.eyebrow{font-family:var(--mono);font-size:7pt;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:4mm;display:flex;align-items:center;gap:3mm}
+.dark .eyebrow{color:var(--muted-dark)}
+.tick{width:4mm;height:2.9mm;background:var(--lime);transform:skewX(-20deg);flex:none;display:inline-block}
+.lede{font-size:11.4pt;line-height:1.55;color:var(--muted);margin-bottom:6mm;max-width:118mm}
+.dark .lede{color:#a9a9a0}
+
+ul{margin:0 0 3.4mm 0;list-style:none}
+li{margin-bottom:2mm;padding-left:6.4mm;position:relative}
+li::before{content:"";position:absolute;left:0;top:1.9mm;width:2.8mm;height:2mm;background:var(--lime);transform:skewX(-20deg)}
+.dark li::before{background:var(--lime)}
+
+.rule{height:1px;background:var(--hair);margin:5mm 0}
+.dark .rule{background:var(--hair-dark)}
+
+table{width:100%;border-collapse:collapse;margin:2.6mm 0 3.2mm;font-size:9.4pt}
+th{font-family:var(--mono);font-size:6.8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:2.1mm 2.4mm;border-bottom:1.2px solid var(--ink);font-weight:500}
+td{padding:2.2mm 2.4mm;border-bottom:1px solid var(--hair);vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{border-top:1.4px solid var(--ink);border-bottom:0;font-weight:600;padding-top:3mm;font-size:11pt}
+.dark th{border-bottom-color:var(--paper);color:var(--muted-dark)}
+.dark td{border-bottom-color:var(--hair-dark)}
+.dark tr.total td{border-top-color:var(--paper)}
+
+.callout{border-left:2.6px solid var(--lime);background:rgba(195,252,15,.13);padding:3.6mm 4.6mm;margin:3.6mm 0;font-size:9.6pt}
+.callout b{display:block;font-family:var(--mono);font-size:7.4pt;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.6mm;font-weight:500}
+.dark .callout{background:rgba(195,252,15,.1)}
+.dark .callout b{color:var(--lime)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.card{border:1px solid var(--hair);padding:4.2mm;background:#fff}
+.dark .card{border-color:var(--hair-dark);background:var(--ink-2)}
+.card .n{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;color:var(--muted);display:block;margin-bottom:2.4mm}
+.dark .card .n{color:var(--lime)}
+.card p{font-size:8.8pt;color:var(--muted);line-height:1.55;margin:0}
+.dark .card p{color:#a9a9a0}
+
+.step{display:grid;grid-template-columns:16mm 1fr auto;gap:4mm;padding:3mm 0;border-bottom:1px solid var(--hair);align-items:baseline}
+.step .wk{font-family:var(--mono);font-size:7pt;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.step .dl{font-family:var(--mono);font-size:7pt;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;text-align:right}
+.step p{font-size:8.9pt;color:var(--muted);margin:.8mm 0 0}
+
+.big{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 118;font-size:44pt;line-height:.9;letter-spacing:-.03em}
+.spacer{flex:1}
+.mono-sm{font-family:var(--mono);font-size:7.2pt;letter-spacing:.1em;color:var(--muted);line-height:1.75}
+.dark .mono-sm{color:var(--muted-dark)}
+</style>
+</head>
+<body>
+
+<!-- ══════════ COVER ══════════ -->
+<section class="page dark">
+  <div style="display:flex;align-items:center;gap:3.4mm">
+    <svg width="9mm" height="6.6mm" viewBox="0 0 40 28" fill="none">
+      <path d="M6 2h30l-6 24H0z" fill="#c3fc0f"/><path d="M0 2h5l-2 8H0z" fill="#c3fc0f" opacity=".55"/>
+    </svg>
+    <div>
+      <b style="font-family:var(--display);font-weight:800;font-size:11.6pt;letter-spacing:-.01em;text-transform:uppercase;display:block;line-height:1">YardScale Digital</b>
+      <span style="font-family:var(--mono);font-size:6.4pt;letter-spacing:.26em;color:#8f8f86;display:block;margin-top:1.6mm">AUTOMATION &amp; CREATIVE</span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <p class="eyebrow" style="color:#8f8f86"><span class="tick"></span>Proposal · Prepared for Design Container JA</p>
+  <h1>A website that<br>sells containers<br>while you sleep.</h1>
+  <div style="width:38mm;height:2.4px;background:var(--lime);margin:8mm 0"></div>
+  <p style="font-size:12pt;color:#b6b6ad;max-width:112mm;line-height:1.5">
+    A complete public presence for Design Container JA — the site, the buyer's
+    guide that captures leads, and the system that delivers it — built, launched
+    and handed over inside three weeks.</p>
+
+  <div class="spacer"></div>
+
+  <div style="display:flex;gap:12mm">
+    <div><span class="mono-sm" style="display:block">INVESTMENT</span><span class="big" style="font-size:26pt">J$100,000</span></div>
+    <div><span class="mono-sm" style="display:block">TIMELINE</span><span class="big" style="font-size:26pt">3 weeks</span></div>
+  </div>
+  <p class="mono-sm" style="margin-top:8mm">PREPARED BY YARDSCALE DIGITAL · VALID 30 DAYS FROM ISSUE</p>
+</section>
+
+<!-- ══════════ 2. THE SITUATION ══════════ -->
+<section class="page">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>Where you are now</p>
+  <h2>The problem is not<br>demand. It is proof.</h2>
+  <p class="lede">People are already interested in container homes in Jamaica. What they cannot easily do is find you, understand what you charge, and convince themselves you are legitimate — all before they are willing to call.</p>
+
+  <p>Right now the business lives on social media. That works well for reach and terribly for conversion, for three reasons:</p>
+
+  <h3>Social sells the look. It cannot sell the decision.</h3>
+  <p>A buyer scrolling past a photograph is impressed. A buyer about to spend eight million dollars needs specifications, a price range, a process, and evidence that the structure is engineered and approvable. None of that fits in a caption, so the conversation stalls at "DM for price" — and most people never do.</p>
+
+  <h3>Every enquiry arrives cold, and lands in one inbox.</h3>
+  <p>DMs and WhatsApp messages have no structure. You are answering the same six questions by hand, several times a week, to people who may not own land yet. That is expensive in the only resource you cannot buy more of.</p>
+
+  <h3>You do not own the audience.</h3>
+  <p>A follower is rented. If the platform changes what it shows, your pipeline changes with it, and there is nothing you can do. An email list of people who have raised their hand is an asset you keep.</p>
+
+  <div class="callout">
+    <b>The gap in one sentence</b>
+    <p>There is no place a serious buyer can go to answer their own questions at eleven at night — which is exactly when people make decisions about houses.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>02</span></div>
+</section>
+
+<!-- ══════════ 3. THE PROPOSAL ══════════ -->
+<section class="page">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>What we propose</p>
+  <h2>A site, a guide,<br>and a system<br>between them.</h2>
+  <p class="lede">Three parts. The site does the convincing, the guide does the capturing, and the automation makes sure nobody who raises their hand is ever forgotten.</p>
+
+  <div class="grid3" style="margin-top:4mm">
+    <div class="card"><span class="n">01</span><h4>The website</h4>
+      <p>A premium single-page site that answers every question a buyer has before they contact you — models, prices, process, hurricane engineering, financing routes and approvals — so the people who do call are already most of the way to yes.</p></div>
+    <div class="card"><span class="n">02</span><h4>The buyer's guide</h4>
+      <p>A 20-page PDF worth having: costs, import duty, parish council approvals, financing, and a site-readiness checklist. Given away free in exchange for a name and an email.</p></div>
+    <div class="card"><span class="n">03</span><h4>The lead system</h4>
+      <p>The guide sends itself. Every enquiry is captured with the parish, the model of interest and the site notes already attached, and reaches you by email and WhatsApp within seconds.</p></div>
+  </div>
+
+  <h3>Why the guide is the important part</h3>
+  <p>Most people who encounter your business are not ready to buy today. They are eight months out, still deciding whether to build at all. A brochure site loses every one of them; there is nothing to do but leave.</p>
+  <p>The guide gives them a reason to hand over their details while they are still researching — and gives you permission to stay in touch until they are ready. It also does something a sales page cannot: it makes you the person who told them the truth about duty, approvals and what the price does not cover. That is the position you want to hold when they finally choose a builder.</p>
+
+  <div class="callout">
+    <b>Already built</b>
+    <p>The site and the guide in this proposal are not a description of what we would do. They are done, and you can look at both today — the link is at the end of this document. If they are right, we launch. If they are not, we adjust before you pay a cent more.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>03</span></div>
+</section>
+
+<!-- ══════════ 4. DELIVERABLES ══════════ -->
+<section class="page">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>Scope</p>
+  <h2>Exactly what<br>you receive.</h2>
+  <p class="lede">Everything below is inside the price. Anything not listed here is not included — if you want it, we will quote it separately before doing it.</p>
+
+  <table>
+    <tr><th>Deliverable</th><th>Detail</th></tr>
+    <tr><td><strong>Website</strong></td><td>Single-page site: hero, model range with pricing, process, island engineering spec, configuration gallery, financing, FAQ, contact. Built mobile-first — most of your traffic is on a phone.</td></tr>
+    <tr><td><strong>Buyer's guide</strong></td><td>20-page A4 PDF, written and designed. Costs, import duty, approvals, financing, climate specification, builder questions, site checklist, glossary.</td></tr>
+    <tr><td><strong>Lead capture</strong></td><td>Two forms — guide download and viewing request — with spam protection, a branded thank-you page, and structured fields so every enquiry arrives with parish, model and site notes attached.</td></tr>
+    <tr><td><strong>Automated delivery</strong></td><td>The guide sends itself the moment somebody asks for it. You are notified by email; enquiries also reach you on WhatsApp.</td></tr>
+    <tr><td><strong>WhatsApp integration</strong></td><td>Floating chat button and pre-filled message links throughout, so a visitor is always one tap from a conversation.</td></tr>
+    <tr><td><strong>Hosting &amp; domain</strong></td><td>Deployed on a global CDN with free SSL, set up on your domain. Fast everywhere, including on mobile data.</td></tr>
+    <tr><td><strong>Search &amp; sharing</strong></td><td>Page titles, descriptions, sitemap, and a designed link-preview card so the site looks right when it is shared in WhatsApp.</td></tr>
+    <tr><td><strong>Handover</strong></td><td>A recorded walkthrough plus a written guide covering how to change prices, swap photographs and read your enquiries. You own everything.</td></tr>
+  </table>
+
+  <h3>Not included</h3>
+  <p>Professional photography of your units; copywriting for social media; paid advertising management; logo or brand identity design; ongoing content. All available, all quoted separately — none of it needed to launch.</p>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>04</span></div>
+</section>
+
+<!-- ══════════ 5. TIMELINE ══════════ -->
+<section class="page">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>Timeline</p>
+  <h2>Three weeks,<br>start to live.</h2>
+  <p class="lede">Most of the build is already done. What remains is your content, your numbers and your sign-off — which is why this is three weeks and not three months.</p>
+
+  <div class="step"><span class="wk">Week 1</span>
+    <div><h4>Content and confirmation</h4>
+      <p>You confirm the model names, the real prices and the specifications. We collect your phone number, email, logo files and any photographs you already have. One 45-minute call covers most of it.</p></div>
+    <span class="dl">Your input</span></div>
+
+  <div class="step"><span class="wk">Week 2</span>
+    <div><h4>Build and revisions</h4>
+      <p>Your content goes in, the guide is updated with your real figures, and you get a private preview link. Two rounds of revisions are included — we would rather you were specific than polite.</p></div>
+    <span class="dl">Preview link</span></div>
+
+  <div class="step"><span class="wk">Week 3</span>
+    <div><h4>Launch and handover</h4>
+      <p>Domain connected, forms tested end to end with a real submission, automation switched on. Walkthrough recorded, documentation delivered, accounts transferred into your name.</p></div>
+    <span class="dl">Live site</span></div>
+
+  <div class="step" style="border-bottom:0"><span class="wk">After</span>
+    <div><h4>Two weeks of support</h4>
+      <p>Included at no cost. Anything broken, confusing or not as promised, we fix it. This is not a support contract — it is us making sure the thing we handed you actually works.</p></div>
+    <span class="dl">Included</span></div>
+
+  <div class="callout">
+    <b>What would slow this down</b>
+    <p>One thing only: waiting on your confirmed prices and specifications. Everything else is on us. If you can get us those in the first week, three weeks holds comfortably.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>05</span></div>
+</section>
+
+<!-- ══════════ 6. INVESTMENT ══════════ -->
+<section class="page dark">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>Investment</p>
+  <h2>One price.<br>No surprises.</h2>
+
+  <table style="margin-top:6mm">
+    <tr><th>Item</th><th class="n">JMD</th></tr>
+    <tr><td>Website — design, build, deployment</td><td class="n">Included</td></tr>
+    <tr><td>Buyer's guide — written, designed, produced</td><td class="n">Included</td></tr>
+    <tr><td>Lead capture and automated delivery</td><td class="n">Included</td></tr>
+    <tr><td>Hosting setup, domain, SSL</td><td class="n">Included</td></tr>
+    <tr><td>Handover, documentation and training</td><td class="n">Included</td></tr>
+    <tr><td>Two weeks post-launch support</td><td class="n">Included</td></tr>
+    <tr class="total"><td>Total — fixed</td><td class="n">J$100,000</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>Founding-client rate</b>
+    <p>This is an introductory price. We are building our portfolio in the container and construction space, and in exchange for it we ask for three things: a short written testimonial once the site is live, permission to feature the work publicly, and an introduction to one other business you rate. Nothing more.</p>
+  </div>
+
+  <h3>Payment</h3>
+  <table>
+    <tr><th>Stage</th><th class="n">Amount</th><th>Due</th></tr>
+    <tr><td>Deposit</td><td class="n">J$50,000</td><td>On acceptance, to begin work</td></tr>
+    <tr><td>Balance</td><td class="n">J$50,000</td><td>On launch, once the site is live and you are happy</td></tr>
+  </table>
+
+  <h3>Optional, after launch</h3>
+  <p>Not required, and not part of the price above. If you would like us to keep the site maintained, add new models as you build them, and send you a monthly report of where your leads came from, we offer a care plan at <strong>J$25,000 per month</strong> — cancellable any time, with a month's notice. Decide after launch, once you have seen whether the site earns it.</p>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>06</span></div>
+</section>
+
+<!-- ══════════ 7. TERMS + NEXT STEPS ══════════ -->
+<section class="page">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <p class="eyebrow"><span class="tick"></span>The details</p>
+  <h2>Terms, plainly.</h2>
+
+  <div class="grid2">
+    <div>
+      <h3>What you own</h3>
+      <p>Everything, on final payment: the site, the guide, the domain, the hosting account, the copy and the design files. No licensing, no lock-in, no monthly fee required to keep it running.</p>
+
+      <h3>Revisions</h3>
+      <p>Two rounds included during week two. Further rounds, or changes of direction after sign-off, are quoted at J$6,000 per hour before any work starts.</p>
+
+      <h3>What we need from you</h3>
+      <ul>
+        <li>Confirmed model names, prices and specifications</li>
+        <li>Business phone, WhatsApp number and email</li>
+        <li>Logo files, if you have them</li>
+        <li>Any existing photographs of completed units</li>
+        <li>One decision-maker who can sign off</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Timing</h3>
+      <p>Three weeks from deposit and receipt of your content. Delays in providing content extend the timeline by the same amount — we will tell you when the clock is on you.</p>
+
+      <h3>If it is not right</h3>
+      <p>If after the week-two preview you decide not to proceed, you owe nothing beyond the deposit, and we part on good terms. We would rather that than build something you do not want.</p>
+
+      <h3>Running costs after launch</h3>
+      <p>Hosting is free at your expected traffic. A domain runs roughly J$3,000 a year, paid directly to the registrar in your name. There is nothing else, and nothing payable to us.</p>
+
+      <h3>Validity</h3>
+      <p>This proposal stands for 30 days from the date of issue.</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <p class="eyebrow"><span class="tick"></span>Next step</p>
+  <h3 style="margin-top:0">Look at it before you decide</h3>
+  <p>The site and the guide already exist. Open the preview, read the guide the way one of your buyers would, and tell us what is wrong with it. If it is right, say the word and we will start on your content this week.</p>
+
+  <div class="callout">
+    <b>Preview link</b>
+    <p style="font-family:var(--mono);font-size:9.4pt;letter-spacing:.04em">[ PREVIEW URL — paste the live link here before sending ]</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>Design Container JA</span><span>07</span></div>
+</section>
+
+<!-- ══════════ 8. ACCEPTANCE ══════════ -->
+<section class="page dark">
+  <div class="rh"><span>Proposal — Design Container JA</span><span>YardScale Digital</span></div>
+  <div class="spacer"></div>
+  <p class="eyebrow"><span class="tick"></span>Acceptance</p>
+  <h1 style="font-size:26pt">Ready when<br>you are.</h1>
+  <p class="lede" style="margin-top:6mm;max-width:110mm">Sign below, or simply reply to confirm — a message saying yes is enough for us to start. The deposit invoice follows within the hour.</p>
+
+  <table style="margin-top:4mm">
+    <tr><th>Agreed scope</th><th class="n">Amount</th></tr>
+    <tr><td>Website, buyer's guide and lead system, as scoped in this document</td><td class="n">J$100,000</td></tr>
+    <tr><td>Deposit due on acceptance</td><td class="n">J$50,000</td></tr>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14mm;margin-top:14mm">
+    <div>
+      <div style="border-bottom:1px solid var(--hair-dark);height:14mm"></div>
+      <span class="mono-sm">SIGNED FOR DESIGN CONTAINER JA</span>
+    </div>
+    <div>
+      <div style="border-bottom:1px solid var(--hair-dark);height:14mm"></div>
+      <span class="mono-sm">DATE</span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rule"></div>
+  <div style="display:flex;align-items:center;gap:3.4mm">
+    <svg width="9mm" height="6.6mm" viewBox="0 0 40 28" fill="none">
+      <path d="M6 2h30l-6 24H0z" fill="#c3fc0f"/><path d="M0 2h5l-2 8H0z" fill="#c3fc0f" opacity=".55"/>
+    </svg>
+    <div>
+      <b style="font-family:var(--display);font-weight:800;font-size:11.6pt;letter-spacing:-.01em;text-transform:uppercase;display:block;line-height:1">YardScale Digital</b>
+      <span style="font-family:var(--mono);font-size:6.4pt;letter-spacing:.26em;color:#8f8f86;display:block;margin-top:1.6mm">AUTOMATION &amp; CREATIVE</span>
+    </div>
+    <div style="margin-left:auto;text-align:right" class="mono-sm">
+      YARDSCALEDIGITAL@GMAIL.COM<br>
+      PROPOSAL VALID 30 DAYS FROM ISSUE
+    </div>
+  </div>
+  <div class="rf"><span>Design Container JA</span><span>08</span></div>
+</section>
+
+</body>
+</html>
