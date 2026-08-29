@@ -8,6 +8,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 const { chromium } = require('playwright');
 
 const HERE = __dirname;
@@ -149,5 +150,22 @@ footer { margin-top: 40px; }
 
   await browser.close();
   fs.unlinkSync(STAGE);
-  console.log('wrote', OUT, fs.statSync(OUT).size, 'bytes');
+  const raw = fs.statSync(OUT).size;
+
+  // Chromium leaves the object streams uncompressed; a MuPDF rewrite takes
+  // roughly a third off with byte-identical text, pages and embedded fonts.
+  // Skipped with a warning if pymupdf isn't installed - the PDF is already
+  // valid at this point, just larger.
+  const compress = spawnSync('python3', [path.join(HERE, 'compress_pdf.py'), OUT], {
+    encoding: 'utf8',
+  });
+  if (compress.status === 0) {
+    console.log(compress.stdout.trim());
+  } else {
+    console.warn(
+      'compression skipped (needs `pip install pymupdf`):',
+      (compress.stderr || '').trim().split('\n').pop()
+    );
+  }
+  console.log('wrote', OUT, fs.statSync(OUT).size, 'bytes', `(from ${raw})`);
 })();

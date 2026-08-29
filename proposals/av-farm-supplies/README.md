@@ -33,6 +33,11 @@ isn't at the default in the script. It downloads Archivo, Instrument Sans and
 JetBrains Mono at build time and inlines them as base64, so the finished PDF
 carries its own type and needs no font host to render correctly.
 
+It then calls `compress_pdf.py` (needs `pip install pymupdf`), which rewrites
+the PDF through MuPDF — about a third smaller, and only kept if the page count
+and extracted text still match. Without pymupdf the step is skipped with a
+warning and you get a valid but larger file.
+
 `src/icons/` holds the Feather icons already rasterised, so a rebuild needs
 only `pptxgenjs`. To regenerate them (`npm install react react-dom react-icons sharp`):
 
