@@ -66,3 +66,23 @@ Every drawing on the page is inline SVG sharing one corrugation `<pattern>`,
 which is what makes a container read as a container at any size. Nothing is
 raster except the link-preview card, so the page is fast and stays sharp on any
 display.
+
+## The buyer's guide
+
+`guide.html` is the source; `Design-Container-JA-Buyers-Guide.pdf` is the built
+20-page A4 PDF that gets emailed to whoever fills in the form.
+
+To rebuild after editing the source:
+
+```bash
+chromium --headless --no-pdf-header-footer --virtual-time-budget=15000 \
+  --print-to-pdf=Design-Container-JA-Buyers-Guide.pdf guide.html
+```
+
+Note that the PDF sits in the deploy directory, so it is reachable at its own
+URL by anyone who has that URL. That is normal for a lead magnet delivered by
+email — the form is there to capture the lead, not to lock the file down — but
+worth knowing before you treat the contents as gated.
+
+The same content-verification pass is worth repeating on any edit: no page
+should have content running into the bottom 25 mm, where the running foot sits.

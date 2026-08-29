@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The 2026 Jamaican Container Home Buyer's Guide — Design Container JA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fonts" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --steel:#14171a;--steel-2:#1b1f23;--sand:#f5f2ec;--sand-2:#ebe6db;--hair:#d8d0c0;
+  --corten:#b85c38;--corten-lt:#d98559;--palm:#1f3a31;--muted:#6f6a5f;--muted-dark:#8b9299;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
+html,body{background:#8d8d8d}
+body{font-family:var(--sans);color:var(--steel);font-size:10.4pt;line-height:1.62;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.page{
+  width:210mm;height:297mm;background:var(--sand);position:relative;overflow:hidden;
+  padding:21mm 19mm 25mm;page-break-after:always;break-after:page;margin:0 auto 8mm;display:flex;flex-direction:column
+}
+.page:last-child{page-break-after:auto;break-after:auto;margin-bottom:0}
+.page.dark{background:var(--steel);color:var(--sand)}
+.page.green{background:var(--palm);color:var(--sand)}
+
+/* ── running head / foot ── */
+.rh{
+  position:absolute;top:11mm;left:19mm;right:19mm;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:6.6pt;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)
+}
+.rf{
+  position:absolute;bottom:10mm;left:19mm;right:19mm;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:6.6pt;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)
+}
+.rf b{color:var(--corten);font-weight:500}
+.dark .rh,.dark .rf,.green .rh,.green .rf{color:var(--muted-dark)}
+
+/* ── type ── */
+h1{font-family:var(--serif);font-weight:400;font-size:34pt;line-height:1;letter-spacing:-.025em;margin-bottom:6mm}
+h1 em{font-style:italic;color:var(--corten)}
+.dark h1 em,.green h1 em{color:var(--corten-lt)}
+h2{font-family:var(--serif);font-weight:400;font-size:19pt;line-height:1.08;letter-spacing:-.02em;margin:0 0 3.4mm}
+h3{font-family:var(--sans);font-weight:600;font-size:11pt;line-height:1.35;margin:6mm 0 2mm;letter-spacing:-.01em}
+h3:first-child{margin-top:0}
+p{margin-bottom:3.2mm;max-width:100%}
+p:last-child{margin-bottom:0}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--corten);text-decoration:none}
+
+.eyebrow{font-family:var(--mono);font-size:7pt;letter-spacing:.22em;text-transform:uppercase;color:var(--corten);margin-bottom:4mm;display:block}
+.dark .eyebrow,.green .eyebrow{color:var(--corten-lt)}
+.chapno{font-family:var(--mono);font-size:7pt;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.lede{font-size:11.6pt;line-height:1.55;color:var(--muted);margin-bottom:6mm;font-family:var(--serif);font-style:italic}
+.dark .lede,.green .lede{color:#a8b0b7}
+
+ul,ol{margin:0 0 3.4mm 4.6mm}
+li{margin-bottom:1.7mm;padding-left:1mm}
+ul.tick{list-style:none;margin-left:0}
+ul.tick li{position:relative;padding-left:6.4mm}
+ul.tick li::before{content:"";position:absolute;left:0;top:1.9mm;width:2.6mm;height:2.6mm;background:var(--corten)}
+
+/* ── components ── */
+.rule{height:1px;background:var(--hair);margin:5mm 0}
+.dark .rule{background:#2f363c}
+
+table{width:100%;border-collapse:collapse;margin:2.6mm 0 3.2mm;font-size:9.1pt}
+th{
+  font-family:var(--mono);font-size:6.8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:2.1mm 2.4mm;border-bottom:1.2px solid var(--steel);font-weight:500
+}
+td{padding:1.95mm 2.4mm;border-bottom:1px solid var(--hair);vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{border-top:1.2px solid var(--steel);border-bottom:0;font-weight:600;padding-top:3mm}
+tr.sub td{color:var(--muted);font-size:8.6pt}
+.dark th{border-bottom-color:var(--sand);color:var(--muted-dark)}
+.dark td{border-bottom-color:#2f363c}
+
+.callout{
+  border-left:2.4px solid var(--corten);background:rgba(184,92,56,.06);
+  padding:3.4mm 4.4mm;margin:3.4mm 0;font-size:9.5pt
+}
+.callout b{display:block;font-size:8.4pt;font-family:var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--corten);margin-bottom:1.6mm;font-weight:500}
+.green .callout,.dark .callout{background:rgba(217,133,89,.12);border-left-color:var(--corten-lt)}
+.green .callout b,.dark .callout b{color:var(--corten-lt)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.card{border:1px solid var(--hair);padding:4.4mm;background:rgba(255,255,255,.4)}
+.dark .card,.green .card{border-color:rgba(245,242,236,.18);background:rgba(255,255,255,.05)}
+.card .n{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;color:var(--corten);display:block;margin-bottom:2.4mm}
+.dark .card .n,.green .card .n{color:var(--corten-lt)}
+.card h4{font-family:var(--sans);font-size:9.8pt;font-weight:600;margin-bottom:1.4mm}
+.card p{font-size:8.8pt;color:var(--muted);line-height:1.55}
+.dark .card p,.green .card p{color:#a8b0b7}
+
+.qbox{border-top:1px solid var(--hair);padding:3.4mm 0}
+.qbox:last-of-type{border-bottom:1px solid var(--hair)}
+.qbox h4{font-family:var(--sans);font-size:10.2pt;font-weight:600;margin-bottom:1.4mm;display:flex;gap:3mm}
+.qbox h4 span{color:var(--corten);font-family:var(--mono);font-size:8pt;padding-top:.6mm}
+.qbox p{font-size:9pt;color:var(--muted);margin-left:7.6mm}
+
+.check{display:flex;gap:3.2mm;align-items:flex-start;padding:2.6mm 0;border-bottom:1px solid var(--hair);font-size:9.4pt}
+.check .box{width:3.6mm;height:3.6mm;border:1.2px solid var(--corten);flex:none;margin-top:1.1mm}
+.check b{font-weight:600;display:block}
+.check span{color:var(--muted);font-size:8.6pt;line-height:1.5}
+
+.spacer{flex:1}
+.mono-sm{font-family:var(--mono);font-size:7.4pt;letter-spacing:.1em;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 1. COVER ══════════ -->
+<section class="page dark" style="padding:0">
+  <svg viewBox="0 0 595 842" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+    <defs>
+      <linearGradient id="csky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#14171a"/><stop offset=".5" stop-color="#1e2c33"/>
+        <stop offset=".78" stop-color="#8c5f49"/><stop offset="1" stop-color="#d09b72"/>
+      </linearGradient>
+      <linearGradient id="cgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9a3"/><stop offset="1" stop-color="#e39a55"/></linearGradient>
+      <pattern id="cc" width="12" height="8" patternUnits="userSpaceOnUse">
+        <path d="M0 0V8M6 0V8" stroke="#000" stroke-opacity=".18" stroke-width="1.1"/>
+        <path d="M3 0V8M9 0V8" stroke="#fff" stroke-opacity=".12" stroke-width="1.1"/></pattern>
+    </defs>
+    <rect width="595" height="842" fill="url(#csky)"/>
+    <path d="M0 646 L110 612 L220 640 L330 602 L440 636 L595 606 V842 H0Z" fill="#22343a" opacity=".7"/>
+    <path d="M0 706 L150 684 L300 702 L450 680 L595 700 V842 H0Z" fill="#1b2b2a"/>
+    <g transform="translate(214 592) scale(.72)">
+      <rect x="-14" y="-8" width="322" height="6" fill="#171b1e"/>
+      <rect x="132" y="10" width="162" height="62" fill="#b85c38"/><rect x="132" y="10" width="162" height="62" fill="url(#cc)"/>
+      <rect x="148" y="26" width="76" height="34" fill="url(#cgl)" opacity=".9"/><path d="M186 26v34" stroke="#171b1e" stroke-width="2"/>
+      <rect x="240" y="26" width="38" height="34" fill="#171b1e" opacity=".55"/>
+      <rect x="0" y="72" width="294" height="72" fill="#2b3238"/><rect x="0" y="72" width="294" height="72" fill="url(#cc)"/>
+      <rect x="20" y="88" width="116" height="52" fill="url(#cgl)" opacity=".94"/>
+      <path d="M58 88v52M97 88v52" stroke="#171b1e" stroke-width="2"/>
+      <rect x="156" y="88" width="44" height="52" fill="#1d2226" opacity=".7"/>
+      <rect x="218" y="98" width="58" height="34" fill="url(#cgl)" opacity=".6"/>
+      <rect x="-34" y="144" width="356" height="7" fill="#7d5c41"/>
+      <path d="M-22 151v32M70 151v32M180 151v32M278 151v32M310 151v32" stroke="#1f2528" stroke-width="3.4"/>
+      <path d="M-34 144v-22M322 144v-22M-34 122H322" stroke="#5f4632" stroke-width="2" opacity=".85"/>
+    </g>
+    <path d="M0 772 L160 758 L340 768 L520 754 L595 762 V842 H0Z" fill="#131f1f"/>
+    <rect width="595" height="842" fill="#14171a" opacity=".34"/>
+  </svg>
+
+  <div style="position:relative;padding:26mm 19mm;height:100%;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:3.4mm">
+      <svg width="13mm" height="13mm" viewBox="0 0 40 40" fill="none">
+        <rect x="2.5" y="8.5" width="35" height="23" rx="1.5" stroke="#f5f2ec" stroke-width="2.2"/>
+        <path d="M10 12.5v15M16 12.5v15M22 12.5v15M28 12.5v15" stroke="#f5f2ec" stroke-opacity=".45" stroke-width="1.6"/>
+        <rect x="2.5" y="8.5" width="5" height="5" fill="#b85c38"/><rect x="32.5" y="26.5" width="5" height="5" fill="#b85c38"/>
+      </svg>
+      <div>
+        <b style="font-size:12pt;font-weight:600;display:block;line-height:1">Design Container</b>
+        <span style="font-family:var(--mono);font-size:6.6pt;letter-spacing:.28em;color:#8b9299;display:block;margin-top:1.4mm">JAMAICA</span>
+      </div>
+    </div>
+
+    <div style="flex:1"></div>
+
+    <span style="font-family:var(--mono);font-size:7.4pt;letter-spacing:.24em;color:#8b9299;margin-bottom:6mm;display:block">2026 EDITION · FREE</span>
+    <h1 style="font-size:40pt;margin-bottom:0">The Jamaican<br>Container Home<br><em>Buyer's Guide</em></h1>
+    <div style="width:34mm;height:2px;background:var(--corten);margin:8mm 0"></div>
+    <p style="font-size:12pt;color:#b9c0c6;max-width:78mm;font-family:var(--serif);font-style:italic;line-height:1.5">
+      What a container home really costs on this island, what the parish council
+      will ask you for, and the questions to put to any builder before you hand
+      over a deposit.</p>
+
+    <div style="flex:1"></div>
+    <div class="mono-sm" style="color:#8b9299">COSTS · IMPORT DUTY · APPROVALS · FINANCING<br>SITE PREP · HURRICANE SPEC · CHECKLISTS</div>
+  </div>
+</section>
+
+<!-- ══════════ 2. CONTENTS ══════════ -->
+<section class="page">
+  <div class="rh"><span>Design Container JA</span><span>2026 Edition</span></div>
+  <span class="eyebrow">Contents</span>
+  <h2>What is in here</h2>
+  <p class="lede">Nine short chapters. Read it end to end in about twenty minutes, or jump to the number you actually came for.</p>
+
+  <table>
+    <tr><td style="width:12mm" class="chapno">01</td><td><strong>Is a container home right for you?</strong><br><span style="color:var(--muted);font-size:8.8pt">The honest case for and against, before you spend anything</span></td><td class="n chapno">03</td></tr>
+    <tr><td class="chapno">02</td><td><strong>What it actually costs</strong><br><span style="color:var(--muted);font-size:8.8pt">The unit price, and the eight costs that sit behind it</span></td><td class="n chapno">04</td></tr>
+    <tr><td class="chapno">03</td><td><strong>A worked budget</strong><br><span style="color:var(--muted);font-size:8.8pt">One two-bedroom home, every line item, nothing hidden</span></td><td class="n chapno">06</td></tr>
+    <tr><td class="chapno">04</td><td><strong>Importing it yourself</strong><br><span style="color:var(--muted);font-size:8.8pt">Duty, GCT and stamp duty, worked through with real numbers</span></td><td class="n chapno">07</td></tr>
+    <tr><td class="chapno">05</td><td><strong>Approvals</strong><br><span style="color:var(--muted);font-size:8.8pt">Parish council, NEPA, and the four things that hold you up</span></td><td class="n chapno">09</td></tr>
+    <tr><td class="chapno">06</td><td><strong>Paying for it</strong><br><span style="color:var(--muted);font-size:8.8pt">What lenders in Jamaica will and will not do</span></td><td class="n chapno">11</td></tr>
+    <tr><td class="chapno">07</td><td><strong>Building for this climate</strong><br><span style="color:var(--muted);font-size:8.8pt">Hurricane, heat, salt and water — what good looks like</span></td><td class="n chapno">13</td></tr>
+    <tr><td class="chapno">08</td><td><strong>Seven questions before you pay a deposit</strong><br><span style="color:var(--muted);font-size:8.8pt">The ones that separate a builder from a salesman</span></td><td class="n chapno">15</td></tr>
+    <tr><td class="chapno">09</td><td><strong>Your site-readiness checklist</strong><br><span style="color:var(--muted);font-size:8.8pt">Walk your land this weekend with this page in hand</span></td><td class="n chapno">17</td></tr>
+  </table>
+
+  <div class="spacer"></div>
+  <div class="callout">
+    <b>Before you start</b>
+    <p>Every figure in this guide is indicative and current at the time of writing. Duty rates, GCT and parish fees change; land, access and finishes move a budget more than anything else. Treat the numbers as a way to think about the problem, not as a quotation — and confirm import rates with a licensed customs broker before you commit money.</p>
+  </div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>02</b></div>
+</section>
+
+<!-- ══════════ 3. CH1 ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 01 — Is it right for you?</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 01</span>
+  <h2>Is a container home<br>right for you?</h2>
+  <p class="lede">The honest answer is that it depends almost entirely on your land and your timeline — not on the container.</p>
+
+  <p>Container construction solves one problem extremely well: it moves the build off your site and into a yard, where weather, theft and labour availability stop dictating the schedule. A block-and-steel house in Jamaica routinely runs eighteen months and a budget that drifts the whole way. A container home is fabricated in ten to fourteen weeks while your foundation goes in, then set in a day.</p>
+  <p>That is the real product. Everything else — the sustainability story, the modern look — is secondary, and you should be suspicious of anyone selling it the other way round.</p>
+
+  <div class="grid2" style="margin-top:6mm">
+    <div>
+      <h3 style="margin-top:0">It works well when</h3>
+      <ul class="tick">
+        <li>You already own land with clear registered title</li>
+        <li>A low-bed truck and a crane can reach the building position</li>
+        <li>You want a fixed price you can actually hold someone to</li>
+        <li>You need to be in within a year, not three</li>
+        <li>You are building a second unit, a rental, or a guest cottage</li>
+        <li>You expect to extend later and want that designed in from the start</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-top:0">It works badly when</h3>
+      <ul class="tick" style="--corten:#6f6a5f">
+        <li>The site cannot take a crane and there is no alternative access</li>
+        <li>You want more than about 1,200 sq ft — the economics flatten out</li>
+        <li>Your title is unclear or the land is family property in dispute</li>
+        <li>You want a conventional mortgage and nothing else will do</li>
+        <li>You are on a steep, unstable slope with no engineered platform</li>
+        <li>You want wide, open interior spans without visible structure</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>The single biggest predictor</b>
+    <p>Access. We have quoted beautiful sites that could not take delivery, and unremarkable ones that were straightforward. Before you fall in love with a model, stand at your gate and ask whether a 40-foot low-bed could get in, turn, and whether a crane could set up within reach of the building position. Chapter 09 gives you a checklist for exactly this.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>03</b></div>
+</section>
+
+<!-- ══════════ 4. CH2 COSTS ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 02 — What it actually costs</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 02</span>
+  <h2>What it actually costs</h2>
+  <p class="lede">The unit price is the number everyone quotes. It is rarely more than two thirds of what you will spend.</p>
+
+  <p>Container homes in Jamaica are widely advertised from around <strong>J$2.5M for a one-bedroom to roughly J$12.5M for a three-bedroom</strong>, with a 480 sq ft two-bedroom — typically a 20-foot and a 40-foot high-cube combined — sitting near the middle of that range. Those are unit prices. They are real, and they are not the whole story.</p>
+  <p>Here is everything that sits behind the headline figure. Not all of it will apply to you, but you should be able to say why for each line.</p>
+
+  <table>
+    <tr><th>Cost</th><th>Typically</th><th>Notes</th></tr>
+    <tr><td><strong>The unit</strong></td><td>J$2.5M–12.5M</td><td>Finished, delivered, set. Confirm exactly what "finished" includes.</td></tr>
+    <tr><td><strong>Land</strong></td><td>Highly variable</td><td>Must have clear registered title if you intend to borrow against it.</td></tr>
+    <tr><td><strong>Foundation</strong></td><td>J$400k–1.2M</td><td>Cast reinforced pad or piers with engineered hold-down points. Slope drives this.</td></tr>
+    <tr><td><strong>Site clearing &amp; access</strong></td><td>J$100k–600k</td><td>Widening a track for a low-bed is a common and unbudgeted surprise.</td></tr>
+    <tr><td><strong>Septic or sewer</strong></td><td>J$350k–900k</td><td>Absorption pit and tank where there is no NWC sewer connection.</td></tr>
+    <tr><td><strong>Water</strong></td><td>J$150k–700k</td><td>NWC connection, or a black tank and pump where there is no main.</td></tr>
+    <tr><td><strong>Electricity</strong></td><td>J$150k–600k</td><td>JPS service connection. Distance from the nearest pole is the variable.</td></tr>
+    <tr><td><strong>Approvals &amp; professional fees</strong></td><td>J$200k–600k</td><td>Parish council fees, structural drawings, engineer's certification.</td></tr>
+    <tr><td><strong>Delivery beyond base radius</strong></td><td>J$80k–400k</td><td>Low-bed and crane. Ask what radius the quoted price actually covers.</td></tr>
+    <tr class="sub"><td colspan="3">Ranges are indicative and depend heavily on site conditions, parish and current rates.</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>The rule of thumb</b>
+    <p>On a straightforward site with services close by, budget the unit price <strong>plus about 35–50%</strong> for everything else. On a remote or steep site with no services at the boundary, that figure can approach 100%. Any builder who will not talk about this openly is telling you something.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>04</b></div>
+</section>
+
+<!-- ══════════ 5. CH2 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 02 — What it actually costs</span><span>Design Container JA</span></div>
+  <h3 style="margin-top:0">What "finished" should mean</h3>
+  <p>The word does a lot of work in this industry. Before you compare two quotations, make each one confirm — in writing — whether the following are inside the price.</p>
+
+  <div class="grid2" style="margin-top:4mm">
+    <div class="card"><span class="n">INTERIOR</span>
+      <h4>Should be included</h4>
+      <p>Insulation, interior wall and ceiling lining, flooring, internal doors, kitchen cabinetry and counter, bathroom suite, tiling to wet areas, wardrobe or closet joinery, and all internal painting.</p></div>
+    <div class="card"><span class="n">SERVICES</span>
+      <h4>Should be included</h4>
+      <p>Full electrical first and second fix to a consumer unit, all plumbing to a single connection point, water heater, extract ventilation to the bathroom, and provision for air conditioning even if units are not fitted.</p></div>
+    <div class="card"><span class="n">EXTERIOR</span>
+      <h4>Ask specifically</h4>
+      <p>Roof canopy, gutters and downpipes, external doors and glazing with cyclone-rated fixings, the full coating system, deck or steps, and any external lighting.</p></div>
+    <div class="card"><span class="n">PAPERWORK</span>
+      <h4>Ask specifically</h4>
+      <p>Stamped structural drawings, the engineer's certification, as-built drawings at handover, warranty documents, and the compliance schedule your parish council submission needs.</p></div>
+  </div>
+
+  <h3>Three things that are almost never included</h3>
+  <ul class="tick">
+    <li><strong>Air conditioning units themselves.</strong> Provision is usually in; the equipment usually is not.</li>
+    <li><strong>Solar panels and inverter.</strong> A good build is solar-<em>ready</em> — roof rated for the array, conduit run, inverter position pre-wired. The hardware is a separate purchase.</li>
+    <li><strong>Furniture, white goods and window treatments.</strong> Obvious when written down, routinely forgotten in a budget.</li>
+  </ul>
+
+  <div class="callout">
+    <b>A question worth asking</b>
+    <p>"If I sign today, what is the total figure I will have paid you by handover, assuming nothing changes?" A builder working to a genuine fixed price can answer that in one number. If the answer needs paragraphs, you are looking at a provisional sum, not a price.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>05</b></div>
+</section>
+
+<!-- ══════════ 6. CH3 WORKED BUDGET ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 03 — A worked budget</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 03</span>
+  <h2>A worked budget</h2>
+  <p class="lede">One two-bedroom home, 480 sq ft, on land the buyer already owns twenty minutes outside Kingston. Every line, including the ones nobody enjoys.</p>
+
+  <table>
+    <tr><th>Line</th><th class="n">Cost (J$)</th><th>Assumption</th></tr>
+    <tr><td>Two-bedroom unit, finished and delivered</td><td class="n">8,500,000</td><td>20 ft + 40 ft high cube, within 40 km</td></tr>
+    <tr><td>Reinforced pad foundation with hold-downs</td><td class="n">720,000</td><td>Gentle slope, no piling required</td></tr>
+    <tr><td>Site clearing and access widening</td><td class="n">260,000</td><td>Existing track, needed widening at one bend</td></tr>
+    <tr><td>Septic tank and absorption pit</td><td class="n">540,000</td><td>No NWC sewer available</td></tr>
+    <tr><td>Water — NWC connection and 400 gal tank</td><td class="n">310,000</td><td>Main at the boundary</td></tr>
+    <tr><td>JPS service connection</td><td class="n">280,000</td><td>Pole approximately 60 m away</td></tr>
+    <tr><td>Structural drawings and engineer's certification</td><td class="n">340,000</td><td>Required for approval and for lending</td></tr>
+    <tr><td>Parish council application and fees</td><td class="n">165,000</td><td>Varies by parish and floor area</td></tr>
+    <tr><td>Deck, steps and handrail</td><td class="n">430,000</td><td>Hardwood deck, 120 sq ft</td></tr>
+    <tr><td>Air conditioning — two split units, supplied and fitted</td><td class="n">395,000</td><td>Provision was already in the unit price</td></tr>
+    <tr class="total"><td>Total to move in</td><td class="n">11,940,000</td><td>Excludes land and furniture</td></tr>
+  </table>
+
+  <p style="margin-top:2mm">The unit was 71% of the total. That ratio is typical for a reasonable site with services nearby, and it is the single most useful number in this guide.</p>
+
+  <div class="callout">
+    <b>What would change this</b>
+    <p><strong>Upward:</strong> a steep site needing piling or a retaining wall; no water main within reach; a JPS pole a long way off; delivery to the far end of the island; a parish with higher fees. <strong>Downward:</strong> a flat cleared site with services at the boundary, an existing septic you can reuse, or doing the deck yourself later.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>06</b></div>
+</section>
+
+<!-- ══════════ 7. CH4 IMPORT ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 04 — Importing it yourself</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 04</span>
+  <h2>Importing it yourself</h2>
+  <p class="lede">Overseas factories advertise container homes from US$8,500. That number is true and almost completely misleading. Here is why.</p>
+
+  <p>A prefabricated building imported into Jamaica is classified under <strong>HS heading 9406</strong>. On arrival it attracts, in order:</p>
+
+  <ul class="tick">
+    <li><strong>Customs duty at 20%</strong>, calculated on the CIF value — the cost of the goods plus insurance plus freight, not just what you paid the factory.</li>
+    <li><strong>General Consumption Tax at 15%</strong>, calculated on the <em>duty-inclusive</em> value. GCT is charged on top of the duty, not alongside it.</li>
+    <li><strong>Stamp duty</strong> on the import, plus the standard customs administration fee.</li>
+  </ul>
+
+  <p>Because GCT compounds on the duty, the effective uplift on CIF lands around <strong>35–38%</strong> before the unit leaves the wharf.</p>
+
+  <h3>A worked example</h3>
+  <table>
+    <tr><th>Line</th><th class="n">US$</th><th class="n">J$ (at 158)</th></tr>
+    <tr><td>Factory price, FOB</td><td class="n">18,000</td><td class="n">2,844,000</td></tr>
+    <tr><td>Ocean freight and insurance</td><td class="n">4,200</td><td class="n">663,600</td></tr>
+    <tr class="sub"><td>CIF value</td><td class="n">22,200</td><td class="n">3,507,600</td></tr>
+    <tr><td>Customs duty at 20% of CIF</td><td class="n">4,440</td><td class="n">701,520</td></tr>
+    <tr class="sub"><td>Duty-inclusive value</td><td class="n">26,640</td><td class="n">4,209,120</td></tr>
+    <tr><td>GCT at 15% of duty-inclusive value</td><td class="n">3,996</td><td class="n">631,368</td></tr>
+    <tr><td>Stamp duty and administration</td><td class="n">190</td><td class="n">30,020</td></tr>
+    <tr><td>Wharfage, broker, haulage from port</td><td class="n">1,900</td><td class="n">300,200</td></tr>
+    <tr class="total"><td>Landed at your gate</td><td class="n">32,726</td><td class="n">5,170,708</td></tr>
+  </table>
+
+  <p>A US$18,000 unit costs about <strong>J$5.17M</strong> on your land — and it is still a bare shell in a yard. Foundation, services, approvals, insulation to a standard that works in this climate, and any warranty you can actually enforce are all ahead of you.</p>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>07</b></div>
+</section>
+
+<!-- ══════════ 8. CH4 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 04 — Importing it yourself</span><span>Design Container JA</span></div>
+  <div class="callout" style="margin-top:0">
+    <b>Confirm before you commit</b>
+    <p>Rates and classifications change, and a misclassification is expensive to unwind at the wharf. Have a <strong>licensed customs broker</strong> price your shipment in writing before you pay a factory deposit. This example is illustrative, not a quotation.</p>
+  </div>
+
+  <h3 style="margin-top:0">The four risks nobody mentions in the brochure</h3>
+
+  <div class="qbox"><h4><span>01</span>The specification is written for a different climate</h4>
+    <p>Most exported units are built to a temperate specification. Insulation is thin or absent, the coating system is not marine grade, and the fixings are not rated for a Caribbean gust. You will pay to correct all three, and correcting insulation after lining is fitted means stripping the interior.</p></div>
+
+  <div class="qbox"><h4><span>02</span>There is no enforceable warranty</h4>
+    <p>A warranty from a factory eight thousand miles away, governed by a foreign jurisdiction, is worth what it costs you to enforce. Ask yourself who you would actually call about a leak in year three.</p></div>
+
+  <div class="qbox"><h4><span>03</span>It may not certify for approval</h4>
+    <p>Parish council will want structural drawings and evidence of compliance with the Building Act 2018. A foreign unit rarely arrives with anything a local registered engineer can certify without a full assessment — which you then pay for, and which may require modification.</p></div>
+
+  <div class="qbox"><h4><span>04</span>Lenders will not touch it</h4>
+    <p>Without a stamped engineer's report, an imported shell is not financeable in practice. You will be funding the whole thing from cash.</p></div>
+
+  <h3>When importing does make sense</h3>
+  <p>If you are buying several units, have an engineer and a broker you already work with, and are prepared to treat the import as a shell to be substantially rebuilt locally — the economics can work. For a single family home, they usually do not, once the corrections above are priced honestly.</p>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>08</b></div>
+</section>
+
+<!-- ══════════ 9. CH5 APPROVALS ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 05 — Approvals</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 05</span>
+  <h2>Approvals</h2>
+  <p class="lede">A container home sited permanently is a building. It needs approval like any other building, and the process is not unusually hard — it is just unusually easy to start late.</p>
+
+  <p>For a single dwelling you are applying to your <strong>parish council</strong> for building approval. Larger or environmentally sensitive developments go to <strong>NEPA</strong>. Your submission must demonstrate compliance with the <strong>Building Act 2018</strong> and the wind loading requirements of the <strong>Caribbean Uniform Building Code (CUBiC)</strong>.</p>
+
+  <h3>What a complete submission contains</h3>
+  <ul class="tick">
+    <li>Site plan showing boundaries, setbacks, the building position and access</li>
+    <li>Floor plans, elevations and sections of the proposed dwelling</li>
+    <li>Structural drawings and calculations, stamped by a registered engineer</li>
+    <li>Foundation and anchorage detail — how the unit ties to the ground</li>
+    <li>Drainage and sewage disposal proposals, including percolation where relevant</li>
+    <li>Proof of ownership or the owner's written consent</li>
+    <li>The application form and the parish fee, which scales with floor area</li>
+  </ul>
+
+  <div class="callout">
+    <b>Start it early — it runs in parallel</b>
+    <p>Approval commonly takes six to twelve weeks. Fabrication takes ten to fourteen. Those two clocks should run <em>at the same time</em>, not one after the other. A builder who waits for approval before starting fabrication has quietly added three months to your project.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>09</b></div>
+</section>
+
+<!-- ══════════ 10. CH5 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 05 — Approvals</span><span>Design Container JA</span></div>
+  <h3 style="margin-top:0">The four things that hold an approval up</h3>
+
+  <div class="qbox"><h4><span>01</span>Title that is not clean</h4>
+    <p>Family land held in common, an unregistered transfer, or a boundary that does not match the survey plan will stop an application before it is assessed. This is the most common cause of delay and the slowest to fix — start here, months before anything else.</p></div>
+
+  <div class="qbox"><h4><span>02</span>No stamped structural design</h4>
+    <p>Drawings of a container are not a structural design. The council wants calculations for wind uplift and the anchorage detail, signed by a registered engineer who is prepared to stand behind them.</p></div>
+
+  <div class="qbox"><h4><span>03</span>Sewage disposal not resolved</h4>
+    <p>Where there is no sewer, you need a workable absorption solution and, on tight or rocky sites, evidence it will actually perform. Councils reject vague answers here routinely.</p></div>
+
+  <div class="qbox"><h4><span>04</span>Setbacks and coverage</h4>
+    <p>A 40-foot unit is long. On a narrow lot it is easy to breach a side setback without noticing until the site plan is drawn properly. Check this before you choose a model, not after.</p></div>
+
+  <h3>A realistic timeline</h3>
+  <table>
+    <tr><th>Stage</th><th>Typical duration</th></tr>
+    <tr><td>Confirming title and survey plan</td><td>2–8 weeks, occasionally far longer</td></tr>
+    <tr><td>Preparing drawings and structural design</td><td>2–3 weeks</td></tr>
+    <tr><td>Parish council assessment</td><td>6–12 weeks</td></tr>
+    <tr><td>Responding to queries, if any</td><td>1–4 weeks</td></tr>
+  </table>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>10</b></div>
+</section>
+
+<!-- ══════════ 11. CH6 FINANCING ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 06 — Paying for it</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 06</span>
+  <h2>Paying for it</h2>
+  <p class="lede">This is where most container home projects actually stall. Not at the council, and not at the yard — at the bank.</p>
+
+  <p>Conventional mortgage lending in Jamaica is built around block-and-steel construction on registered land. Prefabricated housing sits outside that comfort zone, and most commercial banks will decline or offer terms that make the project pointless. That is the honest position, and any builder who tells you otherwise is hoping you will find out later.</p>
+  <p>What does work, in rough order of how often we see it:</p>
+
+  <div class="grid3" style="margin-top:5mm">
+    <div class="card"><span class="n">01</span><h4>Credit union facility</h4>
+      <p>Several Jamaican credit unions will lend against prefabricated housing where the member has a solid record. Usually structured as a secured personal or home-improvement loan rather than a mortgage. Shorter term, higher rate, far more achievable.</p></div>
+    <div class="card"><span class="n">02</span><h4>Staged self-funding</h4>
+      <p>Buy a studio outright, live in it, add a module when you can. This is genuinely practical with container construction in a way it is not with conventional building, provided the structure is designed for extension from day one.</p></div>
+    <div class="card"><span class="n">03</span><h4>Rental-backed</h4>
+      <p>Short-let or long-let income services the borrowing. Works where the location genuinely supports occupancy — and you should model it with pessimistic assumptions, not the good months.</p></div>
+  </div>
+
+  <h3>What a lender will ask you for</h3>
+  <ul class="tick">
+    <li><strong>Clear registered title</strong> to the land, in your name, unencumbered</li>
+    <li><strong>A stamped engineer's report</strong> on the structure and its foundation</li>
+    <li><strong>The approved parish council submission</strong>, or evidence it is lodged</li>
+    <li><strong>A valuation</strong> from a valuer prepared to assess prefabricated construction</li>
+    <li><strong>A fixed-price contract</strong> with a defined scope and payment schedule</li>
+    <li><strong>Proof of income</strong> and your existing debt commitments, as with any facility</li>
+  </ul>
+
+  <div class="callout">
+    <b>Get the report before you need it</b>
+    <p>The stamped engineer's report is the document that turns "an interesting box" into "a financeable asset" in a lender's eyes. Ask any builder whether it is included in their price, and whether you will receive it before completion or at handover. Before is far more useful.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>11</b></div>
+</section>
+
+<!-- ══════════ 12. CH6 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 06 — Paying for it</span><span>Design Container JA</span></div>
+  <h3 style="margin-top:0">Insurance</h3>
+  <p>Insurers price what they understand. A container home with a stamped structural design, a documented anchorage detail and a certified coating system is straightforward to insure. The same home without that paperwork can be difficult and expensive.</p>
+  <p>When you approach an insurer, lead with the engineering, not the aesthetics. Give them the wind rating the structure was designed to, the hold-down detail, and the engineer's certification. Ask specifically about hurricane cover and what the excess is — that is the clause that matters on this island.</p>
+
+  <h3>A sensible payment schedule</h3>
+  <p>Fixed-price container contracts are usually staged. A structure that protects both sides looks roughly like this:</p>
+  <table>
+    <tr><th>Stage</th><th class="n">Share</th><th>Released when</th></tr>
+    <tr><td>Deposit on signing</td><td class="n">20–25%</td><td>Contract and drawing set signed by both parties</td></tr>
+    <tr><td>Start of fabrication</td><td class="n">25–30%</td><td>Containers procured, cutting and framing begun</td></tr>
+    <tr><td>First fix complete</td><td class="n">20–25%</td><td>Insulation, electrical and plumbing rough-in inspected</td></tr>
+    <tr><td>Ready for delivery</td><td class="n">20–25%</td><td>Unit finished and inspected in the yard, before it leaves</td></tr>
+    <tr><td>Retention on handover</td><td class="n">5–10%</td><td>Snag list closed, warranty and as-builts handed over</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>Never pay the full amount before delivery</b>
+    <p>Hold a retention until the snag list is closed and you have the documents in your hand. Five to ten per cent is normal, fair, and the only leverage you have on the last ten per cent of quality. A builder confident in their work will not object to it.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>12</b></div>
+</section>
+
+<!-- ══════════ 13. CH7 CLIMATE ══════════ -->
+<section class="page dark">
+  <div class="rh"><span>Chapter 07 — Building for this climate</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 07</span>
+  <h2>Building for this climate</h2>
+  <p class="lede">A shipping container is designed to be stacked nine high and thrown across the Atlantic. That makes it a good starting point and a poor finished house. Four things have to change.</p>
+
+  <h3 style="color:var(--corten-lt)">01 — Wind</h3>
+  <p>The steel box is not the weak point; the connection to the ground is. Uplift is what destroys buildings in a hurricane, and a container that is simply set on blocks will move. What you want to see is a <strong>cast reinforced foundation with engineered hold-down plates at every corner casting</strong>, designed to CUBiC wind loading — a 150 mph design gust is a reasonable benchmark — and certified by a registered structural engineer.</p>
+  <p>Ask to see the anchorage detail drawing. If one does not exist, the design does not exist.</p>
+
+  <h3 style="color:var(--corten-lt)">02 — Heat</h3>
+  <p>An uninsulated container in Jamaican sun is genuinely unbearable, and this is where cheap units fail hardest. Two things fix it, and you need both:</p>
+  <ul class="tick">
+    <li><strong>Closed-cell spray foam applied to the inside face of the steel</strong>, typically 50 mm. Closed-cell matters — it insulates and it stops warm humid air reaching the cold steel and condensing behind your lining. Batt insulation in a stud cavity does not do the second job, and the result is mould you cannot see.</li>
+    <li><strong>A ventilated roof canopy over the container.</strong> Keeping direct sun off the box entirely does more for comfort than any air conditioner, and it costs less to run for the next twenty years.</li>
+  </ul>
+
+  <div class="callout">
+    <b>The condensation test</b>
+    <p>Ask a builder how they stop condensation forming on the inside face of the steel. If the answer is about ventilation or a vapour barrier rather than closed-cell foam bonded directly to the steel, keep asking. This is the single most common failure in container housing, and it shows up in year two, behind the wall, where you cannot see it.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>13</b></div>
+</section>
+
+<!-- ══════════ 14. CH7 cont ══════════ -->
+<section class="page dark">
+  <div class="rh"><span>Chapter 07 — Building for this climate</span><span>Design Container JA</span></div>
+  <h3 style="color:var(--corten-lt);margin-top:0">03 — Salt and corrosion</h3>
+  <p>A used container arrives with a marine coating that has already done its working life, plus whatever rust came with it. Painting over that buys you a season or two. Proper preparation is:</p>
+  <ul class="tick">
+    <li>Shot-blast or mechanically abrade back to bright steel, treating any pitting</li>
+    <li>Zinc-rich primer across the whole shell</li>
+    <li>Two-pack polyurethane topcoat — the system used on offshore plant and bridges</li>
+    <li>All cut edges and welds treated before the topcoat, not after</li>
+  </ul>
+  <p>Expect to recoat every ten to twelve years near the coast. That is a weekend's work on a well-prepared shell and a rebuild on a badly prepared one.</p>
+
+  <h3 style="color:var(--corten-lt)">04 — Water</h3>
+  <p>Every opening cut into a container is a potential leak, because cutting a corrugated wall removes structure as well as steel. Each opening should be <strong>framed and welded</strong>, then sealed — not sealed alone. Ask how openings are framed; the answer tells you most of what you need to know about the rest of the build.</p>
+  <p>Above that, you want a roof that actually sheds water away from the box with gutters and downpipes to a tank connection, and a deck detail that does not trap standing water against the steel.</p>
+
+  <div class="rule"></div>
+
+  <h3 style="color:var(--corten-lt)">What good looks like, in one table</h3>
+  <table>
+    <tr><th>Element</th><th>Acceptable</th><th>What to avoid</th></tr>
+    <tr><td>Anchorage</td><td>Engineered hold-downs at corner castings, cast foundation, certified</td><td>Set on blocks or an uncertified slab</td></tr>
+    <tr><td>Insulation</td><td>50 mm closed-cell foam bonded to the steel</td><td>Batt insulation in a stud cavity</td></tr>
+    <tr><td>Coating</td><td>Blast, zinc-rich primer, two-pack polyurethane</td><td>Paint applied over the existing finish</td></tr>
+    <tr><td>Openings</td><td>Framed, welded, then sealed</td><td>Cut and sealed with mastic</td></tr>
+    <tr><td>Roof</td><td>Ventilated canopy over the container</td><td>Coating applied directly to the container roof</td></tr>
+  </table>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>14</b></div>
+</section>
+
+<!-- ══════════ 15. CH8 QUESTIONS ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 08 — Before you pay a deposit</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 08</span>
+  <h2>Seven questions before<br>you pay a deposit</h2>
+  <p class="lede">Ask all seven. Write the answers down. A builder worth your money will answer every one without hesitating, and will not mind you asking.</p>
+
+  <div class="qbox"><h4><span>01</span>Can I see a completed unit and speak to the owner?</h4>
+    <p>Never buy a container home you have not stood inside. Photographs hide ceiling height, condensation staining, door quality and how the space actually feels at midday. And the owner will tell you things the builder will not.</p></div>
+
+  <div class="qbox"><h4><span>02</span>Who is the registered engineer, and will I get the stamped drawings?</h4>
+    <p>You want a name you can verify and a commitment that the stamped structural drawings and certification come to you — ideally before completion, since that is what your lender and insurer will want to see.</p></div>
+
+  <div class="qbox"><h4><span>03</span>What exactly is inside this price, and what is not?</h4>
+    <p>Ask for it as a written scope, not a conversation. Use the checklist in Chapter 02. Pay particular attention to the foundation, services connections, approval fees and delivery radius.</p></div>
+
+  <div class="qbox"><h4><span>04</span>How do you insulate, and how do you stop condensation on the steel?</h4>
+    <p>The answer should be closed-cell spray foam bonded directly to the inside face. Anything else, keep asking. This is the question that most reliably separates a builder from an assembler.</p></div>
+
+  <div class="qbox"><h4><span>05</span>What is the coating system, and what preparation comes first?</h4>
+    <p>You are listening for blasting back to bare steel, a zinc-rich primer and a two-pack topcoat. "We paint it" is not a coating system.</p></div>
+
+  <div class="qbox"><h4><span>06</span>What happens if you are late, and what happens if I am?</h4>
+    <p>A real contract addresses both. If the builder's delays carry no consequence but yours carry a penalty, you have learned something useful about the relationship.</p></div>
+
+  <div class="qbox"><h4><span>07</span>What is the warranty, and who honours it in year four?</h4>
+    <p>Ask for the term on the structure, on the coating, and on the fit-out separately — they are rarely the same. Then ask who you call. A warranty is only as good as the company still being there.</p></div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>15</b></div>
+</section>
+
+<!-- ══════════ 16. CH8 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 08 — Before you pay a deposit</span><span>Design Container JA</span></div>
+  <h3 style="margin-top:0">Five answers that should worry you</h3>
+
+  <div class="callout"><b>"We don't need approval for this"</b>
+    <p>A permanently sited dwelling needs building approval. A builder who tells you otherwise is either inexperienced or is planning to hand you a problem that surfaces when you try to sell, insure or borrow against the property.</p></div>
+
+  <div class="callout"><b>"The price depends on final quantities"</b>
+    <p>That is a provisional sum wearing a fixed price's clothes. Ask what the number will be if nothing changes. If they cannot say, you do not have a price.</p></div>
+
+  <div class="callout"><b>"Insulation is included" — with no further detail</b>
+    <p>Insulation type matters more than its presence. Get the material and the thickness in writing.</p></div>
+
+  <div class="callout"><b>"We need the full amount before it leaves the yard"</b>
+    <p>Retention exists for a reason. A builder unwilling to leave five per cent on the table until snags are closed is telling you what they expect the snag list to look like.</p></div>
+
+  <div class="callout"><b>"That's just how containers are"</b>
+    <p>Used to explain condensation, heat, noise or rust. None of those are inherent to container construction — they are symptoms of a specification that was cut somewhere. Ask where.</p></div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>16</b></div>
+</section>
+
+<!-- ══════════ 17. CH9 CHECKLIST ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 09 — Site-readiness checklist</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Chapter 09</span>
+  <h2>Your site-readiness<br>checklist</h2>
+  <p class="lede">Print this page and walk your land with it. Twenty minutes here will save you a great deal later, and it is the fastest way to make a first meeting with any builder productive.</p>
+
+  <h3>Access — the one that decides everything</h3>
+  <div class="check"><span class="box"></span><span><b>Can a 40 ft low-bed truck reach the property?</b><span>Check the narrowest point, the tightest bend, and any low branches or wires along the route.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is there room to turn or reverse near the site?</b><span>A truck that can get in but not out is a truck that never comes in.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Can a crane set up within reach of the building position?</b><span>It needs firm level ground and clear airspace overhead — power lines are the usual obstruction.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Are there weight-restricted bridges or culverts on the route?</b><span>Worth a phone call to the parish council before you assume.</span></span></div>
+
+  <h3>Land and title</h3>
+  <div class="check"><span class="box"></span><span><b>Is the title registered and in your name?</b><span>If it is family land held in common, start resolving that now — it takes the longest of anything in this guide.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Do you have a current survey plan?</b><span>You will need it for the site plan, and boundaries on the ground often differ from memory.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Does the building position respect the setbacks?</b><span>A 40 ft unit is long. Measure the side boundaries before choosing a model.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is any part of the site in a flood-prone or gully-adjacent area?</b><span>This affects both approval and insurance.</span></span></div>
+
+  <h3>Ground</h3>
+  <div class="check"><span class="box"></span><span><b>How much fall is there across the building position?</b><span>Gentle slope is fine and often an advantage. Steep slope means retaining or piling, and a materially different foundation cost.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is there rock at or near the surface?</b><span>Affects foundation, septic absorption and cost. Look at any existing cut or excavation nearby.</span></span></div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>17</b></div>
+</section>
+
+<!-- ══════════ 18. CH9 cont ══════════ -->
+<section class="page">
+  <div class="rh"><span>Chapter 09 — Site-readiness checklist</span><span>Design Container JA</span></div>
+  <h3 style="margin-top:0">Services</h3>
+  <div class="check"><span class="box"></span><span><b>Where is the nearest JPS pole, and how far from the building position?</b><span>Distance drives the connection cost. Pace it out and write the number down.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is there an NWC water main at the boundary?</b><span>If not, plan for a tank and pump, and budget accordingly.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is there a sewer connection, or will you need a septic system?</b><span>Most sites outside town need septic. It needs space and it needs ground that will absorb.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Where will surface water go in heavy rain?</b><span>Stand on the site and work out the fall. This matters more than people expect.</span></span></div>
+
+  <h3>Orientation and comfort</h3>
+  <div class="check"><span class="box"></span><span><b>Which way does the prevailing breeze come from?</b><span>Orienting the long axis to catch it is free comfort, permanently. Get this wrong and no amount of air conditioning fixes it cheaply.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Where does the afternoon sun fall?</b><span>You want the largest glazing away from the worst of it, or shaded by the canopy.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Is there existing shade worth keeping?</b><span>A mature tree is worth designing around.</span></span></div>
+
+  <h3>Paperwork to gather before your first meeting</h3>
+  <div class="check"><span class="box"></span><span><b>Copy of title</b><span>Or whatever documentation of ownership currently exists.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Survey plan</b><span>The most recent one you have.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Photographs of the access route</b><span>From the main road to the building position, including the tight spots.</span></span></div>
+  <div class="check"><span class="box"></span><span><b>Your honest budget ceiling</b><span>Including the site costs from Chapter 02, not just the unit.</span></span></div>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>18</b></div>
+</section>
+
+<!-- ══════════ 19. GLOSSARY ══════════ -->
+<section class="page">
+  <div class="rh"><span>Glossary</span><span>Design Container JA</span></div>
+  <span class="eyebrow">Reference</span>
+  <h2>Plain-language glossary</h2>
+  <p class="lede">The terms that come up in quotations and approval documents, without the jargon.</p>
+
+  <table>
+    <tr><th style="width:42mm">Term</th><th>What it means</th></tr>
+    <tr><td><strong>CIF value</strong></td><td>Cost, Insurance and Freight — the value duty is calculated on. Not just the factory price.</td></tr>
+    <tr><td><strong>Corner casting</strong></td><td>The steel block at each of a container's eight corners. Everything structural connects here, including hold-downs.</td></tr>
+    <tr><td><strong>Corten</strong></td><td>Weathering steel. Forms a stable rust-coloured surface layer that protects the metal beneath.</td></tr>
+    <tr><td><strong>CUBiC</strong></td><td>Caribbean Uniform Building Code. Sets the wind loading your structure must be designed to.</td></tr>
+    <tr><td><strong>Closed-cell foam</strong></td><td>Spray insulation that is also a vapour barrier. Bonded to the steel, it prevents interior condensation.</td></tr>
+    <tr><td><strong>First fix</strong></td><td>Electrical and plumbing installed before walls are lined. The last chance to inspect it easily.</td></tr>
+    <tr><td><strong>High cube (HC)</strong></td><td>A container one foot taller than standard. Meaningfully better ceiling height once lined and insulated.</td></tr>
+    <tr><td><strong>Hold-down</strong></td><td>The engineered plate and bolt assembly tying a corner casting to the foundation. Resists hurricane uplift.</td></tr>
+    <tr><td><strong>HS 9406</strong></td><td>The customs classification for prefabricated buildings, which sets the duty rate on import.</td></tr>
+    <tr><td><strong>Provisional sum</strong></td><td>An allowance in a quotation, not a price. It will be adjusted — usually upward.</td></tr>
+    <tr><td><strong>Retention</strong></td><td>A percentage held back until snags are closed. Your leverage on final quality.</td></tr>
+    <tr><td><strong>Setback</strong></td><td>The minimum distance a building must sit from a boundary. Set by the parish council.</td></tr>
+    <tr><td><strong>Snag list</strong></td><td>Defects identified at handover that the builder must correct. Walk the unit yourself and write your own.</td></tr>
+    <tr><td><strong>Two-pack polyurethane</strong></td><td>A hard-wearing two-component topcoat. The durable option for a marine environment.</td></tr>
+  </table>
+
+  <div class="spacer"></div>
+  <div class="rf"><span>The Jamaican Container Home Buyer's Guide</span><b>19</b></div>
+</section>
+
+<!-- ══════════ 20. BACK ══════════ -->
+<section class="page green">
+  <div class="rh"><span>Design Container JA</span><span>2026 Edition</span></div>
+  <div style="flex:1"></div>
+  <span class="eyebrow">Next step</span>
+  <h1 style="font-size:32pt">Come and stand<br>inside <em>one.</em></h1>
+  <p style="font-size:11.4pt;color:rgba(245,242,236,.86);max-width:110mm;margin-top:5mm">
+    Everything in this guide is easier to judge in person. Bring your survey plan,
+    bring photographs of your access route, and bring whoever's opinion you trust.
+    We will walk you through a completed unit and tell you honestly whether your
+    site works — including when it does not.</p>
+
+  <div class="grid2" style="margin-top:9mm;gap:8mm">
+    <div>
+      <h3 style="color:var(--corten-lt);margin-top:0">Book a viewing</h3>
+      <p style="color:rgba(245,242,236,.8);font-size:9.6pt">A site visit and consultation costs nothing and carries no obligation. If we are not the right fit for your project, we will say so.</p>
+    </div>
+    <div>
+      <h3 style="color:var(--corten-lt);margin-top:0">Get a fixed quotation</h3>
+      <p style="color:rgba(245,242,236,.8);font-size:9.6pt">One contract sum against a signed drawing set. No provisional quantities and no variation letters halfway through.</p>
+    </div>
+  </div>
+
+  <div class="rule" style="background:rgba(245,242,236,.2);margin:9mm 0"></div>
+
+  <div style="display:flex;align-items:center;gap:4mm">
+    <svg width="14mm" height="14mm" viewBox="0 0 40 40" fill="none">
+      <rect x="2.5" y="8.5" width="35" height="23" rx="1.5" stroke="#f5f2ec" stroke-width="2.2"/>
+      <path d="M10 12.5v15M16 12.5v15M22 12.5v15M28 12.5v15" stroke="#f5f2ec" stroke-opacity=".45" stroke-width="1.6"/>
+      <rect x="2.5" y="8.5" width="5" height="5" fill="#b85c38"/><rect x="32.5" y="26.5" width="5" height="5" fill="#b85c38"/>
+    </svg>
+    <div>
+      <b style="font-size:12pt;font-weight:600;display:block;line-height:1">Design Container</b>
+      <span style="font-family:var(--mono);font-size:6.6pt;letter-spacing:.28em;color:rgba(245,242,236,.6);display:block;margin-top:1.4mm">JAMAICA</span>
+    </div>
+    <div style="margin-left:auto;text-align:right" class="mono-sm">
+      WHATSAPP 876 000 0000<br>
+      HELLO@DESIGNCONTAINERJA.COM<br>
+      KINGSTON · DELIVERY ISLANDWIDE
+    </div>
+  </div>
+
+  <div style="flex:1"></div>
+  <p style="font-family:var(--mono);font-size:6.4pt;letter-spacing:.1em;color:rgba(245,242,236,.45);line-height:1.8">
+    THIS GUIDE IS PROVIDED FOR GENERAL INFORMATION. FIGURES ARE INDICATIVE AND CURRENT AT THE TIME OF WRITING.<br>
+    DUTY RATES, TAXES AND STATUTORY FEES CHANGE — CONFIRM IMPORT COSTS WITH A LICENSED CUSTOMS BROKER AND<br>
+    APPROVAL REQUIREMENTS WITH YOUR PARISH COUNCIL BEFORE COMMITTING FUNDS. NOT FINANCIAL OR LEGAL ADVICE.<br>
+    © 2026 DESIGN CONTAINER JA. ALL RIGHTS RESERVED.
+  </p>
+  <div class="rf" style="color:rgba(245,242,236,.45)"><span>The Jamaican Container Home Buyer's Guide</span><b style="color:var(--corten-lt)">20</b></div>
+</section>
+
+</body>
+</html>
