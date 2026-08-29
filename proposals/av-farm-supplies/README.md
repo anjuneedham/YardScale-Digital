@@ -4,9 +4,13 @@ Two deliverables, same content, same brand tokens as the site:
 
 | File | What it is |
 |---|---|
-| `AV-Farm-Supplies-Proposal-YardScale-Digital.pdf` | **The one to send the client.** 7 pages, Letter, brand fonts embedded, page numbers in the footer. |
+| `AV-Farm-Supplies-Proposal-YardScale-Digital.pdf` | **The one to send the client.** One page, Letter, brand fonts embedded. |
 | `proposal.html` | Same document as a web page. Self-contained — logo is a data URI, fonts from Google Fonts. This is the source the PDF is rendered from. |
-| `AV-Farm-Supplies-Proposal-YardScale-Digital.pptx` | 8-slide version for walking the client through it on a call. Speaker notes on every slide. |
+| `AV-Farm-Supplies-Proposal-YardScale-Digital.pptx` | 8-slide version for walking the client through it on a call. Speaker notes on every slide. Still carries the longer detail the one-pager drops. |
+
+The document is deliberately one page — JMD $40,000 does not warrant a
+prospectus. The print rules in `build_pdf.js` are tuned to hold it at one page;
+if you add a section, expect to re-tune them or spill onto a second sheet.
 
 ## The offer, in one place
 

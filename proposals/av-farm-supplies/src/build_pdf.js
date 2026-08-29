@@ -51,8 +51,10 @@ async function inlineFonts() {
   return out.join('\n');
 }
 
+// The document is one page by design, so the print rules only pin the palette
+// and tighten the rhythm enough to keep it that way.
 const PRINT_CSS = `
-@page { size: Letter; margin: 15mm 14mm 16mm; }
+@page { size: Letter; margin: 13mm 15mm 11mm; }
 html, body { background: #ffffff !important; }
 :root {
   --bg:#ffffff; --surface:#ffffff; --fg:#131313; --muted:#5f5f57;
@@ -61,36 +63,24 @@ html, body { background: #ffffff !important; }
 }
 * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 .wrap { max-width: none; padding: 0; }
+.masthead { padding: 0 0 12px; }
+.masthead img { width: 166px; }
 
-/* the masthead is the letterhead - it belongs to page one only */
-.masthead { padding-top: 0; }
-/* on paper the lockup sits on the sheet; the plate is only there to carry
-   it over a dark viewer theme, which a PDF does not have */
-.plate { background: none; border: 0; padding: 0; }
-.plate img { width: 190px; }
-
-/* Letter's text column is narrower than the 4-across breakpoint, so the
-   weeks fall to a 2x2 - which reads better on paper than four 177px cells */
-.weeks { grid-template-columns: repeat(2, 1fr); }
-
-/* keep a section's heading with its content, and its content off a seam */
-section { break-inside: avoid; margin-top: 34px; }
-.shead { break-after: avoid; }
-.block, .week, .pay-cell, .fact, .retainer, .sig, .slab { break-inside: avoid; }
-.linetable tr { break-inside: avoid; }
-.title { break-after: avoid; }
-
-/* the money and the signature block each want a clean page of their own */
-#sec-investment { break-before: page; }
-#sec-accept { break-inside: avoid; }
-
-h1 { font-size: 46px; }
-.subtitle { font-size: 17px; }
-.lede { font-size: 17px; }
-body { font-size: 14.5px; }
-.shead h2 { font-size: 25px; }
-.slab .amt { font-size: 46px; }
-footer { margin-top: 40px; }
+body { font-size: 12.5px; line-height: 1.46; }
+.title { padding-top: 18px; }
+h1 { font-size: 32px; }
+.lede { font-size: 14px; margin-top: 11px; }
+section { margin-top: 13px; break-inside: avoid; }
+h2 { margin-bottom: 9px; padding-bottom: 7px; }
+dl.scope { gap: 8px; }
+ol.weeks li { padding: 10px 12px; }
+.slab { padding: 13px 20px; }
+.slab .amt { font-size: 34px; }
+.pay div { padding: 11px 15px; }
+.pay .fig { font-size: 21px; }
+.note { margin-top: 6px; font-size: 12.5px; }
+.sig .who { margin-bottom: 40px; }
+footer { margin-top: 20px; padding-top: 10px; }
 `;
 
 (async () => {
@@ -114,12 +104,6 @@ footer { margin-top: 40px; }
   const lastStyle = html.lastIndexOf('</style>');
   html = html.slice(0, lastStyle + 8) + '\n<style>' + PRINT_CSS + '</style>' + html.slice(lastStyle + 8);
 
-  // anchors the print rules above hang page breaks on
-  html = html.replace('<div class="shead"><span class="num">05</span>', '<div class="shead" id="ih-inv"><span class="num">05</span>');
-  html = html.replace(/<section>\s*<div class="shead" id="ih-inv">/, '<section id="sec-investment">\n    <div class="shead">');
-  html = html.replace('<div class="shead"><span class="num">08</span>', '<div class="shead" id="ih-acc"><span class="num">08</span>');
-  html = html.replace(/<section>\s*<div class="shead" id="ih-acc">/, '<section id="sec-accept">\n    <div class="shead">');
-
   html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>body{margin:0;font:14px system-ui}img{max-width:100%}</style>
@@ -132,20 +116,13 @@ footer { margin-top: 40px; }
   await page.goto('file://' + STAGE, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
 
-  const foot = (s) =>
-    `<div style="width:100%;font:8.5px 'JetBrains Mono',monospace;color:#8a8a80;padding:0 14mm;display:flex;justify-content:space-between;letter-spacing:.06em">${s}</div>`;
-
+  // No running header or footer: a one-page document numbering itself "1 / 1"
+  // reads as a template, and the page carries its own footer already.
   await page.pdf({
     path: OUT,
     format: 'Letter',
     printBackground: true,
-    displayHeaderFooter: true,
-    headerTemplate: '<div></div>',
-    footerTemplate: foot(
-      '<span>YARDSCALE DIGITAL &middot; PROPOSAL YSD-2026-AVF</span>' +
-      '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span>'
-    ),
-    margin: { top: '15mm', right: '14mm', bottom: '16mm', left: '14mm' },
+    margin: { top: '13mm', right: '15mm', bottom: '11mm', left: '15mm' },
   });
 
   await browser.close();
