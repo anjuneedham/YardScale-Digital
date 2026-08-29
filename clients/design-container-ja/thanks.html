@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you — Design Container JA</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14171a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --steel:#14171a;--steel-2:#1b1f23;--hair-dark:#2f363c;--sand:#f5f2ec;
+  --corten:#b85c38;--corten-lt:#d98559;--muted-dark:#8b9299;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--steel);color:var(--sand);font-family:var(--sans);font-size:17px;line-height:1.62;
+  padding:40px 24px;-webkit-font-smoothing:antialiased
+}
+.card{max-width:600px;width:100%;text-align:center}
+.mark{width:52px;height:52px;margin:0 auto 30px}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--corten-lt);margin:0 0 18px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.3rem,7vw,3.4rem);line-height:1.04;letter-spacing:-.03em;margin:0 0 20px}
+h1 em{font-style:italic;color:var(--corten-lt)}
+p{color:#a8b0b7;margin:0 0 14px}
+.next{
+  text-align:left;border:1px solid var(--hair-dark);border-radius:3px;background:var(--steel-2);
+  padding:26px 28px;margin:34px 0 32px
+}
+.next h2{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted-dark);margin:0 0 16px;font-family:var(--mono)}
+.next ol{margin:0;padding-left:20px;color:#a8b0b7;font-size:.95rem}
+.next li{margin-bottom:9px}
+.next li:last-child{margin-bottom:0}
+.next b{color:var(--sand);font-weight:600}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 26px;text-decoration:none;border-radius:2px;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
+  border:1px solid transparent;transition:transform .2s,background .2s,color .2s,border-color .2s
+}
+.btn-corten{background:var(--corten);color:#fff}
+.btn-corten:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(245,242,236,.28);color:var(--sand)}
+.btn-ghost:hover{border-color:var(--corten-lt);color:var(--corten-lt)}
+.fine{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-dark);margin-top:30px}
+.fine a{color:var(--corten-lt);text-decoration:none}
+</style>
+</head>
+<body>
+<main class="card">
+  <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <rect x="2.5" y="8.5" width="35" height="23" rx="1.5" stroke="#f5f2ec" stroke-width="2.2"/>
+    <path d="M10 12.5v15M16 12.5v15M22 12.5v15M28 12.5v15" stroke="#f5f2ec" stroke-opacity=".45" stroke-width="1.6"/>
+    <rect x="2.5" y="8.5" width="5" height="5" fill="#b85c38"/>
+    <rect x="32.5" y="26.5" width="5" height="5" fill="#b85c38"/>
+  </svg>
+
+  <p class="eyebrow" id="eyebrow">Received</p>
+  <h1 id="head">Thank you — it's <em>on its way.</em></h1>
+  <p id="sub">Check your inbox in the next few minutes. If it has not arrived, look in spam or promotions, and add us to your contacts so the next one lands properly.</p>
+
+  <div class="next">
+    <h2>What happens next</h2>
+    <ol id="steps">
+      <li><b>The guide arrives by email</b> — 24 pages, no cost, nothing to unlock.</li>
+      <li><b>We follow up once</b> to ask whether you have land yet and what you are trying to build.</li>
+      <li><b>If it is useful, we book a viewing.</b> If it is not, tell us and we will leave it there.</li>
+    </ol>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-corten" href="https://wa.me/18760000000?text=Hi%20Design%20Container%20JA%20%E2%80%94%20I%20just%20requested%20the%20buyer%27s%20guide." target="_blank" rel="noopener">Message us on WhatsApp</a>
+    <a class="btn btn-ghost" href="./">Back to the site</a>
+  </div>
+
+  <p class="fine">Questions? <a href="mailto:hello@designcontainerja.com">hello@designcontainerja.com</a></p>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  // The two forms land here with ?d=guide or ?d=viewing. Same page, right words.
+  var d = new URLSearchParams(location.search).get('d');
+  if (d !== 'viewing') return;
+  document.getElementById('eyebrow').textContent = 'Viewing requested';
+  document.getElementById('head').innerHTML = "Got it. We'll be <em>in touch.</em>";
+  document.getElementById('sub').textContent =
+    'One of our team will contact you within one working day to arrange a time that suits you.';
+  document.getElementById('steps').innerHTML =
+      '<li><b>We call or WhatsApp you</b> within one working day.</li>'
+    + '<li><b>We agree a time</b> to walk you through a completed unit.</li>'
+    + '<li><b>If you have land already</b>, we can visit the site the same week.</li>';
+})();
+</script>
+</body>
+</html>

@@ -44,3 +44,16 @@
   to = "/"
   status = 301
   force = true
+
+# ─────────── client preview: Design Container JA ───────────
+# Short, shareable link for the client meeting.
+[[redirects]]
+  from = "/dcja"
+  to = "/clients/design-container-ja/"
+  status = 302
+
+[[redirects]]
+  from = "/clients/design-container-ja/index.html"
+  to = "/clients/design-container-ja/"
+  status = 301
+  force = true

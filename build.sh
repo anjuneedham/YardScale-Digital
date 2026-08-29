@@ -22,7 +22,9 @@ fi
 SITE_URL="${SITE_URL%/}"   # never leave a double slash in a canonical URL
 echo "build.sh: stamping site URL -> $SITE_URL"
 
-for f in index.html thanks.html 404.html robots.txt sitemap.xml; do
+for f in index.html thanks.html 404.html robots.txt sitemap.xml \
+         clients/design-container-ja/index.html \
+         clients/design-container-ja/thanks.html; do
   [ -f "$f" ] || continue
   sed -i "s|__SITE_URL__|${SITE_URL}|g" "$f"
 done
