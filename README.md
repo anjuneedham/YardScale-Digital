@@ -12,7 +12,16 @@ netlify.toml    headers, caching, redirects
 build.sh        stamps the live URL into the meta tags at deploy time
 robots.txt      + sitemap.xml
 brand/          logos as transparent PNGs
+scales-fare/    the Scales Fare demo — see scales-fare/README.md
 ```
+
+## The Scales Fare demo
+
+`/scales-fare/` holds a self-contained portfolio piece: a demo site for a
+point-of-sale supplier aimed at Jamaican small business, a full logo system with
+a brand sheet, and a sixteen-page PDF lead magnet. It deploys with the rest of
+the site and needs no separate setup. It is clearly labelled as a demo on every
+page. Details in `scales-fare/README.md`.
 
 ## 1. Deploy to Netlify
 

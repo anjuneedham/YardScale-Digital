@@ -28,6 +28,17 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
+[[headers]]
+  for = "/scales-fare/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# The lead magnet is served as a download, not opened in the tab.
+[[headers]]
+  for = "/scales-fare/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # ─────────── tidy URLs ───────────
 [[redirects]]
   from = "/book"
@@ -42,5 +53,22 @@
 [[redirects]]
   from = "/index.html"
   to = "/"
+  status = 301
+  force = true
+
+# ─────────── Scales Fare demo ───────────
+[[redirects]]
+  from = "/scales-fare/guide"
+  to = "/scales-fare/scales-fare-pos-guide.pdf"
+  status = 302
+
+[[redirects]]
+  from = "/scales-fare/thanks"
+  to = "/scales-fare/thanks.html"
+  status = 200
+
+[[redirects]]
+  from = "/scales-fare/index.html"
+  to = "/scales-fare/"
   status = 301
   force = true

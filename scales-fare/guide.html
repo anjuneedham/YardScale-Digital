@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en-JM">
+<head>
+<meta charset="utf-8">
+<title>The POS Guide for Jamaican Small Business — Scales Fare</title>
+<meta name="description" content="A plain-language guide to point-of-sale systems for small businesses in Jamaica and the Caribbean.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--FONTS: replaced with inlined @font-face at PDF build time-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0B3B2E; --green-2:#0F4A39; --green-deep:#072A21;
+  --gold:#F4B41A; --jade:#12A36B;
+  --paper:#FBF8F1; --paper-2:#F3EEE2; --hair:#E0D8C4;
+  --coal:#14120E; --muted:#5F6B64;
+  --display:'Sora',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono','JBMono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{margin:0;padding:0}
+body{background:#8C948F;font-family:var(--body);color:var(--coal);font-size:10.6pt;line-height:1.58;-webkit-font-smoothing:antialiased}
+
+.page{
+  width:210mm;height:297mm;background:var(--paper);position:relative;overflow:hidden;
+  margin:0 auto 8mm;padding:22mm 20mm 20mm;page-break-after:always;break-after:page;display:flex;flex-direction:column
+}
+.page:last-child{page-break-after:auto;break-after:auto;margin-bottom:0}
+.page.dark{background:var(--green);color:var(--paper)}
+.page.deep{background:var(--green-deep);color:var(--paper)}
+
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.03;margin:0}
+h2{font-size:27pt}
+h3{font-size:13pt;font-weight:700;letter-spacing:-.015em;line-height:1.2;margin:0 0 5pt}
+h4{font-size:10.5pt;font-weight:700;letter-spacing:-.005em;margin:0 0 3pt}
+p{margin:0 0 9pt}
+strong{font-weight:600}
+em{font-style:normal;background:linear-gradient(transparent 62%,rgba(244,180,26,.5) 62%)}
+
+.kicker{font-family:var(--mono);font-size:7.4pt;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--jade);margin:0 0 7pt;display:flex;align-items:center;gap:7pt}
+.dark .kicker,.deep .kicker{color:var(--gold)}
+.kicker .pip{width:5pt;height:5pt;border-radius:50%;background:currentColor;flex:none}
+
+.deck{font-size:12pt;line-height:1.5;color:var(--muted);margin:9pt 0 16pt;max-width:44em}
+.dark .deck,.deep .deck{color:#B7C8BF}
+
+.rule{height:2pt;background:var(--gold);width:52pt;margin:0 0 14pt;border-radius:2pt}
+
+/* running furniture */
+.folio{position:absolute;left:20mm;right:20mm;bottom:11mm;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#9A9384}
+.dark .folio,.deep .folio{color:#5E7C70}
+.folio b{font-weight:500;color:#B5AC98}
+.dark .folio b,.deep .folio b{color:var(--gold)}
+
+.body{flex:1;min-height:0}
+
+/* ── cover ── */
+.cover{justify-content:space-between;padding:26mm 20mm 20mm}
+.cover::after{content:"";position:absolute;right:-16%;top:-12%;width:70%;height:62%;
+  background:radial-gradient(ellipse at 50% 50%,rgba(244,180,26,.20),rgba(244,180,26,0) 65%)}
+.cover>*{position:relative;z-index:2}
+.cover h1{font-size:44pt;line-height:.96;letter-spacing:-.045em}
+.cover h1 .g{color:var(--gold)}
+.cover .sub{font-size:12.5pt;line-height:1.5;color:#CFDCD4;max-width:30em;margin-top:14pt}
+.cover-mark{display:flex;align-items:center;gap:9pt}
+.cover-mark img{height:30pt}
+.cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:14pt;
+  font-family:var(--mono);font-size:7.6pt;letter-spacing:.15em;text-transform:uppercase;color:#7E998C}
+.cover-badge{border:1.4pt solid var(--gold);color:var(--gold);border-radius:4pt;padding:6pt 11pt;
+  font-family:var(--mono);font-size:7.6pt;letter-spacing:.16em;text-transform:uppercase;display:inline-block}
+
+/* ── contents ── */
+.toc{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{display:flex;gap:12pt;align-items:baseline;padding:8.5pt 0;border-bottom:1px solid var(--hair)}
+.toc li:last-child{border-bottom:0}
+.toc .n{font-family:var(--mono);font-size:8.5pt;color:var(--jade);flex:none;width:2.4em;font-weight:500}
+.toc .t{flex:1;font-family:var(--display);font-weight:700;font-size:11.5pt;letter-spacing:-.015em}
+.toc .d{color:var(--muted);font-size:9.4pt;flex:1.25}
+.toc .p{font-family:var(--mono);font-size:8.5pt;color:#9A9384;flex:none}
+
+/* ── layout helpers ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12pt}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10pt}
+.stack{display:grid;gap:11pt}
+
+.leak{display:grid;grid-template-columns:26pt 1fr;gap:11pt;padding:11pt 0;border-top:1px solid var(--hair)}
+.leak .no{font-family:var(--mono);font-size:15pt;font-weight:500;color:var(--gold);line-height:1}
+.leak p{margin:0;color:var(--muted);font-size:9.8pt}
+.leak p+p{margin-top:5pt}
+
+.box{border:1.4pt solid var(--hair);border-radius:6pt;padding:12pt 14pt;background:#fff}
+.box.gold{background:rgba(244,180,26,.13);border-color:rgba(244,180,26,.55)}
+.box.jade{background:rgba(18,163,107,.10);border-color:rgba(18,163,107,.4)}
+.box.dark{background:var(--green);border-color:var(--green);color:var(--paper)}
+.box h4{font-family:var(--mono);font-size:7.4pt;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--jade);margin-bottom:6pt}
+.box.dark h4{color:var(--gold)}
+.box p:last-child{margin-bottom:0}
+.box p{font-size:9.8pt}
+
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{font-family:var(--mono);font-size:7.2pt;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:0 8pt 7pt 0;border-bottom:1.5pt solid var(--green)}
+td{padding:8pt 8pt 8pt 0;border-bottom:1px solid var(--hair);vertical-align:top}
+td:last-child,th:last-child{padding-right:0;text-align:right}
+tr:last-child td{border-bottom:0}
+.num{font-family:var(--mono);font-weight:500;white-space:nowrap}
+tr.total td{border-top:1.5pt solid var(--green);border-bottom:0;font-weight:600;padding-top:9pt}
+tr.total .num{color:var(--green);font-size:11pt}
+.dark table th{color:var(--gold);border-bottom-color:var(--gold)}
+.dark table td{border-bottom-color:rgba(255,255,255,.16)}
+.dark tr.total td{border-top-color:var(--gold)}
+.dark tr.total .num{color:var(--gold)}
+
+ul.ticks{list-style:none;margin:0;padding:0;display:grid;gap:7pt}
+ul.ticks li{position:relative;padding-left:15pt;font-size:9.9pt}
+ul.ticks li::before{content:"";position:absolute;left:0;top:5.5pt;width:6pt;height:6pt;border-radius:50%;background:var(--jade)}
+.dark ul.ticks li::before{background:var(--gold)}
+
+ul.checks{list-style:none;margin:0;padding:0;display:grid;gap:0}
+ul.checks li{position:relative;padding:8pt 0 8pt 24pt;font-size:10pt;border-bottom:1px solid var(--hair)}
+ul.checks li::before{content:"";position:absolute;left:0;top:10.5pt;width:11pt;height:11pt;border:1.5pt solid var(--green);border-radius:2.5pt}
+
+.qa{padding:9pt 0;border-top:1px solid var(--hair)}
+.qa:first-child{border-top:0;padding-top:0}
+.qa p{margin:0;color:var(--muted);font-size:9.8pt}
+
+.big{font-family:var(--display);font-weight:800;font-size:30pt;letter-spacing:-.04em;line-height:1;color:var(--green)}
+.dark .big,.deep .big{color:var(--gold)}
+.big small{display:block;font-family:var(--mono);font-size:7.6pt;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-top:7pt;line-height:1.45}
+.dark .big small,.deep .big small{color:#9DB0A6}
+
+/* ── section opener ── */
+.opener{justify-content:center}
+.opener .n{font-family:var(--mono);font-size:56pt;font-weight:500;color:var(--gold);line-height:1;letter-spacing:-.03em}
+.opener h2{font-size:34pt;margin-top:12pt;max-width:15em}
+.opener p{color:#B7C8BF;font-size:12pt;max-width:34em;margin-top:14pt}
+
+/* ── back cover ── */
+.back{justify-content:space-between}
+.back h2{font-size:30pt;max-width:14em}
+.back .cta{display:inline-block;background:var(--gold);color:var(--green-deep);font-family:var(--display);
+  font-weight:700;font-size:11pt;padding:11pt 20pt;border-radius:7pt;text-decoration:none;margin-top:6pt}
+.small{font-size:8.4pt;line-height:1.6;color:#7E998C}
+.small a{color:var(--gold)}
+
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .page{margin:0;box-shadow:none}
+}
+@media screen{
+  body{padding:8mm 0}
+  .page{box-shadow:0 10px 34px -14px rgba(0,0,0,.5)}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ 1 · COVER ══════════════ -->
+<section class="page dark cover">
+  <div class="cover-mark">
+    <img src="brand/scalesfare-logo-horizontal-reversed.svg" alt="Scales Fare">
+  </div>
+
+  <div>
+    <span class="cover-badge">Free guide · 2026 edition</span>
+    <h1 style="margin-top:16pt">The POS Guide<br>for <span class="g">Jamaican</span><br>Small Business</h1>
+    <p class="sub">What a point-of-sale system actually changes behind your counter — and how to tell whether you are ready for one yet.</p>
+  </div>
+
+  <div class="cover-foot">
+    <span>Written for shops, cook shops,<br>bars, salons &amp; hardware</span>
+    <span>Sixteen pages<br>Plain language</span>
+  </div>
+</section>
+
+<!-- ══════════════ 2 · CONTENTS ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Start here</p>
+    <h2>What is in here,<br>and who it is for</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <p class="deck" style="margin-bottom:14pt">If you run a small business in Jamaica and you have been told you need "a POS", this is the guide nobody handed you first. No product pitch until the last page. Just what these systems do, what they cost, and how to work out whether one is worth it for a counter your size.</p>
+
+    <ol class="toc">
+      <li><span class="n">01</span><span class="t">What a POS actually is</span><span class="d">And the three things it is not</span><span class="p">p.4</span></li>
+      <li><span class="n">02</span><span class="t">Where the money leaks</span><span class="d">Five quiet losses in a shop with no system</span><span class="p">p.5</span></li>
+      <li><span class="n">03</span><span class="t">Power and internet</span><span class="d">Trading through what the island throws at you</span><span class="p">p.7</span></li>
+      <li><span class="n">04</span><span class="t">GCT, your TRN, the receipt</span><span class="d">What belongs on the paper you hand across</span><span class="p">p.8</span></li>
+      <li><span class="n">05</span><span class="t">Every way they pay</span><span class="d">Cash, card, wallet, transfer and the credit book</span><span class="p">p.9</span></li>
+      <li><span class="n">06</span><span class="t">Does it pay for itself?</span><span class="d">A worked example, in Jamaican dollars</span><span class="p">p.10</span></li>
+      <li><span class="n">07</span><span class="t">What to actually buy</span><span class="d">Hardware that survives a counter</span><span class="p">p.12</span></li>
+      <li><span class="n">08</span><span class="t">Getting staff to use it</span><span class="d">The part most installs get wrong</span><span class="p">p.13</span></li>
+      <li><span class="n">09</span><span class="t">Are you ready yet?</span><span class="d">Six honest questions</span><span class="p">p.14</span></li>
+      <li><span class="n">10</span><span class="t">The shopping checklist</span><span class="d">One page. Take it with you.</span><span class="p">p.15</span></li>
+    </ol>
+
+    <div class="two" style="margin-top:22pt">
+      <div class="box jade">
+        <h4>How to read it</h4>
+        <p style="margin:0">Front to back takes about twenty minutes. If you are short of time, chapter six is the money and chapter ten is the page to print.</p>
+      </div>
+      <div class="box">
+        <h4>Written by</h4>
+        <p style="margin:0">Scales Fare, who supply and install these systems across Jamaica. We have kept the sales pitch to the last page on purpose — a guide that argues for itself the whole way through is an advertisement.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>The POS Guide for Jamaican Small Business</span><b>02</b></div>
+</section>
+
+<!-- ══════════════ 3 · OPENER ══════════════ -->
+<section class="page deep opener">
+  <div>
+    <span class="n">01</span>
+    <h2>What a POS system<br>actually is</h2>
+    <p>Strip away the sales language and it is one thing: a till that remembers. Everything else follows from that.</p>
+  </div>
+</section>
+
+<!-- ══════════════ 4 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter one</p>
+    <h2>A till that remembers</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <p>A cash register adds up. A point-of-sale system adds up <strong>and writes down</strong> — what was sold, at what price, by whom, at what time, paid for how. That single difference is the whole product. Every report, every stock count, every argument you stop having with a supplier comes out of the fact that the sale was recorded instead of just totalled.</p>
+
+    <p>In practice a POS system in a small Jamaican business is four things working together: a screen your cashier touches, a printer that hands over a receipt, a drawer that logs who opened it, and software quietly keeping the count. Some of it lives on the counter; some of it lives online so you can see the day's takings from Kingston while the shop is in Mandeville.</p>
+
+    <div class="two" style="margin-top:16pt">
+      <div class="box jade">
+        <h4>What it gives you</h4>
+        <ul class="ticks">
+          <li>A real number for the day, not a guess</li>
+          <li>Stock counts that move as things sell</li>
+          <li>Proof of what a cashier rang, and when</li>
+          <li>GCT worked out instead of worked around</li>
+          <li>The credit book, on a screen, with totals</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h4>What it is not</h4>
+        <ul class="ticks">
+          <li><strong>Not an accountant.</strong> It gives your accountant clean figures. It does not file for you.</li>
+          <li><strong>Not a fix for a pricing problem.</strong> It will show you the margin. Setting it is still your job.</li>
+          <li><strong>Not honest by itself.</strong> It removes the easy losses. Locks and habits handle the rest.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:14pt">
+      <h4>The one sentence version</h4>
+      <p style="margin:0">If at the end of a trading day you cannot say what you sold, what it cost you, and what you have left on the shelf — a POS system is the tool that answers all three, and you will feel the difference inside a fortnight.</p>
+    </div>
+  </div>
+  <div class="folio"><span>01 · What a POS actually is</span><b>04</b></div>
+</section>
+
+<!-- ══════════════ 5 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter two</p>
+    <h2>Where the money leaks</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:6pt">None of these feel like theft and most of them are not. They are small, daily, and invisible without a record. Together they are usually the difference between a shop that grows and one that just survives.</p>
+
+    <div class="leak">
+      <span class="no">01</span>
+      <div>
+        <h3>Shrinkage you cannot name</h3>
+        <p>Stock that walked, spoiled, broke, got given away, or was never delivered in the first place. Without a count you find it once a year, as a hole, with no way to tell which of those five it was. With a count you find it in a week, on the item, and you can act.</p>
+      </div>
+    </div>
+
+    <div class="leak">
+      <span class="no">02</span>
+      <div>
+        <h3>The mis-ring</h3>
+        <p>A busy Friday, a cashier keying prices from memory, and the J$450 item goes through at J$400. Fifty dollars, forty times a week, is J$104,000 a year out of your margin. A scanned barcode or a pictured button cannot mis-key.</p>
+      </div>
+    </div>
+
+    <div class="leak">
+      <span class="no">03</span>
+      <div>
+        <h3>Prices that never caught up</h3>
+        <p>Your supplier raised the case price in March. Your shelf price is still the January one. In a shop carrying a thousand lines, nobody can hold that in their head — and a single item sold below cost for six months is a leak you will never notice by feel.</p>
+      </div>
+    </div>
+
+    <div class="leak">
+      <span class="no">04</span>
+      <div>
+        <h3>The credit book nobody balances</h3>
+        <p>Trust is how a lot of good business gets done here, and there is nothing wrong with it. The problem is the notebook: no running total, no date, no limit, and no way to hand a customer a statement they cannot argue with. What you write off each year is a real cost of trading.</p>
+      </div>
+    </div>
+
+    <div class="leak">
+      <span class="no">05</span>
+      <div>
+        <h3>Buying blind</h3>
+        <p>Ordering by memory means over-buying what moved last week and running out of what actually sells. Money sits on a shelf in slow stock while a fast line is empty on a Saturday. Both cost you: one ties up cash, the other sends the customer up the road.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>02 · Where the money leaks</span><b>05</b></div>
+</section>
+
+<!-- ══════════════ 6 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter two, continued</p>
+    <h2>The sixth leak:<br>your own hours</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <p>The five above are money. This one is time, which for an owner-operator is the same thing spent differently.</p>
+
+    <p>Count what a week actually takes: cashing up at close, adding the day in a book, checking a delivery against an invoice, working out what to reorder, chasing who owes what, and pulling figures together for the accountant at month end. In most small shops that lands somewhere between five and eight hours a week. Call it six.</p>
+
+    <div class="box dark" style="margin-top:6pt">
+      <h4>Six hours a week</h4>
+      <div class="big" style="margin-top:4pt">312 hours<small>a year — roughly eight working weeks<br>spent counting instead of selling</small></div>
+    </div>
+
+    <p style="margin-top:16pt">A system does not delete that work. It moves most of it: the cash-up becomes a screen you confirm, the reorder list writes itself, and the month-end figures export instead of being reconstructed. What is left is the part that genuinely needs you.</p>
+
+    <div class="box gold">
+      <h4>Worth being honest about</h4>
+      <p style="margin:0">If you are trading two days a week from a stall with thirty lines of stock, none of this adds up yet, and any honest supplier will tell you so. The leaks scale with the number of items, the number of staff, and the number of hours you are not standing there yourself. Chapter nine has the test.</p>
+    </div>
+  </div>
+  <div class="folio"><span>02 · Where the money leaks</span><b>06</b></div>
+</section>
+
+<!-- ══════════════ 7 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter three</p>
+    <h2>Power and internet</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:14pt">Most point-of-sale software is written on the assumption that both are always there. Buy on that assumption and the first outage will cost you a Saturday's takings.</p>
+
+    <h3>When the light cut</h3>
+    <p>Ask one question of any supplier before anything else: <em>can I complete a sale with no power and no internet?</em> The right answer is yes — the terminal runs on its own battery, the software holds the sale on the machine, and it uploads by itself when service returns. The wrong answer is a version of "you would need to write it down and enter it after". That is not a system, it is homework.</p>
+    <p>Practical setup: a small UPS under the counter carrying the terminal and the receipt printer. You do not need it to carry the fridges — just the till, for long enough to serve the queue in front of you.</p>
+
+    <h3 style="margin-top:14pt">What internet is really for</h3>
+    <p>Not for selling. A well-built system needs a connection for three things: syncing the day up so you can see it from your phone, authorising card payments through your bank's terminal, and taking software updates. All three can wait an hour. None of them should stop a customer paying.</p>
+
+    <div class="box jade" style="margin-top:6pt">
+      <h4>A sensible arrangement</h4>
+      <ul class="ticks">
+        <li>Fixed broadband as the main line where it is available</li>
+        <li>A phone hotspot or a data SIM in the terminal as the fallback — set it up on install day, not the day it is needed</li>
+        <li>Card authorisation through your existing bank terminal, so a broadband fault never blocks a card sale</li>
+        <li>Cash always works. Never let anyone sell you a setup where it does not.</li>
+      </ul>
+    </div>
+
+    <div class="box" style="margin-top:12pt">
+      <h4>The question that separates suppliers</h4>
+      <p style="margin:0">"Show me the shop trading with the router unplugged." Any supplier serious about the Caribbean market can demonstrate that in two minutes. Ask for it before you sign anything.</p>
+    </div>
+  </div>
+  <div class="folio"><span>03 · Power and internet</span><b>07</b></div>
+</section>
+
+<!-- ══════════════ 8 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter four</p>
+    <h2>GCT, your TRN,<br>and the receipt</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <p>General Consumption Tax is charged at a standard rate of <strong>15%</strong>, with some goods and services zero-rated or exempt. If your business is registered for GCT, the tax you collect is not your money — you are holding it. A system that keeps that separate from the start saves you finding out at filing time that it was spent.</p>
+
+    <h3>What a good system does with it</h3>
+    <ul class="ticks" style="margin-bottom:12pt">
+      <li>Lets you enter prices the way you actually quote them — tax-inclusive on a shelf, tax-exclusive on a trade invoice</li>
+      <li>Flags each item as standard-rated, zero-rated or exempt once, so nobody decides at the till</li>
+      <li>Shows the tax broken out on the receipt rather than buried in a total</li>
+      <li>Produces a period report that separates taxable from non-taxable sales, ready for whoever files</li>
+    </ul>
+
+    <h3>What belongs on the paper</h3>
+    <p>A receipt is the record of the transaction for both of you. At minimum it should carry your registered business name and address, your Taxpayer Registration Number, the date and time, what was bought at what price, the tax shown separately, the total, and how it was paid. Add a receipt number and the cashier's name and you can find any sale in seconds when someone comes back three weeks later with a complaint.</p>
+
+    <div class="box gold" style="margin-top:12pt">
+      <h4>Say this plainly</h4>
+      <p style="margin:0">This guide is general information, not tax advice. Rates, thresholds and filing obligations change, and what applies to a registered wholesaler is not what applies to a market stall. Confirm your own position with your accountant or with Tax Administration Jamaica. What a supplier should give you is a system that makes doing it right the easy path — not an opinion on your tax affairs.</p>
+    </div>
+  </div>
+  <div class="folio"><span>04 · GCT, your TRN, the receipt</span><b>08</b></div>
+</section>
+
+<!-- ══════════════ 9 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter five</p>
+    <h2>Every way they pay</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:14pt">Cash is still king across most counters here, but it stopped being the only option a while ago. Each method has a cost — and the one with no fee at all is often the most expensive.</p>
+
+    <table>
+      <thead><tr><th style="width:23%">Method</th><th>What it really costs you</th><th style="width:22%">Watch for</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Cash</strong></td>
+          <td>No fee, but it carries handling: shrinkage, mis-count, the trip to lodge it, and the risk of holding it overnight.</td>
+          <td>A drawer that logs every open</td>
+        </tr>
+        <tr>
+          <td><strong>Card</strong></td>
+          <td>A merchant discount rate set by your acquiring bank, deducted before settlement. Rates vary a lot by business type and volume.</td>
+          <td>Ask for your rate in writing, then ask again yearly</td>
+        </tr>
+        <tr>
+          <td><strong>Mobile wallet</strong></td>
+          <td>Local wallets such as Lynk are generally cheaper to accept than cards and settle quickly. Adoption varies by area and age group.</td>
+          <td>Confirm current fees direct with the provider</td>
+        </tr>
+        <tr>
+          <td><strong>Bank transfer</strong></td>
+          <td>Little or no fee to receive, but it costs you reconciliation — matching a name on a statement to a sale hours later.</td>
+          <td>Only workable if the till records the reference</td>
+        </tr>
+        <tr>
+          <td><strong>On the book</strong></td>
+          <td>No fee at all, and usually the dearest money you take. Its true cost is what is never collected, plus the cash you are financing meanwhile.</td>
+          <td>A limit per customer, enforced at the till</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box jade" style="margin-top:14pt">
+      <h4>The point of putting them on one screen</h4>
+      <p style="margin:0">It is not convenience. It is that the day's total finally balances. When cash, card, wallet, transfer and credit are all rung through the same till, the cash-up either reconciles or it does not — and if it does not, you know tonight rather than at year end.</p>
+    </div>
+  </div>
+  <div class="folio"><span>05 · Every way they pay</span><b>09</b></div>
+</section>
+
+<!-- ══════════════ 10 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter six</p>
+    <h2>Does it pay<br>for itself?</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <p>The only way to answer that honestly is with your own numbers. Here is the shape of the calculation, worked through for a shop we will call a fair average: <strong>a mini-mart doing J$9,000,000 a year across the counter</strong>, one till, two staff on rotation, roughly 1,200 lines of stock.</p>
+
+    <p>These figures are illustrative — a demonstration of the method, not a promise. Put your own turnover in and the picture changes, sometimes decisively.</p>
+
+    <h3 style="margin-top:16pt">Step one — size the leaks</h3>
+    <table style="margin-top:9pt">
+      <thead><tr><th>Where it goes</th><th style="width:26%">Assumption</th><th style="width:20%">A year</th></tr></thead>
+      <tbody>
+        <tr><td>Shrinkage and mis-rings</td><td>2% of turnover</td><td class="num">J$180,000</td></tr>
+        <tr><td>Over-ordering and spoilage</td><td>Buying blind</td><td class="num">J$120,000</td></tr>
+        <tr><td>Credit never collected</td><td>The notebook</td><td class="num">J$90,000</td></tr>
+        <tr><td>Prices behind cost increases</td><td>1% of turnover</td><td class="num">J$90,000</td></tr>
+        <tr class="total"><td>Leaking, before anything is fixed</td><td></td><td class="num">J$480,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box gold" style="margin-top:14pt">
+      <h4>Be conservative on purpose</h4>
+      <p style="margin:0">No system recovers all of that. Some shrinkage is spoilage you cannot prevent; some credit was never coming back. Assume you recover <strong>half</strong> — J$240,000 a year, or J$20,000 a month. If the numbers work at half, they work.</p>
+    </div>
+  </div>
+  <div class="folio"><span>06 · Does it pay for itself?</span><b>10</b></div>
+</section>
+
+<!-- ══════════════ 11 ══════════════ -->
+<section class="page dark">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter six, continued</p>
+    <h2>Step two —<br>set it against the cost</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+
+    <table style="margin-top:14pt">
+      <thead><tr><th>The arithmetic</th><th style="width:30%">Per month</th><th style="width:24%">Year one</th></tr></thead>
+      <tbody>
+        <tr><td>Recovered, at half the leak</td><td class="num">J$20,000</td><td class="num">J$240,000</td></tr>
+        <tr><td>Software and support</td><td class="num">−J$11,500</td><td class="num">−J$138,000</td></tr>
+        <tr><td>Setup, hardware and install</td><td class="num">—</td><td class="num">−J$120,000</td></tr>
+        <tr class="total"><td>Net</td><td class="num">+J$8,500</td><td class="num">−J$18,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="two" style="margin-top:20pt">
+      <div class="box dark" style="border-color:rgba(244,180,26,.5)">
+        <h4>Break-even</h4>
+        <div class="big">≈ 14 months<small>from install day</small></div>
+      </div>
+      <div class="box dark" style="border-color:rgba(244,180,26,.5)">
+        <h4>Year two onward</h4>
+        <div class="big">+J$102,000<small>a year, no setup to repay</small></div>
+      </div>
+    </div>
+
+    <p style="margin-top:20pt;color:#CFDCD4">Read that carefully, because it is the honest version: <strong style="color:#fff">year one roughly breaks even.</strong> The setup fee eats the gain. Anyone showing you a first-year windfall is either selling to a much bigger shop than yours or leaving something out.</p>
+
+    <p style="color:#CFDCD4;margin-bottom:0">The case for the system is year two and beyond — and the part that never appears in a table: knowing, on any given Tuesday, what is actually happening in your business. That is what people who make the change say they would not go back on.</p>
+  </div>
+  <div class="folio"><span>06 · Does it pay for itself?</span><b>11</b></div>
+</section>
+
+<!-- ══════════════ 12 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter seven</p>
+    <h2>What to actually buy</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:14pt">Counter hardware lives in heat, dust, grease and long days. Buy for that, not for how it looks in a showroom.</p>
+
+    <div class="stack">
+      <div class="qa"><h4>Terminal</h4><p>A fixed touchscreen for a counter; a handheld if staff take orders away from it. Either way it must hold its own charge. Consumer tablets do fine for a year and then do not — ask what happens when it dies, and whether your data is on it or online.</p></div>
+      <div class="qa"><h4>Receipt printer</h4><p>Thermal, 80mm, with an auto-cutter. Cheap printers are a false economy; you will hear the difference on a busy day. Check what a roll costs locally before you buy the printer.</p></div>
+      <div class="qa"><h4>Cash drawer</h4><p>Steel, with a note tray that lifts out. It should open on a completed sale and log every manual open under a cashier's name — that single feature settles most drawer disputes.</p></div>
+      <div class="qa"><h4>Barcode scanner</h4><p>Worth it the moment you carry more than about two hundred lines. Ask for your product list loaded and shelf labels printed <em>before</em> install day, not after.</p></div>
+      <div class="qa"><h4>Card terminal</h4><p>Keep the bank terminal you already have and the rate you already negotiated. A good POS records the payment type alongside the sale; it does not need to replace your acquirer to do that.</p></div>
+      <div class="qa"><h4>Backup power</h4><p>A small UPS carrying terminal and printer. Treat it as part of the system, not an accessory — it is what turns "we cannot serve you" into "next customer".</p></div>
+    </div>
+
+    <div class="box" style="margin-top:14pt">
+      <h4>Two questions worth asking a supplier</h4>
+      <p style="margin:0"><strong>1.</strong> If I stop paying you, what happens to my data — can I export my products, customers and sales history, in a format someone else can read?<br><strong>2.</strong> Who fixes it, and how fast, when the printer dies on a Saturday morning?</p>
+    </div>
+  </div>
+  <div class="folio"><span>07 · What to actually buy</span><b>12</b></div>
+</section>
+
+<!-- ══════════════ 13 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter eight</p>
+    <h2>Getting staff<br>to use it</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:14pt">More installs fail here than anywhere else. The software works; the counter goes back to the old way inside a month.</p>
+
+    <div class="stack">
+      <div class="qa"><h4>Train on the counter, in trading conditions</h4><p>Not in a back room on a quiet afternoon. Whoever will stand there needs to ring real sales, with real customers waiting, while someone who knows the system is beside them. An hour of that beats a day of demonstration.</p></div>
+      <div class="qa"><h4>Give the manager the keys, and only the manager</h4><p>Price changes, voids, discounts and refunds sit behind a separate login. Not because staff are dishonest — because it makes the boundary obvious, and it means every exception shows up on a report with a name against it.</p></div>
+      <div class="qa"><h4>Never run two systems at once</h4><p>"We will use the book as well, just for now" is how it dies. Pick a day, move everything, and keep the old book only as a reference you do not write in.</p></div>
+      <div class="qa"><h4>Show them the report</h4><p>Staff who see the daily figure understand why the ringing matters. A cashier who knows the drawer has to balance behaves differently from one who thinks nobody is counting.</p></div>
+      <div class="qa"><h4>Expect week two to be rough</h4><p>The first week is novelty. The second is when real trading finds what the setup got wrong — a missing item, a price that needs a decision, a step that is one tap too many. That is normal, and it is exactly when your supplier should be on the phone rather than gone.</p></div>
+    </div>
+
+    <div class="box jade" style="margin-top:14pt">
+      <h4>The tell</h4>
+      <p style="margin:0">Six weeks in, walk in unannounced at a busy moment. If the till is being used properly with nobody watching, it took. If there is a notebook beside it, something in the setup is fighting the way your shop actually works — and that is fixable, but only if you say so.</p>
+    </div>
+  </div>
+  <div class="folio"><span>08 · Getting staff to use it</span><b>13</b></div>
+</section>
+
+<!-- ══════════════ 14 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter nine</p>
+    <h2>Are you ready yet?</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:14pt">Six questions. Answer them honestly — a supplier who tells you "not yet" is worth more to you than one who tells you yes.</p>
+
+    <ul class="checks">
+      <li>Do you carry more than about <strong>two hundred different items</strong>?</li>
+      <li>Does anyone other than you ever stand at the till?</li>
+      <li>Do you sell on credit to customers you know?</li>
+      <li>Are you registered for GCT, or close to needing to be?</li>
+      <li>Are you spending <strong>more than four hours a week</strong> counting, cashing up and reordering?</li>
+      <li>Have you been surprised — badly — by a stock count or a month-end figure in the last year?</li>
+    </ul>
+
+    <div class="two" style="margin-top:18pt">
+      <div class="box jade">
+        <h4>Four or more yes</h4>
+        <p style="margin:0">A system will almost certainly pay for itself, and the sooner it goes in the sooner year two starts. Take the checklist overleaf and talk to two or three suppliers.</p>
+      </div>
+      <div class="box">
+        <h4>Three or fewer</h4>
+        <p style="margin:0">Probably not yet — and there is no shame in that. Tidy the pricing, start a proper credit ledger even if it is on paper, and revisit when you take on staff or a second location.</p>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:14pt">
+      <h4>One thing you can do this week, either way</h4>
+      <p style="margin:0">Count your ten fastest-moving lines. Write down what you paid and what you sell them for. Work out the margin on each. Most owners find at least one item they have been effectively giving away — and that costs nothing to fix.</p>
+    </div>
+  </div>
+  <div class="folio"><span>09 · Are you ready yet?</span><b>14</b></div>
+</section>
+
+<!-- ══════════════ 15 ══════════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> Chapter ten</p>
+    <h2>The shopping checklist</h2>
+    <div class="rule" style="margin-top:14pt"></div>
+    <p class="deck" style="margin-bottom:12pt">Take this to every supplier you speak to. Ask the same questions in the same order and the differences between them become obvious fast.</p>
+
+    <ul class="checks" style="font-size:9.6pt">
+      <li>Can I complete a sale with no power and no internet? <strong>Show me.</strong></li>
+      <li>What exactly is on the receipt — business name, address, TRN, tax broken out?</li>
+      <li>Can I set prices tax-inclusive as well as tax-exclusive?</li>
+      <li>Does it work with the card terminal I already have from my bank?</li>
+      <li>How does it handle customers buying on credit, and can I set a limit per customer?</li>
+      <li>Who loads my products and prices — me, or you — and is that in the setup fee?</li>
+      <li>Is training on my counter included, and for how many staff?</li>
+      <li>What is the monthly fee, and what makes it go up?</li>
+      <li>Is there any commission or charge on my takings? <strong>Get this in writing.</strong></li>
+      <li>What happens to my data if I leave, and in what format?</li>
+      <li>Who do I call on a Saturday, and what have you promised about response time?</li>
+      <li>Can I see it running in a business like mine, in this parish?</li>
+    </ul>
+
+    <div class="box" style="margin-top:12pt">
+      <h4>A last piece of advice</h4>
+      <p style="margin:0">Get at least two quotes, and compare the <em>three-year</em> cost rather than the setup fee. A cheap install on an expensive monthly is the most common way small businesses overpay for this — and it only shows up in year two, when switching is hardest.</p>
+    </div>
+  </div>
+  <div class="folio"><span>10 · The shopping checklist</span><b>15</b></div>
+</section>
+
+<!-- ══════════════ 16 · BACK ══════════════ -->
+<section class="page dark back">
+  <div>
+    <img src="brand/scalesfare-logo-horizontal-reversed.svg" alt="Scales Fare" style="height:28pt">
+  </div>
+
+  <div>
+    <p class="kicker"><span class="pip"></span> When you are ready</p>
+    <h2>We set these up<br>for a living.</h2>
+    <p style="color:#CFDCD4;font-size:11.5pt;max-width:34em;margin-top:12pt">Scales Fare supplies point-of-sale systems to small businesses across Jamaica and the wider Caribbean — and more to the point, we come to the shop, set them up, train the people standing there, and stay reachable afterwards.</p>
+    <p style="color:#CFDCD4;font-size:11.5pt;max-width:34em">If the checklist on the last page says you are ready, start with a twenty-minute walkthrough. We will tell you honestly if you are not.</p>
+    <a class="cta" href="https://scalesfare.com">Book a walkthrough →</a>
+  </div>
+
+  <div class="small">
+    <p style="margin-bottom:5pt">© Scales Fare. Share this guide freely — please keep it whole and credited.</p>
+    <p style="margin:0">General information only, not tax, legal or financial advice. Figures are illustrative. Confirm your own tax position with your accountant or Tax Administration Jamaica. <br>
+    Brand and guide designed and built by <strong style="color:#B7C8BF">YardScale Digital</strong>. This document is part of a design demonstration.</p>
+  </div>
+</section>
+
+</body>
+</html>

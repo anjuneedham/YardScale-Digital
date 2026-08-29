@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-labelledby="sf-t sf-d">
+  <title id="sf-t">Scales Fare</title>
+  <desc id="sf-d">Scales Fare favicon.</desc>
+  <rect width="32" height="32" rx="7" fill="#0B3B2E"/>
+  <g transform="translate(0.638 -0.057) scale(0.25604)">
+  <g fill="#FBF8F1">
+    <path d="M60 43 L77 92 L43 92 Z" stroke="#FBF8F1" stroke-width="7" stroke-linejoin="round"/>
+    <rect x="24" y="93" width="72" height="15" rx="7.5"/>
+    <rect x="13" y="27" width="94" height="18" rx="9" transform="rotate(-12 60 36)"/>
+  </g>
+  <circle cx="60" cy="36" r="7" fill="#F4B41A"/>
+  </g>
+</svg>

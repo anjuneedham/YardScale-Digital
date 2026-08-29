@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scales Fare — Brand Basics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0B3B2E;--green-2:#0F4A39;--green-deep:#072A21;
+  --gold:#F4B41A;--jade:#12A36B;
+  --paper:#FBF8F1;--paper-2:#F3EEE2;--hair:#E0D8C4;
+  --coal:#14120E;--muted:#5F6B64;
+  --display:'Sora',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','JBMono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{margin:0;padding:0}
+body{background:#8C948F;font-family:var(--body);color:var(--coal);font-size:10.4pt;line-height:1.58}
+
+.page{width:210mm;height:297mm;background:var(--paper);position:relative;overflow:hidden;
+  margin:0 auto 8mm;padding:22mm 20mm 20mm;page-break-after:always;break-after:page;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto;break-after:auto;margin-bottom:0}
+.page.dark{background:var(--green);color:var(--paper)}
+.body{flex:1;min-height:0}
+
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.03;margin:0}
+h2{font-size:25pt}
+h3{font-size:11.5pt;font-weight:700;letter-spacing:-.015em;margin:0 0 4pt}
+p{margin:0 0 8pt}
+.kicker{font-family:var(--mono);font-size:7.2pt;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--jade);margin:0 0 7pt;display:flex;align-items:center;gap:7pt}
+.dark .kicker{color:var(--gold)}
+.kicker .pip{width:5pt;height:5pt;border-radius:50%;background:currentColor;flex:none}
+.rule{height:2pt;background:var(--gold);width:52pt;margin:12pt 0 14pt;border-radius:2pt}
+.deck{font-size:11pt;line-height:1.5;color:var(--muted);max-width:46em;margin-bottom:16pt}
+.dark .deck{color:#B7C8BF}
+.folio{position:absolute;left:20mm;right:20mm;bottom:11mm;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:6.8pt;letter-spacing:.14em;text-transform:uppercase;color:#9A9384}
+.dark .folio{color:#5E7C70}
+.folio b{font-weight:500;color:#B5AC98}
+.dark .folio b{color:var(--gold)}
+
+.cap{font-family:var(--mono);font-size:6.9pt;letter-spacing:.1em;color:var(--muted);margin-top:7pt;display:block}
+.dark .cap{color:#8FA79C}
+
+/* ── cover ── */
+.cover{justify-content:space-between;padding:24mm 20mm 20mm}
+.cover::after{content:"";position:absolute;right:-18%;top:-16%;width:74%;height:66%;
+  background:radial-gradient(ellipse at 50% 50%,rgba(244,180,26,.18),rgba(244,180,26,0) 64%)}
+.cover>*{position:relative;z-index:2}
+.cover h1{font-size:40pt;line-height:.98;letter-spacing:-.045em}
+.cover .g{color:var(--gold)}
+.cover-sym{width:120pt}
+.cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:14pt;
+  font-family:var(--mono);font-size:7.4pt;letter-spacing:.15em;text-transform:uppercase;color:#7E998C}
+
+/* ── logo showcase ── */
+.show{border:1px solid var(--hair);border-radius:7pt;background:#fff;padding:20pt;display:flex;align-items:center;justify-content:center;min-height:0}
+.show.on-green{background:var(--green);border-color:var(--green)}
+.show.on-gold{background:var(--gold);border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12pt}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10pt}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:9pt}
+
+/* ── clear space diagram ── */
+.cs{background:#fff;border:1px solid var(--hair);border-radius:7pt;padding:30pt}
+.cs .inner{position:relative;padding:26pt;outline:1.2pt dashed rgba(18,163,107,.75)}
+.cs img{width:100%;display:block;position:relative;z-index:2}
+.cs .x{position:absolute;background:rgba(18,163,107,.15);
+  font-family:var(--mono);font-size:7pt;letter-spacing:.1em;color:#0B6B45;display:grid;place-items:center}
+.cs .x.top{left:0;right:0;top:0;height:26pt}
+.cs .x.bot{left:0;right:0;bottom:0;height:26pt}
+.cs .x.left{top:26pt;bottom:26pt;left:0;width:26pt}
+.cs .x.right{top:26pt;bottom:26pt;right:0;width:26pt}
+
+/* ── minimum size ── */
+.minrow{display:flex;align-items:flex-end;gap:26pt;background:#fff;border:1px solid var(--hair);border-radius:7pt;padding:20pt}
+.minrow figure{margin:0;text-align:center}
+.minrow img{display:block;margin:0 auto 8pt}
+
+/* ── colour ── */
+.sw{border-radius:7pt;overflow:hidden;border:1px solid var(--hair);display:flex;flex-direction:column}
+.sw .chip{height:78pt}
+.sw .meta{padding:11pt 12pt 13pt;background:#fff;flex:1}
+.sw .nm{font-family:var(--display);font-weight:700;font-size:10.5pt;letter-spacing:-.01em;margin-bottom:5pt}
+.sw dl{margin:0;font-family:var(--mono);font-size:7.2pt;line-height:1.75;color:var(--muted);letter-spacing:.02em}
+.sw dl div{display:flex;gap:6pt}
+.sw dt{width:3.4em;flex:none;color:#9A9384}
+.sw dd{margin:0}
+.sw .use{font-size:8.6pt;color:var(--muted);margin-top:7pt;line-height:1.45}
+
+/* ── type ── */
+.spec{border:1px solid var(--hair);border-radius:7pt;background:#fff;padding:16pt 18pt}
+.spec .lbl{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:var(--jade);margin-bottom:9pt}
+.spec .sample{line-height:1;margin-bottom:9pt}
+.spec .note{font-size:8.8pt;color:var(--muted);margin:0}
+
+/* ── do / don't ── */
+.dd{border:1px solid var(--hair);border-radius:7pt;overflow:hidden;background:#fff}
+.dd .art{height:64pt;display:grid;place-items:center;background:var(--paper-2);padding:10pt}
+.dd .art img{max-width:100%;max-height:100%}
+.dd .txt{padding:9pt 11pt 11pt;font-size:8.7pt;line-height:1.45;color:var(--muted)}
+.dd .txt b{display:block;font-family:var(--display);font-size:9pt;letter-spacing:-.01em;color:var(--coal);margin-bottom:2pt}
+.dd.no .txt b{color:#A32020}
+.dd.yes .txt b{color:#0B6B45}
+
+table{width:100%;border-collapse:collapse;font-size:9pt}
+th{font-family:var(--mono);font-size:6.9pt;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:0 8pt 6pt 0;border-bottom:1.4pt solid var(--green)}
+td{padding:6.5pt 8pt 6.5pt 0;border-bottom:1px solid var(--hair);vertical-align:top}
+td:last-child,th:last-child{padding-right:0}
+td.f{font-family:var(--mono);font-size:8pt;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.box{border:1.4pt solid var(--hair);border-radius:6pt;padding:11pt 13pt;background:#fff}
+.box.gold{background:rgba(244,180,26,.13);border-color:rgba(244,180,26,.55)}
+.box h4{font-family:var(--mono);font-size:7pt;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--jade);margin:0 0 5pt}
+.box p{font-size:9.2pt;margin:0}
+
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0}}
+@media screen{body{padding:8mm 0}.page{box-shadow:0 10px 34px -14px rgba(0,0,0,.5)}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 1 · COVER ═══════════ -->
+<section class="page dark cover">
+  <div style="display:flex;align-items:center;gap:12pt">
+    <img src="scalesfare-logo-horizontal-reversed.svg" alt="Scales Fare" style="height:30pt">
+  </div>
+
+  <div>
+    <p class="kicker"><span class="pip"></span> Identity handbook · v1.0</p>
+    <h1>Brand<br><span class="g">Basics</span></h1>
+    <p class="deck" style="margin-top:14pt;max-width:26em">The marks, the colours, the type, and the handful of rules that keep them looking like one company.</p>
+  </div>
+
+  <div class="cover-foot">
+    <span>Scales Fare<br>Point of sale · Jamaica</span>
+    <span>Designed by<br>YardScale Digital</span>
+  </div>
+</section>
+
+<!-- ═══════════ 2 · THE MARKS ═══════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 01 · The marks</p>
+    <h2>One symbol, four lockups</h2>
+    <div class="rule"></div>
+    <p class="deck">A balance beam tipped twelve degrees, resting on a fulcrum: a scale that is rising rather than level. The gold pivot is the point of sale — the single moment everything in this business turns on. Reach for the horizontal lockup by default; the others exist for the places it will not fit.</p>
+
+    <div class="grid2">
+      <div>
+        <div class="show" style="min-height:74pt"><img src="scalesfare-logo-horizontal.svg" alt="" style="width:100%"></div>
+        <span class="cap">Primary · scalesfare-logo-horizontal.svg</span>
+      </div>
+      <div>
+        <div class="show on-green" style="min-height:74pt"><img src="scalesfare-logo-horizontal-reversed.svg" alt="" style="width:100%"></div>
+        <span class="cap">Reversed · -horizontal-reversed.svg</span>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:14pt">
+      <div>
+        <div class="show" style="min-height:104pt"><img src="scalesfare-logo-stacked.svg" alt="" style="width:88%"></div>
+        <span class="cap">Stacked · -stacked.svg</span>
+      </div>
+      <div>
+        <div class="show" style="min-height:104pt"><img src="scalesfare-logo-horizontal-tagline.svg" alt="" style="width:100%"></div>
+        <span class="cap">With descriptor · -horizontal-tagline.svg</span>
+      </div>
+      <div>
+        <div class="show" style="min-height:104pt"><img src="scalesfare-symbol.svg" alt="" style="width:52%"></div>
+        <span class="cap">Symbol alone · scalesfare-symbol.svg</span>
+      </div>
+    </div>
+
+    <div class="grid4" style="margin-top:14pt">
+      <div><div class="show" style="min-height:62pt;padding:10pt"><img src="scalesfare-symbol-tile.svg" alt="" style="width:52pt"></div><span class="cap">App tile · -symbol-tile.svg</span></div>
+      <div><div class="show" style="min-height:62pt;padding:10pt"><img src="scalesfare-logo-mono-black.svg" alt="" style="width:100%"></div><span class="cap">Mono black · -mono-black.svg</span></div>
+      <div><div class="show on-gold" style="min-height:62pt;padding:10pt"><img src="scalesfare-logo-mono-black.svg" alt="" style="width:100%"></div><span class="cap">Mono on gold</span></div>
+      <div><div class="show on-green" style="min-height:62pt;padding:10pt"><img src="scalesfare-logo-mono-white.svg" alt="" style="width:100%"></div><span class="cap">Mono white · -mono-white.svg</span></div>
+    </div>
+
+    <div class="box gold" style="margin-top:14pt">
+      <h4>When to use which</h4>
+      <p><strong>Horizontal</strong> for anything wider than it is tall — websites, letterheads, vehicle doors, email signatures. <strong>Stacked</strong> where the space is square or narrow. <strong>Symbol alone</strong> only where the name is already present or obvious: app icons, social avatars, a stamp on a receipt.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics</span><b>02</b></div>
+</section>
+
+<!-- ═══════════ 3 · CLEAR SPACE ═══════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 02 · Space and size</p>
+    <h2>Give it room,<br>keep it legible</h2>
+    <div class="rule"></div>
+    <p class="deck">Define <strong>X</strong> as the cap height of the wordmark — the height of the letter S. Keep at least X clear on every side, free of type, images, rules and the edge of the page.</p>
+
+    <div class="cs">      <div class="inner">
+        <div class="x top">X</div>
+        <div class="x bot">X</div>
+        <div class="x left">X</div>
+        <div class="x right">X</div>
+        <img src="scalesfare-logo-horizontal.svg" alt="">
+      </div>
+    </div>
+    <span class="cap">Minimum clear space on all four sides. More is always fine; less never is.</span>
+
+    <h3 style="margin-top:20pt">Smallest it should ever go</h3>
+    <div class="minrow" style="margin-top:8pt">
+      <figure>
+        <img src="scalesfare-logo-horizontal.svg" alt="" style="width:130px">
+        <figcaption class="cap">Horizontal · 130px</figcaption>
+      </figure>
+      <figure>
+        <img src="scalesfare-logo-stacked.svg" alt="" style="width:74px">
+        <figcaption class="cap">Stacked · 74px</figcaption>
+      </figure>
+      <figure>
+        <img src="scalesfare-symbol.svg" alt="" style="width:22px">
+        <figcaption class="cap">Symbol · 22px</figcaption>
+      </figure>
+      <figure>
+        <img src="favicon.svg" alt="" style="width:16px">
+        <figcaption class="cap">Favicon · 16px</figcaption>
+      </figure>
+    </div>
+
+    <div class="box" style="margin-top:16pt">
+      <h4>Below those sizes</h4>
+      <p>Drop the wordmark and use the symbol, or the tile version on a solid green ground. A wordmark too small to read is worse than no wordmark at all.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics</span><b>03</b></div>
+</section>
+
+<!-- ═══════════ 4 · COLOUR ═══════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 03 · Colour</p>
+    <h2>Five colours, and<br>two do the work</h2>
+    <div class="rule"></div>
+    <p class="deck">Blue Mountain green carries almost everything. Pimento gold is the accent and belongs on the thing you want pressed — a button, a price, a single word. Use it sparingly enough that it still means something.</p>
+
+    <div class="grid3">
+      <div class="sw">
+        <div class="chip" style="background:#0B3B2E"></div>
+        <div class="meta">
+          <div class="nm">Blue Mountain</div>
+          <dl>
+            <div><dt>HEX</dt><dd>#0B3B2E</dd></div>
+            <div><dt>RGB</dt><dd>11 · 59 · 46</dd></div>
+            <div><dt>CMYK</dt><dd>81 · 0 · 22 · 77</dd></div>
+          </dl>
+          <p class="use">Primary. Backgrounds, the logo, body text on light grounds.</p>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:#F4B41A"></div>
+        <div class="meta">
+          <div class="nm">Pimento Gold</div>
+          <dl>
+            <div><dt>HEX</dt><dd>#F4B41A</dd></div>
+            <div><dt>RGB</dt><dd>244 · 180 · 26</dd></div>
+            <div><dt>CMYK</dt><dd>0 · 26 · 89 · 4</dd></div>
+          </dl>
+          <p class="use">Accent. Buttons, the pivot dot, one highlighted word. Never body text.</p>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:#12A36B"></div>
+        <div class="meta">
+          <div class="nm">Jade</div>
+          <dl>
+            <div><dt>HEX</dt><dd>#12A36B</dd></div>
+            <div><dt>RGB</dt><dd>18 · 163 · 107</dd></div>
+            <div><dt>CMYK</dt><dd>89 · 0 · 34 · 36</dd></div>
+          </dl>
+          <p class="use">Secondary. Ticks, positive states, small labels. Support only.</p>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:#FBF8F1;border-bottom:1px solid var(--hair)"></div>
+        <div class="meta">
+          <div class="nm">Coconut</div>
+          <dl>
+            <div><dt>HEX</dt><dd>#FBF8F1</dd></div>
+            <div><dt>RGB</dt><dd>251 · 248 · 241</dd></div>
+            <div><dt>CMYK</dt><dd>0 · 1 · 4 · 2</dd></div>
+          </dl>
+          <p class="use">Paper. The default page. Warmer than white on purpose.</p>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:#14120E"></div>
+        <div class="meta">
+          <div class="nm">Coal</div>
+          <dl>
+            <div><dt>HEX</dt><dd>#14120E</dd></div>
+            <div><dt>RGB</dt><dd>20 · 18 · 14</dd></div>
+            <div><dt>CMYK</dt><dd>0 · 10 · 30 · 92</dd></div>
+          </dl>
+          <p class="use">Text on light grounds where green would be too soft.</p>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:linear-gradient(135deg,#0B3B2E 0 33%,#F4B41A 33% 66%,#FBF8F1 66% 100%)"></div>
+        <div class="meta">
+          <div class="nm">The pairing</div>
+          <dl>
+            <div><dt>DARK</dt><dd>Coconut &amp; gold</dd></div>
+            <div><dt>LIGHT</dt><dd>Green &amp; coal</dd></div>
+            <div><dt>AVOID</dt><dd>Gold on coconut</dd></div>
+          </dl>
+          <p class="use">Gold on a light ground fails contrast for text. Keep it to shapes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:16pt">
+      <h4>Before anything goes to print</h4>
+      <p>The CMYK values above are a straight conversion, not a proofed build. Send your printer the hex values and ask them to match on their own profile — and ask for a proof of the green, which is the one that shifts.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics</span><b>04</b></div>
+</section>
+
+<!-- ═══════════ 5 · TYPE ═══════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 04 · Type</p>
+    <h2>Three faces, all free</h2>
+    <div class="rule"></div>
+    <p class="deck">All three are open-source and load from Google Fonts, so the brand costs nothing to run and anyone can pick it up. The wordmark itself is drawn from Sora ExtraBold and shipped as outlines — the logo files need no font installed.</p>
+
+    <div class="stack" style="display:grid;gap:12pt">
+      <div class="spec">
+        <div class="lbl">Display · Sora · 700 &amp; 800</div>
+        <div class="sample" style="font-family:var(--display);font-weight:800;font-size:34pt;letter-spacing:-.04em">Every sale, counted.</div>
+        <p class="note">Headlines, the wordmark, buttons. Tight tracking at large sizes (−3 to −4.5%). Never below 600 weight — Sora goes limp when it is light.</p>
+      </div>
+      <div class="spec">
+        <div class="lbl">Body · Inter · 400, 500 &amp; 600</div>
+        <div class="sample" style="font-family:var(--body);font-size:15pt;line-height:1.45;letter-spacing:-.005em">Ring it up, bank it, know what you have left on the shelf — the till does the counting.</div>
+        <p class="note">Everything you read in a paragraph. Line height 1.55–1.65. Set body copy at 16–17px on screen; do not go under 15px.</p>
+      </div>
+      <div class="spec">
+        <div class="lbl">Labels &amp; figures · JetBrains Mono · 500</div>
+        <div class="sample" style="font-family:var(--mono);font-size:12pt;letter-spacing:.14em;text-transform:uppercase">POINT OF SALE · SETUP · SUPPORT</div>
+        <div class="sample" style="font-family:var(--mono);font-size:14pt;letter-spacing:.02em;margin-top:-2pt">J$11,500 &nbsp; 15% &nbsp; 02:14</div>
+        <p class="note">Eyebrows, small caps labels, and every price or figure. Letterspace uppercase labels to about 0.18em. It is the receipt voice — use it where the system is speaking.</p>
+      </div>
+    </div>
+
+    <div class="box" style="margin-top:14pt">
+      <h4>If the fonts are unavailable</h4>
+      <p>Fall back to the system stack in this order: Sora → system-ui → Segoe UI → Helvetica. Do not substitute a different display face on a whim; a wrong headline font undoes the mark faster than a wrong colour.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics</span><b>05</b></div>
+</section>
+
+<!-- ═══════════ 6 · MISUSE ═══════════ -->
+<section class="page">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 05 · Getting it wrong</p>
+    <h2>Six things not to do</h2>
+    <div class="rule"></div>
+    <p class="deck">Every one of these has happened to a logo somewhere. Each takes ten seconds to do and quietly costs the brand its consistency.</p>
+
+    <div class="grid3">
+      <div class="dd no">
+        <div class="art"><img src="scalesfare-logo-horizontal.svg" style="width:60%;transform:scaleX(1.55)"></div>
+        <div class="txt"><b>Don't stretch it</b>Scale proportionally, always. Hold shift.</div>
+      </div>
+      <div class="dd no">
+        <div class="art" style="background:#7B4BC9"><img src="scalesfare-logo-horizontal-reversed.svg" style="width:88%"></div>
+        <div class="txt"><b>Don't recolour it</b>Green, coconut, solid black or solid white. Nothing else.</div>
+      </div>
+      <div class="dd no">
+        <div class="art"><img src="scalesfare-logo-horizontal.svg" style="width:78%;transform:rotate(-9deg)"></div>
+        <div class="txt"><b>Don't tilt it</b>The beam is already at an angle. That is the whole idea.</div>
+      </div>
+      <div class="dd no">
+        <div class="art" style="background:#4C6B58"><img src="scalesfare-logo-horizontal.svg" style="width:88%"></div>
+        <div class="txt"><b>Don't drop it on a busy or close-toned ground</b>Use the reversed file on dark.</div>
+      </div>
+      <div class="dd no">
+        <div class="art" style="padding:1pt"><img src="scalesfare-logo-horizontal.svg" style="width:100%"></div>
+        <div class="txt"><b>Don't crowd it</b>Keep the clear space on page 3, even in a tight header.</div>
+      </div>
+      <div class="dd yes">
+        <div class="art"><img src="scalesfare-logo-horizontal.svg" style="width:84%"></div>
+        <div class="txt"><b>Do just use the file</b>Every lockup you need is already drawn. Nothing needs rebuilding.</div>
+      </div>
+    </div>
+
+    <div class="box gold" style="margin-top:16pt">
+      <h4>Also, please</h4>
+      <p>Do not add a drop shadow, an outline, a gradient, or a second colour to the wordmark. Do not typeset the name yourself in place of the wordmark. Do not put the symbol inside another shape — the tile file already does that properly.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics</span><b>06</b></div>
+</section>
+
+<!-- ═══════════ 7 · FILES ═══════════ -->
+<section class="page dark">
+  <div class="body">
+    <p class="kicker"><span class="pip"></span> 06 · The files</p>
+    <h2>What is in the folder</h2>
+    <div class="rule"></div>
+    <p class="deck">Vector SVG is the master for everything. The PNGs are conveniences for places that will not take a vector — reach for the SVG first, every time.</p>
+
+    <table>
+      <thead><tr><th style="width:44%">File</th><th>Use it for</th></tr></thead>
+      <tbody>
+        <tr><td class="f">scalesfare-logo-horizontal.svg</td><td>The default. Light backgrounds.</td></tr>
+        <tr><td class="f">…-horizontal-reversed.svg</td><td>Dark and photographic backgrounds.</td></tr>
+        <tr><td class="f">…-horizontal-tagline.svg</td><td>First impressions — stationery, a stand, a cover.</td></tr>
+        <tr><td class="f">scalesfare-logo-stacked.svg</td><td>Square and narrow spaces.</td></tr>
+        <tr><td class="f">…-stacked-reversed.svg</td><td>The same, on dark.</td></tr>
+        <tr><td class="f">scalesfare-logo-mono-black.svg</td><td>One-colour print, fax, engraving, stamps.</td></tr>
+        <tr><td class="f">scalesfare-logo-mono-white.svg</td><td>Knockouts out of any single dark colour.</td></tr>
+        <tr><td class="f">scalesfare-symbol.svg</td><td>The mark on its own.</td></tr>
+        <tr><td class="f">scalesfare-symbol-tile.svg</td><td>App icon, social avatar, profile picture.</td></tr>
+        <tr><td class="f">scalesfare-wordmark.svg</td><td>Rare. Where the symbol already appears nearby.</td></tr>
+        <tr><td class="f">favicon.svg · .ico · -32.png</td><td>Browser tabs.</td></tr>
+        <tr><td class="f">apple-touch-icon.png</td><td>Saved to a phone home screen.</td></tr>
+        <tr><td class="f">*.png</td><td>Word, PowerPoint, and anything that refuses SVG.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid2" style="margin-top:18pt">
+      <div class="box" style="background:var(--green-2);border-color:rgba(255,255,255,.18)">
+        <h4 style="color:var(--gold)">Need something not in here?</h4>
+        <p style="color:#CFDCD4">A one-colour foil, an embroidery file, a vehicle wrap at scale, a large-format print — ask rather than redraw. All of it comes off the same vector in minutes.</p>
+      </div>
+      <div class="box" style="background:var(--green-2);border-color:rgba(255,255,255,.18)">
+        <h4 style="color:var(--gold)">Type credit</h4>
+        <p style="color:#CFDCD4">Sora and Inter are licensed under the SIL Open Font License; JetBrains Mono under the Apache License 2.0. Free to use commercially, including in the wordmark outlines.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Scales Fare · Brand Basics · v1.0 · Designed by YardScale Digital</span><b>07</b></div>
+</section>
+
+</body>
+</html>

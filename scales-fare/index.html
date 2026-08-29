@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en-JM">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scales Fare — Point of sale, set up in your shop. Jamaica-wide.</title>
+<meta name="description" content="Scales Fare supplies and sets up point-of-sale systems for small businesses in Jamaica and the Caribbean. Works when the light cut, GCT-ready receipts, cash, card and wallet on one screen. Free guide inside.">
+<meta name="theme-color" content="#0B3B2E">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="canonical" href="__SITE_URL__/scales-fare/">
+<meta property="og:site_name" content="Scales Fare">
+<meta property="og:title" content="Scales Fare — Every sale, counted.">
+<meta property="og:description" content="Point-of-sale systems supplied, set up and supported in your shop. Built for how Jamaica actually trades.">
+<meta property="og:image" content="__SITE_URL__/scales-fare/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scales Fare — point of sale for Jamaican small business">
+<meta property="og:url" content="__SITE_URL__/scales-fare/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scales Fare — Every sale, counted.">
+<meta name="twitter:description" content="Point-of-sale systems supplied, set up and supported in your shop. Built for how Jamaica actually trades.">
+<meta name="twitter:image" content="__SITE_URL__/scales-fare/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────  TOKENS  ───────────────────────── */
+:root{
+  --green:#0B3B2E;      /* Blue Mountain  */
+  --green-2:#0F4A39;
+  --green-deep:#072A21;
+  --gold:#F4B41A;       /* Pimento Gold   */
+  --jade:#12A36B;
+  --paper:#FBF8F1;      /* Coconut        */
+  --paper-2:#F3EEE2;
+  --coal:#14120E;
+  --muted:#5F6B64;
+  --muted-dark:#9DB0A6;
+  --hair:#E4DDCB;
+  --hair-dark:#1B5343;
+
+  --display:'Sora',system-ui,-apple-system,Segoe UI,sans-serif;
+  --body:'Inter',system-ui,-apple-system,Segoe UI,Helvetica,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --gutter:clamp(20px,5vw,60px);
+  --maxw:1200px;
+  --sec:clamp(68px,10vw,132px);
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--coal);
+  font-family:var(--body);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+::selection{background:var(--gold);color:var(--green-deep)}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+section[id]{scroll-margin-top:96px}
+.dark{background:var(--green);color:var(--paper)}
+
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.035em}
+h1{font-size:clamp(2.9rem,7.4vw,5.1rem);line-height:.98}
+h2{font-size:clamp(2rem,4.6vw,3.15rem)}
+h3{font-size:clamp(1.15rem,2.3vw,1.45rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+h4{font-size:1rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.lead{font-size:clamp(1.06rem,2vw,1.26rem);line-height:1.55;max-width:40ch;color:var(--muted)}
+.dark .lead{color:var(--muted-dark)}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.19em;text-transform:uppercase;font-weight:500;
+  color:var(--muted);display:flex;align-items:center;gap:10px;margin:0 0 20px
+}
+.dark .eyebrow{color:var(--gold)}
+/* the pivot dot from the mark, reused as a bullet */
+.pip{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none;display:inline-block}
+
+/* ─────────────────────────  DEMO STRIP  ───────────────────────── */
+.demobar{background:var(--coal);color:#EDE7D8;font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase}
+.demobar .wrap{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding-block:9px;text-align:center}
+.demobar b{color:var(--gold);font-weight:500}
+.demobar a{color:#EDE7D8}
+
+/* ─────────────────────────  NAV  ───────────────────────── */
+header.nav{position:sticky;top:0;z-index:60;background:rgba(11,59,46,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair-dark)}
+.nav-in{display:flex;align-items:center;gap:26px;height:72px}
+.nav-logo img{height:31px;width:auto}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{
+  font-family:var(--body);font-size:.87rem;font-weight:500;letter-spacing:.005em;
+  color:var(--paper);text-decoration:none;opacity:.78;transition:opacity .2s,color .2s
+}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.burger{margin-left:auto;display:none;background:none;border:1px solid var(--hair-dark);color:var(--paper);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:10px 14px;cursor:pointer;border-radius:8px}
+.mobile-menu{display:none;border-top:1px solid var(--hair-dark);background:var(--green)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:15px var(--gutter);border-bottom:1px solid var(--hair-dark);text-decoration:none;
+  font-weight:600;color:var(--paper)}
+
+/* ─────────────────────────  BUTTONS  ───────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;text-decoration:none;
+  font-family:var(--display);font-size:.94rem;font-weight:700;letter-spacing:-.01em;
+  border:2px solid transparent;border-radius:11px;cursor:pointer;
+  transition:transform .18s,background .18s,color .18s,border-color .18s,box-shadow .18s
+}
+.btn-gold{background:var(--gold);color:var(--green-deep);box-shadow:0 6px 0 #C9900B}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 0 #C9900B}
+.btn-gold:active{transform:translateY(3px);box-shadow:0 3px 0 #C9900B}
+.btn-ghost{border-color:rgba(251,248,241,.34);color:var(--paper);background:none}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-green{background:var(--green);color:var(--paper)}
+.btn-green:hover{transform:translateY(-2px)}
+.btn-outline{border-color:var(--green);color:var(--green);background:none}
+.btn-outline:hover{background:var(--green);color:var(--paper)}
+.btn-sm{padding:11px 18px;font-size:.85rem;border-radius:9px;box-shadow:0 4px 0 #C9900B}
+.btn-sm:hover{box-shadow:0 6px 0 #C9900B}
+.btn .arw{transition:transform .18s}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* ─────────────────────────  HERO  ───────────────────────── */
+.hero{background:var(--green);color:var(--paper);padding:clamp(52px,7vw,88px) 0 clamp(64px,9vw,112px);position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;top:-24%;right:-10%;width:46%;height:150%;
+  background:radial-gradient(ellipse at 50% 40%,rgba(244,180,26,.16),rgba(244,180,26,0) 66%);
+  pointer-events:none
+}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(34px,5vw,72px);align-items:center;position:relative;z-index:2}
+.hero h1 .gold{color:var(--gold)}
+.hero .lead{margin-top:22px;color:#CFDCD4;max-width:41ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero-meta{display:flex;gap:12px 26px;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid var(--hair-dark);
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:#B7C8BF}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta .pip{width:7px;height:7px}
+
+/* ── the signature element: a live terminal ── */
+.term{
+  background:#0A241C;border:1px solid #205344;border-radius:20px;overflow:hidden;
+  box-shadow:0 30px 60px -22px rgba(0,0,0,.6);max-width:420px;margin-inline:auto;width:100%
+}
+.term-bar{display:flex;align-items:center;gap:9px;padding:13px 16px;background:#0D2E24;border-bottom:1px solid #205344;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:#8FA79C}
+.term-bar b{color:var(--paper);font-weight:500}
+.term-bar .live{width:8px;height:8px;border-radius:50%;background:var(--jade);flex:none;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.32}}
+.term-bar em{margin-left:auto;font-style:normal;color:#6E877C}
+.term-body{padding:18px 18px 20px;min-height:346px;display:flex;flex-direction:column}
+.tline{display:flex;gap:10px;align-items:baseline;font-family:var(--mono);font-size:.83rem;color:#D6E3DC;padding:6px 0;
+  opacity:0;transform:translateY(6px);animation:in .34s forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.tline .qty{color:var(--gold);flex:none;width:2.1em}
+.tline .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tline .amt{flex:none;color:#F2F7F4;font-weight:500}
+.tline.rule{border-top:1px dashed #2C6151;margin-top:8px;padding-top:12px}
+.tline.sub .nm,.tline.sub .amt{color:#9BB3A8}
+.tline.tot{font-size:1.06rem;font-weight:700;color:#fff;padding-top:4px}
+.tline.tot .amt{color:var(--gold)}
+.tpaid{margin-top:auto;display:flex;align-items:center;gap:10px;background:rgba(18,163,107,.14);border:1px solid rgba(18,163,107,.42);
+  border-radius:11px;padding:12px 14px;font-family:var(--mono);font-size:.76rem;color:#8FE3BC;
+  opacity:0;transform:translateY(6px);animation:in .34s forwards}
+.tpaid svg{flex:none}
+.term-cap{margin:16px auto 0;max-width:420px;font-family:var(--mono);font-size:.72rem;line-height:1.6;color:#9DB0A6;text-align:center}
+
+/* ─────────────────────────  MARQUEE  ───────────────────────── */
+.strip{background:var(--gold);color:var(--green-deep);overflow:hidden;padding:13px 0;border-block:2px solid var(--green-deep)}
+.strip-in{display:flex;gap:44px;white-space:nowrap;width:max-content;animation:slide 34s linear infinite;
+  font-family:var(--display);font-weight:700;font-size:.98rem;letter-spacing:-.01em}
+.strip-in span{display:flex;align-items:center;gap:44px}
+.strip-in i{font-style:normal;opacity:.5}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.strip-in{animation:none}}
+
+/* ─────────────────────────  SECTION HEADS  ───────────────────────── */
+.sec{padding:var(--sec) 0}
+.sec-head{max-width:56ch;margin-bottom:clamp(34px,4vw,54px)}
+.sec-head p{color:var(--muted);margin-top:18px;font-size:1.06rem}
+.dark .sec-head p{color:var(--muted-dark)}
+.sec-head.row{max-width:none;display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:end}
+.sec-head.row>div:first-child{max-width:48ch}
+.sec-head.row .side{justify-self:end}
+
+/* ─────────────────────────  CARD GRIDS  ───────────────────────── */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+
+.card{background:#fff;border:1px solid var(--hair);border-radius:var(--r);padding:26px 24px 28px;position:relative;
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(11,59,46,.4);border-color:#CFC6AE}
+.card .ico{width:44px;height:44px;border-radius:11px;background:var(--paper-2);display:grid;place-items:center;margin-bottom:18px}
+.card .ico svg{width:23px;height:23px;stroke:var(--green);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.card h3{margin-bottom:9px}
+.card p{color:var(--muted);font-size:.96rem;margin:0}
+.dark .card{background:var(--green-2);border-color:var(--hair-dark)}
+.dark .card p{color:var(--muted-dark)}
+.dark .card .ico{background:rgba(244,180,26,.14)}
+.dark .card .ico svg{stroke:var(--gold)}
+
+/* packages */
+.pack{background:#fff;border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pack-top{padding:24px 24px 20px;border-bottom:1px solid var(--hair)}
+.pack-tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);
+  background:var(--green);display:inline-block;padding:5px 10px;border-radius:6px;margin-bottom:14px}
+.pack-top h3{margin-bottom:8px}
+.pack-top p{color:var(--muted);font-size:.94rem;margin:0}
+.pack ul{list-style:none;margin:0;padding:20px 24px 24px;display:grid;gap:11px;font-size:.94rem;flex:1}
+.pack li{display:flex;gap:11px;align-items:flex-start;color:#33403A}
+.pack li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--jade);flex:none;margin-top:8px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{position:relative;padding-top:30px;border-top:2px solid var(--hair-dark)}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:-14px;left:0;background:var(--green);padding-right:12px;
+  font-family:var(--mono);font-size:1.42rem;font-weight:700;color:var(--gold);line-height:1}
+.step h3{margin-bottom:10px}
+.step p{color:var(--muted-dark);font-size:.95rem;margin:0}
+
+/* kit list */
+.kit{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;background:#fff}
+.kit div{padding:22px 24px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.kit div:nth-child(3n){border-right:0}
+.kit div:nth-last-child(-n+3){border-bottom:0}
+.kit h4{margin-bottom:6px}
+.kit p{margin:0;font-size:.92rem;color:var(--muted)}
+
+/* pricing */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.tier{background:#fff;border:1px solid var(--hair);border-radius:var(--r);padding:28px 26px 30px;display:flex;flex-direction:column;gap:18px}
+.tier.feat{background:var(--green);color:var(--paper);border-color:var(--green);box-shadow:0 22px 44px -26px rgba(11,59,46,.65)}
+.tier .name{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.tier.feat .name{color:var(--gold)}
+.tier .amt{font-family:var(--display);font-weight:800;font-size:2.35rem;letter-spacing:-.04em;line-height:1}
+.tier .amt small{display:block;font-size:.78rem;font-family:var(--mono);font-weight:400;letter-spacing:.05em;color:var(--muted);margin-top:9px;line-height:1.5}
+.tier.feat .amt small{color:var(--muted-dark)}
+.tier ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:.94rem;flex:1}
+.tier li{display:flex;gap:10px;align-items:flex-start}
+.tier li svg{width:15px;height:15px;flex:none;margin-top:5px;stroke:var(--jade);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tier.feat li svg{stroke:var(--gold)}
+.note{font-family:var(--mono);font-size:.72rem;letter-spacing:.03em;color:var(--muted);margin-top:22px}
+
+/* ─────────────────────────  LEAD MAGNET  ───────────────────────── */
+.magnet{background:var(--green-deep);color:var(--paper);position:relative;overflow:hidden}
+.magnet::before{content:"";position:absolute;inset:auto -8% -40% auto;width:52%;height:120%;
+  background:radial-gradient(ellipse at 40% 50%,rgba(18,163,107,.20),rgba(18,163,107,0) 68%)}
+.magnet-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,68px);align-items:center;position:relative;z-index:2}
+.magnet-body{display:grid;grid-template-columns:190px 1fr;gap:30px;align-items:start;margin-top:28px}
+.magnet ul{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+.magnet li{display:flex;gap:12px;align-items:flex-start;font-size:.98rem;line-height:1.5;color:#D3E1DA}
+.magnet li .pip{margin-top:8px}
+
+.cover{position:relative;perspective:1200px}
+.cover img{border-radius:6px;box-shadow:0 34px 60px -24px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08);
+  transform:rotateY(-13deg) rotateX(4deg) rotateZ(-1.5deg);transition:transform .5s}
+.cover:hover img{transform:rotateY(-6deg) rotateX(2deg)}
+
+.form{background:#fff;color:var(--coal);border-radius:var(--r);padding:28px}
+.form h3{margin-bottom:6px}
+.form>p{color:var(--muted);font-size:.94rem;margin-bottom:20px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.79rem;font-weight:600;letter-spacing:.02em;color:#3A463F;margin-bottom:6px}
+.field input,.field select{
+  width:100%;padding:13px 14px;border:1.5px solid var(--hair);border-radius:10px;background:var(--paper);
+  font-family:var(--body);font-size:.98rem;color:var(--coal);transition:border-color .18s,background .18s
+}
+.field input:focus,.field select:focus{border-color:var(--green);background:#fff;outline:none}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .btn{width:100%;margin-top:8px}
+.form .fine{font-size:.76rem;color:var(--muted);margin:14px 0 0;line-height:1.55}
+
+/* ─────────────────────────  FAQ  ───────────────────────── */
+.faq{border-top:1px solid var(--hair)}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:24px 44px 24px 0;position:relative;
+  font-family:var(--display);font-weight:700;font-size:clamp(1.02rem,1.9vw,1.2rem);letter-spacing:-.02em
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:50%;width:13px;height:13px;margin-top:-7px;
+  background:
+    linear-gradient(var(--green),var(--green)) center/13px 2.2px no-repeat,
+    linear-gradient(var(--green),var(--green)) center/2.2px 13px no-repeat;
+  transition:transform .22s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 8% 26px 0;color:var(--muted);max-width:70ch}
+.faq .ans p:last-child{margin-bottom:0}
+
+/* ─────────────────────────  CONTACT / FOOTER  ───────────────────────── */
+.tail{background:var(--green);color:var(--paper)}
+.tail-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+.contact-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:16px}
+.contact-list li{display:flex;gap:14px;align-items:flex-start}
+.contact-list svg{width:20px;height:20px;flex:none;margin-top:3px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-list b{display:block;font-family:var(--display);font-weight:700;font-size:1.02rem}
+.contact-list span{color:var(--muted-dark);font-size:.94rem}
+.contact-list a{color:var(--gold);text-decoration:none}
+.contact-list a:hover{text-decoration:underline}
+
+footer{border-top:1px solid var(--hair-dark);padding:34px 0 44px;background:var(--green-deep);color:var(--muted-dark)}
+.foot-in{display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.foot-in img{height:26px;opacity:.95}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:.88rem}
+.foot-links a{color:var(--muted-dark);text-decoration:none}
+.foot-links a:hover{color:var(--gold)}
+.foot-note{width:100%;font-size:.79rem;line-height:1.65;padding-top:22px;margin-top:6px;border-top:1px solid var(--hair-dark);color:#7C9188}
+.foot-note a{color:var(--gold)}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}.tline,.tpaid{animation:none;opacity:1;transform:none}}
+
+/* ─────────────────────────  RESPONSIVE  ───────────────────────── */
+@media (max-width:1000px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);gap:28px 20px}
+  .kit{grid-template-columns:repeat(2,1fr)}
+  .kit div:nth-child(3n){border-right:1px solid var(--hair)}
+  .kit div:nth-child(2n){border-right:0}
+  .kit div:nth-last-child(-n+3){border-bottom:1px solid var(--hair)}
+  .kit div:nth-last-child(-n+2){border-bottom:0}
+}
+@media (max-width:880px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .hero-grid,.magnet-grid,.tail-grid,.sec-head.row{grid-template-columns:1fr}
+  .sec-head.row .side{justify-self:start}
+  .tiers,.grid-3{grid-template-columns:1fr}
+  .magnet-body{grid-template-columns:1fr}
+  .cover{max-width:230px}
+  .cover img{transform:none}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .grid-4,.grid-2,.steps,.kit{grid-template-columns:1fr}
+  .kit div{border-right:0!important;border-bottom:1px solid var(--hair)!important}
+  .kit div:last-child{border-bottom:0!important}
+  .field-row{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ DEMO STRIP ══════════ -->
+<div class="demobar">
+  <div class="wrap">
+    <span><b>Demo concept</b> — designed &amp; built by YardScale Digital</span>
+    <a href="/">See the studio →</a>
+  </div>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="#top" aria-label="Scales Fare, home">
+      <img src="brand/scalesfare-logo-horizontal-reversed.svg" alt="Scales Fare" width="167" height="31">
+    </a>
+    <nav class="nav-links">
+      <a href="#systems">Systems</a>
+      <a href="#setup">Setup</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <a class="btn btn-gold btn-sm" href="#guide">Free guide</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#systems">Systems</a>
+    <a href="#setup">How setup goes</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">Questions</a>
+    <a href="#guide">Get the free guide</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow"><span class="pip"></span> Point of sale · Setup · Support — Jamaica-wide</p>
+      <h1>Every sale,<br><span class="gold">counted.</span></h1>
+      <p class="lead">We supply the point-of-sale system, set it up in your shop, train your staff on it, and stay on the phone after. No guessing at the end of the day.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#guide">Get the free guide <span class="arw">→</span></a>
+        <a class="btn btn-ghost" href="#systems">See the systems</a>
+      </div>
+      <div class="hero-meta">
+        <span><span class="pip"></span> Works when the light cut</span>
+        <span><span class="pip"></span> GCT-ready receipts</span>
+        <span><span class="pip"></span> Cash, card &amp; wallet</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="term" id="term" aria-label="Example of a sale being rung up on a Scales Fare terminal">
+        <div class="term-bar">
+          <span class="live"></span>
+          <b>Front counter</b>
+          <em id="termClock">Sat 12:41</em>
+        </div>
+        <div class="term-body" id="termBody"></div>
+      </div>
+      <p class="term-cap">One screen. Cash, card, Lynk, or on the book — and the stock count moves by itself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-in">
+    <span>Cook shops <i>◆</i> Mini-marts <i>◆</i> Bars <i>◆</i> Salons &amp; barbers <i>◆</i> Hardware <i>◆</i> Wholesale <i>◆</i> Pharmacies <i>◆</i> Craft &amp; market stalls <i>◆</i> Delivery <i>◆</i></span>
+    <span>Cook shops <i>◆</i> Mini-marts <i>◆</i> Bars <i>◆</i> Salons &amp; barbers <i>◆</i> Hardware <i>◆</i> Wholesale <i>◆</i> Pharmacies <i>◆</i> Craft &amp; market stalls <i>◆</i> Delivery <i>◆</i></span>
+  </div>
+</div>
+
+<!-- ══════════ WHY / LOCAL FIT ══════════ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <p class="eyebrow"><span class="pip"></span> Built for here</p>
+      <h2>Made for how Jamaica actually trades</h2>
+      <p>Most point-of-sale software is written for a shop with clean power, fixed internet and one way to pay. That is not the shop you run.</p>
+    </div>
+
+    <div class="grid-4 rise">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <h3>When the light cut</h3>
+        <p>The till runs offline on battery. Sales keep ringing and everything syncs the moment power and internet come back.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 13h7M9 17h5"/></svg></div>
+        <h3>GCT without the headache</h3>
+        <p>Set your prices once. The system works out GCT and prints a receipt carrying your business name, address and TRN.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
+        <h3>Every way they pay</h3>
+        <p>Cash, your bank's card terminal, Lynk, bank transfer — or on the book for the customers you trust. All on one screen.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>JMD and USD</h3>
+        <p>Ring up in Jamaican dollars, take payment in either, at the rate you set. Useful the minute a cruise ship berths.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SYSTEMS ══════════ -->
+<section class="sec dark" id="systems">
+  <div class="wrap">
+    <div class="sec-head row rise">
+      <div>
+        <p class="eyebrow"><span class="pip"></span> What we set up</p>
+        <h2>Four systems.<br>Pick the one that fits your counter.</h2>
+        <p>Same core software, set up differently depending on what you sell and how the money comes in. We do the setting up — you never touch a settings screen.</p>
+      </div>
+      <div class="side"><a class="btn btn-gold" href="#guide">Get the free guide <span class="arw">→</span></a></div>
+    </div>
+
+    <div class="grid-4 rise" style="gap:20px">
+      <div class="pack">
+        <div class="pack-top">
+          <span class="pack-tag">Counter</span>
+          <h3>Shops &amp; cook shops</h3>
+          <p>Mini-marts, wholesales, bakeries, jerk centres, bars.</p>
+        </div>
+        <ul>
+          <li>Fast till with a barcode scanner</li>
+          <li>Weight and portion items</li>
+          <li>Daily cash-up that balances</li>
+          <li>Low-stock list before you buy</li>
+        </ul>
+      </div>
+      <div class="pack">
+        <div class="pack-top">
+          <span class="pack-tag">Table</span>
+          <h3>Restaurants &amp; bars</h3>
+          <p>Sit-down, takeaway, delivery, and the bar tab.</p>
+        </div>
+        <ul>
+          <li>Table plan and open tabs</li>
+          <li>Orders straight to the kitchen</li>
+          <li>Split bills and service charge</li>
+          <li>Waiter logins and tip reports</li>
+        </ul>
+      </div>
+      <div class="pack">
+        <div class="pack-top">
+          <span class="pack-tag">Chair</span>
+          <h3>Salons &amp; barbers</h3>
+          <p>Hair, nails, spa, and anyone booking by the hour.</p>
+        </div>
+        <ul>
+          <li>Appointment book with reminders</li>
+          <li>Deposits taken up front</li>
+          <li>Commission worked out per stylist</li>
+          <li>Retail products sold off the same till</li>
+        </ul>
+      </div>
+      <div class="pack">
+        <div class="pack-top">
+          <span class="pack-tag">Yard</span>
+          <h3>Hardware &amp; wholesale</h3>
+          <p>Building supplies, distribution, trade counters.</p>
+        </div>
+        <ul>
+          <li>Stock in cases, units and lengths</li>
+          <li>Quotes that turn into invoices</li>
+          <li>Credit customers and statements</li>
+          <li>Price lists per customer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KIT ══════════ -->
+<section class="sec" id="kit">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <p class="eyebrow"><span class="pip"></span> In the box</p>
+      <h2>Hardware that survives a counter</h2>
+      <p>Chosen for heat, dust and long days — not for a showroom. Everything arrives configured, labelled and ready to plug in.</p>
+    </div>
+    <div class="kit rise">
+      <div><h4>Touch terminal</h4><p>15" counter screen or a handheld for table service. Both hold charge through an outage.</p></div>
+      <div><h4>Receipt printer</h4><p>Thermal, 80mm, with your logo and TRN on every receipt. Kitchen printer optional.</p></div>
+      <div><h4>Cash drawer</h4><p>Steel, note and coin trays, opens on the sale and logs who opened it.</p></div>
+      <div><h4>Barcode scanner</h4><p>Corded or wireless. We load your product list and print shelf labels before install day.</p></div>
+      <div><h4>Card terminal</h4><p>Works alongside your existing bank terminal, so you keep the merchant rate you already have.</p></div>
+      <div><h4>Backup power</h4><p>A UPS sized for the counter, so a cut in supply doesn't cost you the sale you're in the middle of.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SETUP ══════════ -->
+<section class="sec dark" id="setup">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <p class="eyebrow"><span class="pip"></span> How setup goes</p>
+      <h2>From first call to first receipt</h2>
+      <p>Usually inside two weeks. You keep trading the whole time — we never take the counter down during opening hours.</p>
+    </div>
+    <div class="steps rise">
+      <div class="step">
+        <h3>Walkthrough</h3>
+        <p>Twenty minutes, on the phone or standing in your shop. What you sell, how money comes in, what you can never see clearly at month end.</p>
+      </div>
+      <div class="step">
+        <h3>We build it</h3>
+        <p>Your products or menu loaded with prices and GCT, staff logins made, your logo dropped on the receipt. You approve it before anything ships.</p>
+      </div>
+      <div class="step">
+        <h3>Install day</h3>
+        <p>We come to the shop, set the counter, run test sales, and train whoever will be standing there. Nobody is left to read a manual.</p>
+      </div>
+      <div class="step">
+        <h3>First month</h3>
+        <p>WhatsApp support with a person who knows your setup, and a check-in at week two to fix whatever real trading turned up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRICING ══════════ -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <p class="eyebrow"><span class="pip"></span> Pricing</p>
+      <h2>One setup fee. One monthly.</h2>
+      <p>No commission on your takings, no charge per receipt. If you outgrow a plan we move you up and only bill the difference.</p>
+    </div>
+
+    <div class="tiers rise">
+      <div class="tier">
+        <span class="name">Counter</span>
+        <div class="amt">$4,900<small>per month · JMD<br>setup from $65,000 one-time</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> One till</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Up to 1,500 products</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Offline trading &amp; auto sync</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> GCT receipts &amp; daily cash-up</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> WhatsApp support, business hours</li>
+        </ul>
+        <a class="btn btn-outline" href="#guide">Start here</a>
+      </div>
+
+      <div class="tier feat">
+        <span class="name">Shop · most picked</span>
+        <div class="amt">$11,500<small>per month · JMD<br>setup from $120,000 one-time</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Up to three tills</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Unlimited products &amp; staff logins</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Stock control &amp; purchase orders</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Customer accounts &amp; the credit book</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Reports on your phone, nightly</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Support seven days</li>
+        </ul>
+        <a class="btn btn-gold" href="#guide">Start here <span class="arw">→</span></a>
+      </div>
+
+      <div class="tier">
+        <span class="name">Yard</span>
+        <div class="amt">Let's talk<small>multi-branch &amp; wholesale<br>quoted per location</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Several branches on one account</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Transfers between locations</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Trade price lists per customer</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Accounting export</li>
+          <li><svg viewBox="0 0 24 24"><path d="m4 12 6 6L20 6"/></svg> Named account manager</li>
+        </ul>
+        <a class="btn btn-outline" href="#guide">Talk to us</a>
+      </div>
+    </div>
+    <p class="note">Indicative figures shown for this demo — swap in real pricing before launch. Hardware quoted separately.</p>
+  </div>
+</section>
+
+<!-- ══════════ LEAD MAGNET ══════════ -->
+<section class="sec magnet" id="guide">
+  <div class="wrap magnet-grid">
+    <div class="rise">
+      <p class="eyebrow"><span class="pip"></span> Free · 16 pages · No cost</p>
+      <h2>The POS Guide for Jamaican Small Business</h2>
+      <p class="lead" style="color:#CFDCD4;max-width:44ch">What a point-of-sale system actually changes in a small shop — written for Jamaica, in plain language, with the numbers worked in JMD.</p>
+      <div class="magnet-body">
+        <div class="cover">
+          <img src="guide-cover.png" alt="Cover of the free guide: The POS Guide for Jamaican Small Business" width="600" height="849" loading="lazy">
+        </div>
+        <ul>
+          <li><span class="pip"></span> Where the money quietly leaks — shrinkage, mis-rings, and the credit book nobody balances</li>
+          <li><span class="pip"></span> GCT, your TRN and what belongs on a receipt</li>
+          <li><span class="pip"></span> Trading through an outage, and what to do about internet</li>
+          <li><span class="pip"></span> Cash, card, Lynk and bank transfer — the real cost of each</li>
+          <li><span class="pip"></span> A worked example, in JMD, for a mini-mart doing $9m a year</li>
+          <li><span class="pip"></span> A one-page checklist to take shopping for a system</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form rise">
+      <h3>Send me the guide</h3>
+      <p>Straight to your inbox, and the download opens right away.</p>
+      <form name="scalesfare-guide" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company-website">
+        <input type="hidden" name="form-name" value="scalesfare-guide">
+        <p class="hp"><label>Do not fill this in <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
+
+        <div class="field">
+          <label for="g-name">Your name</label>
+          <input id="g-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="g-email">Email</label>
+          <input id="g-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="g-business">Business name</label>
+            <input id="g-business" name="business" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="g-parish">Parish</label>
+            <select id="g-parish" name="parish">
+              <option value="">Select…</option>
+              <option>Kingston</option><option>St Andrew</option><option>St Thomas</option>
+              <option>Portland</option><option>St Mary</option><option>St Ann</option>
+              <option>Trelawny</option><option>St James</option><option>Hanover</option>
+              <option>Westmoreland</option><option>St Elizabeth</option><option>Manchester</option>
+              <option>Clarendon</option><option>St Catherine</option>
+              <option>Elsewhere in the Caribbean</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="g-type">What do you run?</label>
+          <select id="g-type" name="business_type">
+            <option value="">Select…</option>
+            <option>Shop, mini-mart or wholesale</option>
+            <option>Cook shop, restaurant or bar</option>
+            <option>Salon, barber or spa</option>
+            <option>Hardware or building supplies</option>
+            <option>Pharmacy</option>
+            <option>Market or craft stall</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" type="submit">Send me the guide <span class="arw">→</span></button>
+        <p class="fine">We'll send the guide and the occasional note about running a counter better. Unsubscribe any time — we don't pass your details on.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <p class="eyebrow"><span class="pip"></span> Straight answers</p>
+      <h2>The questions we get asked</h2>
+    </div>
+    <div class="faq rise">
+      <details open>
+        <summary>What happens when the light cut?</summary>
+        <div class="ans"><p>You keep selling. The terminal holds charge and the software stores the sale on the machine, so the queue never stops. When power and internet return, everything uploads by itself — you don't press anything. That's why we put a UPS on the counter as standard rather than as an upsell.</p></div>
+      </details>
+      <details>
+        <summary>Do I need internet for it to work?</summary>
+        <div class="ans"><p>Not to make a sale. You need a connection for the nightly sync, for reports on your phone, and for card authorisation through your bank terminal. A basic fixed line is ideal; a mobile hotspot is a perfectly good backup and we set that up as part of install day.</p></div>
+      </details>
+      <details>
+        <summary>Does it handle GCT properly?</summary>
+        <div class="ans"><p>Yes. You set prices the way you already quote them — GCT-inclusive or exclusive — and the receipt shows the breakdown along with your business name, address and TRN. Reports separate taxable from zero-rated items so filing isn't a reconstruction exercise. We'd still say confirm your filing setup with your accountant or Tax Administration Jamaica; we build the system, we don't file for you.</p></div>
+      </details>
+      <details>
+        <summary>Can I still take card if I already have a bank terminal?</summary>
+        <div class="ans"><p>Yes, and you should. We work alongside the terminal you already have from NCB, Scotiabank, JN, Sagicor or whoever you bank with, so you keep the merchant rate you negotiated. The till records the payment type; the money still settles through your bank exactly as it does today.</p></div>
+      </details>
+      <details>
+        <summary>What about the customers who buy on trust?</summary>
+        <div class="ans"><p>The credit book comes into the system. Each customer gets an account, what they owe is on the screen when they walk in, and you can print or WhatsApp a statement instead of arguing over a notebook. Set a limit per customer and the till warns the cashier before it goes past it.</p></div>
+      </details>
+      <details>
+        <summary>Do you actually come to the shop?</summary>
+        <div class="ans"><p>Yes — install day happens in person anywhere on the island, and we build the setup before we travel so the visit is short. If you're elsewhere in the Caribbean we ship the kit configured and do the training over a call, then stay on hand for the first month of trading.</p></div>
+      </details>
+      <details>
+        <summary>My staff aren't computer people. Is that a problem?</summary>
+        <div class="ans"><p>No. The selling screen is buttons and pictures — most cashiers are confident inside an hour. The complicated parts are set up by us and locked behind a manager login, so nobody can change a price or void a sale without it showing up in the day's report.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="sec tail" id="contact">
+  <div class="wrap tail-grid">
+    <div class="rise">
+      <p class="eyebrow"><span class="pip"></span> Talk to us</p>
+      <h2>Twenty minutes, and you'll know if this fits.</h2>
+      <p class="lead" style="color:#CFDCD4">No pitch deck. We ask what you sell and how you take money, then tell you honestly whether a system is worth it for you yet.</p>
+      <div style="margin-top:30px"><a class="btn btn-gold" href="#guide">Get the free guide first <span class="arw">→</span></a></div>
+    </div>
+    <div class="rise">
+      <ul class="contact-list">
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <div><b>Call or WhatsApp</b><span>Set your number here before launch</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <div><b>Email</b><span><a href="mailto:hello@scalesfare.com">hello@scalesfare.com</a></span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><b>Where we work</b><span>All fourteen parishes, and shipped setups across the wider Caribbean</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><b>Hours</b><span>Mon–Fri 8:30–5:30 · Sat 9–2 · support seven days on the Shop plan</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <img src="brand/scalesfare-logo-horizontal-reversed.svg" alt="Scales Fare" width="140" height="26">
+    <nav class="foot-links">
+      <a href="#systems">Systems</a>
+      <a href="#setup">Setup</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#guide">Free guide</a>
+      <a href="scales-fare-pos-guide.pdf">Download the PDF</a>
+    </nav>
+    <p class="foot-note">
+      This is a design demo — a concept site for a point-of-sale business, not a live trading company. Copy, pricing and contact details are placeholders to be replaced before launch.
+      Designed and built by <a href="/">YardScale Digital</a>. The brand system is documented in the <a href="brand/scalesfare-brand-sheet.pdf">brand sheet</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ── mobile menu ───────────────────────────────────────────── */
+(function(){
+  var b=document.getElementById('burger'), m=document.getElementById('mobile-menu');
+  b.addEventListener('click',function(){
+    var open=m.classList.toggle('open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+  });
+  m.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){m.classList.remove('open');b.setAttribute('aria-expanded','false');}
+  });
+})();
+
+/* ── reveal on scroll ──────────────────────────────────────── */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rise'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target);} });
+  },{rootMargin:'0px 0px -12% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+
+/* ── the terminal: rings up a sale, settles, starts over ───── */
+(function(){
+  var body=document.getElementById('termBody');
+  if(!body) return;
+
+  var GCT = 0.15;
+  var items=[
+    {q:2, n:'Bulla &amp; cheese',      p:450},
+    {q:1, n:'Curry goat · large',     p:1750},
+    {q:3, n:'Ting',                   p:280},
+    {q:1, n:'Bag juice',              p:100},
+    {q:2, n:'Festival',               p:150}
+  ];
+
+  function money(v){ return '$' + v.toLocaleString('en-JM',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function line(cls,q,n,a,delay){
+    var d=document.createElement('div');
+    d.className='tline'+(cls?' '+cls:'');
+    d.style.animationDelay=delay+'ms';
+    d.innerHTML='<span class="qty">'+(q||'')+'</span><span class="nm">'+n+'</span><span class="amt">'+a+'</span>';
+    body.appendChild(d);
+  }
+
+  function run(){
+    body.innerHTML='';
+    var t=0, sub=0;
+    items.forEach(function(it){
+      var amt=it.q*it.p; sub+=amt;
+      line('', it.q+'×', it.n, money(amt), t);
+      t+=560;
+    });
+    var gct=sub*GCT, tot=sub+gct;
+    setTimeout(function(){
+      line('rule sub','','Subtotal',money(sub),0);
+      line('sub','','GCT @ 15%',money(gct),120);
+      line('tot','','Total',money(tot),260);
+    }, t+320);
+
+    setTimeout(function(){
+      var p=document.createElement('div');
+      p.className='tpaid';
+      p.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 6 6L20 6"/></svg>'+
+                  '<span>Paid — card ····4417 · receipt sent</span>';
+      body.appendChild(p);
+    }, t+1500);
+
+    setTimeout(run, t+6200);
+  }
+
+  var seen=false;
+  var io=('IntersectionObserver' in window) ? new IntersectionObserver(function(e){
+    if(e[0].isIntersecting && !seen){ seen=true; run(); }
+  },{threshold:.25}) : null;
+  if(io){ io.observe(document.getElementById('term')); } else { run(); }
+
+  /* clock in the terminal header, so the demo never looks stale */
+  var c=document.getElementById('termClock');
+  if(c){
+    var d=new Date();
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    c.textContent=days[d.getDay()]+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  }
+})();
+</script>
+</body>
+</html>
