@@ -103,3 +103,26 @@ them if the site changes materially, or the deck will show stale prices.
 Fonts are Arial and Calibri rather than the brand's Archivo/Instrument Sans, so
 the deck renders identically on any machine the client opens it on. The PDFs use
 the real brand fonts, embedded.
+
+## Shareable preview (no hosting)
+
+`artifact.html` is the same site packaged as a Claude artifact, for sharing a
+link before any hosting exists:
+
+**https://claude.ai/code/artifact/c61ed02e-7d6d-4ab2-bfed-cfca4c2320f9**
+
+It is private until shared from the page's share menu.
+
+Three deliberate differences from `index.html`:
+
+- No `<!DOCTYPE>`/`<html>`/`<head>`/`<body>` wrapper — the artifact host supplies
+  those, so the file opens with `<title>` and `<style>`.
+- The Netlify forms have no backend here, so submits are intercepted and show
+  the success state a real visitor would see, labelled "nothing was sent".
+  The WhatsApp links show a toast instead of dialling a placeholder number.
+- A dismissible bar states that prices and contact details are placeholders, so
+  nobody mistakes the benchmarked figures for Design Container JA's real ones.
+
+`index.html` stays the source of truth. After editing it, regenerate this file
+rather than editing both — the transform is: take its `<style>` and `<body>`,
+drop the meta block and the page script, then re-apply the three changes above.

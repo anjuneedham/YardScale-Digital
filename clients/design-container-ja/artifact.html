@@ -1,0 +1,1252 @@
+<title>Design Container JA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+
+/* ═══════════════  TOKENS  ═══════════════
+   Palette is drawn from the material itself: weathering (corten) steel,
+   marine-grade charcoal paint, and Jamaican limestone.                   */
+:root{
+  color-scheme:light;
+  --steel:#14171a;        /* hull charcoal — primary dark            */
+  --steel-2:#1b1f23;
+  --steel-3:#242a2f;
+  --hair-dark:#2f363c;
+  --sand:#f5f2ec;         /* limestone — primary light               */
+  --sand-2:#ebe6db;
+  --sand-3:#e0d9cb;
+  --hair:#d8d0c0;
+  --corten:#b85c38;       /* weathering steel — signature accent     */
+  --corten-2:#a04e2e;
+  --corten-lt:#d98559;
+  --palm:#1f3a31;         /* deep canopy green — secondary           */
+  --palm-lt:#2d5648;
+  --muted:#6f6a5f;
+  --muted-dark:#8b9299;
+
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --gutter:clamp(20px,5vw,72px);
+  --maxw:1280px;
+  --sec:clamp(76px,11vw,156px);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--sand);color:var(--steel);
+  font-family:var(--sans);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--corten);outline-offset:3px;border-radius:2px}
+::selection{background:var(--corten);color:var(--sand)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.wrap-wide{max-width:1480px;margin-inline:auto;padding-inline:var(--gutter)}
+section[id]{scroll-margin-top:76px}
+.dark{background:var(--steel);color:var(--sand)}
+
+/* ═══════════════  TYPE  ═══════════════ */
+h1,h2,h3,h4{margin:0;font-weight:400;letter-spacing:-.02em}
+h1,h2,h3{font-family:var(--serif);line-height:1.02}
+h1{font-size:clamp(3rem,8.4vw,6.6rem);line-height:.98;letter-spacing:-.035em}
+h2{font-size:clamp(2.2rem,5.4vw,4.1rem);letter-spacing:-.03em}
+h3{font-size:clamp(1.5rem,3vw,2.15rem)}
+h4{font-family:var(--sans);font-size:1.06rem;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+p{margin:0 0 1em}
+em{font-style:italic}
+.lead{font-size:clamp(1.06rem,1.9vw,1.3rem);line-height:1.55;max-width:46ch;color:var(--muted)}
+.dark .lead{color:#a8b0b7}
+.serif-it{font-style:italic;color:var(--corten)}
+
+/* the eyebrow + rule is the site's connective tissue */
+.eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:12px;margin:0 0 26px;font-weight:500
+}
+.dark .eyebrow{color:var(--muted-dark)}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--corten);flex:none}
+.eyebrow.center{justify-content:center}
+
+.num{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--corten);font-weight:500}
+
+/* ═══════════════  BUTTONS  ═══════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:11px;padding:16px 28px;text-decoration:none;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
+  border:1px solid transparent;border-radius:2px;cursor:pointer;
+  transition:transform .22s var(--ease),background .22s,color .22s,border-color .22s;
+}
+.btn-corten{background:var(--corten);color:#fff}
+.btn-corten:hover{background:var(--corten-2);transform:translateY(-2px)}
+.btn-ink{background:var(--steel);color:var(--sand)}
+.btn-ink:hover{transform:translateY(-2px);background:var(--steel-3)}
+.btn-ghost{border-color:rgba(245,242,236,.28);color:var(--sand);background:none}
+.btn-ghost:hover{border-color:var(--corten-lt);color:var(--corten-lt)}
+.btn-ghost-dk{border-color:var(--hair);color:var(--steel);background:none}
+.btn-ghost-dk:hover{border-color:var(--corten);color:var(--corten)}
+.btn-sm{padding:11px 18px;font-size:.68rem}
+.btn .arw{transition:transform .22s var(--ease)}
+.btn:hover .arw{transform:translateX(5px)}
+
+/* ═══════════════  NAV  ═══════════════ */
+header.nav{
+  position:sticky;top:0;z-index:80;background:rgba(20,23,26,.82);
+  backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid rgba(245,242,236,.09)
+}
+.nav-in{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--sand);flex:none}
+.brand-mark{width:30px;height:30px;flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1}
+.brand-txt b{font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.01em}
+.brand-txt span{font-family:var(--mono);font-size:.56rem;letter-spacing:.26em;color:var(--muted-dark);margin-top:3px}
+.nav-links{display:flex;gap:30px;margin-left:auto;align-items:center}
+.nav-links a{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--sand);text-decoration:none;opacity:.7;transition:opacity .2s,color .2s
+}
+.nav-links a:hover{opacity:1;color:var(--corten-lt)}
+.burger{margin-left:auto;display:none;background:none;border:1px solid var(--hair-dark);color:var(--sand);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;cursor:pointer;border-radius:2px}
+.mobile-menu{display:none;border-top:1px solid var(--hair-dark);background:var(--steel)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:15px var(--gutter);border-bottom:1px solid var(--hair-dark);text-decoration:none;
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+@media(max-width:940px){.nav-links{display:none}.burger{display:block}}
+
+/* ═══════════════  HERO  ═══════════════ */
+.hero{position:relative;background:var(--steel);color:var(--sand);overflow:hidden;isolation:isolate}
+.hero-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-art svg{width:100%;height:100%;display:block}
+.hero::after{ /* legibility scrim, weighted to the left where the type sits */
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(100deg,rgba(20,23,26,.94) 0%,rgba(20,23,26,.82) 34%,rgba(20,23,26,.36) 62%,rgba(20,23,26,.12) 100%)
+}
+.hero-in{position:relative;z-index:2;padding:clamp(72px,11vw,142px) 0 clamp(64px,9vw,110px)}
+.hero h1{max-width:15ch}
+.hero h1 .serif-it{color:var(--corten-lt)}
+.hero .lead{margin-top:26px;color:#b9c0c6;max-width:44ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.hero-note{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted-dark);margin-top:22px;display:flex;align-items:center;gap:9px
+}
+.hero-note svg{width:13px;height:13px;flex:none;color:var(--corten-lt)}
+
+/* ═══════════════  STAT BAR  ═══════════════ */
+.stats{background:var(--steel-2);border-top:1px solid var(--hair-dark);position:relative;z-index:3}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(28px,4vw,44px) clamp(16px,2.4vw,32px);border-left:1px solid var(--hair-dark)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);line-height:1;color:var(--sand);font-weight:400;letter-spacing:-.03em}
+.stat b i{font-style:normal;color:var(--corten-lt);font-size:.55em;vertical-align:.32em;margin-right:1px}
+.stat span{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dark);margin-top:11px;line-height:1.5}
+@media(max-width:820px){.stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--hair-dark)}}
+
+/* ═══════════════  SECTION SHELL  ═══════════════ */
+.sec{padding:var(--sec) 0}
+.sec-head{max-width:62ch;margin-bottom:clamp(44px,6vw,76px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .eyebrow{justify-content:center}
+.sec-head h2+.lead{margin-top:22px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,88px);align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+
+/* ═══════════════  VALUE CARDS  ═══════════════ */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.vcard{background:var(--sand);padding:clamp(28px,3.4vw,42px);transition:background .3s var(--ease)}
+.vcard:hover{background:var(--sand-2)}
+.vcard .vicon{width:36px;height:36px;color:var(--corten);margin-bottom:24px}
+.vcard h4{margin-bottom:10px}
+.vcard p{color:var(--muted);font-size:.95rem;margin:0}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}}
+
+/* ═══════════════  MODELS  ═══════════════ */
+.models{background:var(--sand-2)}
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.6vw,34px)}
+@media(max-width:880px){.mgrid{grid-template-columns:1fr}}
+.model{
+  background:var(--sand);border:1px solid var(--hair);border-radius:3px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s
+}
+.model:hover{transform:translateY(-4px);box-shadow:0 22px 48px -26px rgba(20,23,26,.4);border-color:var(--sand-3)}
+.model-art{background:linear-gradient(168deg,#e7e0d2,#d9d0be);border-bottom:1px solid var(--hair);position:relative;aspect-ratio:16/10}
+.model-art svg{width:100%;height:100%}
+.model-tag{
+  position:absolute;top:16px;left:16px;background:var(--steel);color:var(--sand);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:6px 11px;border-radius:2px
+}
+.model-body{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;flex:1}
+.model-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:8px}
+.model-top h3{line-height:1}
+.model-price{text-align:right;flex:none}
+.model-price b{display:block;font-family:var(--serif);font-size:1.62rem;line-height:1;font-weight:400;letter-spacing:-.02em}
+.model-price span{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.model-body>p{color:var(--muted);font-size:.95rem;margin:6px 0 22px}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:auto}
+.spec{background:var(--sand);padding:14px 12px;text-align:center}
+.spec b{display:block;font-family:var(--sans);font-size:.94rem;font-weight:600;letter-spacing:-.01em}
+.spec span{display:block;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.price-note{
+  margin-top:clamp(30px,4vw,44px);padding:20px 24px;border:1px dashed var(--hair);border-radius:3px;
+  display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.42)
+}
+.price-note svg{width:17px;height:17px;flex:none;color:var(--corten);margin-top:3px}
+.price-note p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* ═══════════════  PROCESS  ═══════════════ */
+.process{background:var(--steel);color:var(--sand)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair-dark);border:1px solid var(--hair-dark)}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
+.pstep{background:var(--steel);padding:clamp(28px,3.2vw,40px);transition:background .3s var(--ease)}
+.pstep:hover{background:var(--steel-2)}
+.pstep .num{display:block;margin-bottom:20px}
+.pstep h4{margin-bottom:9px}
+.pstep p{color:#9aa2a9;font-size:.93rem;margin:0}
+.pstep .dur{
+  display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--corten-lt);border:1px solid rgba(217,133,89,.3);padding:4px 9px;border-radius:2px
+}
+
+/* ═══════════════  CLIMATE / SPEC LIST  ═══════════════ */
+.speclist{border-top:1px solid var(--hair)}
+.specrow{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,52px);padding:26px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+.specrow dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--corten);min-width:118px}
+.specrow dd{margin:0;font-size:.98rem}
+.specrow dd b{font-weight:600;display:block;margin-bottom:3px}
+.specrow dd span{color:var(--muted);font-size:.93rem}
+@media(max-width:640px){.specrow{grid-template-columns:1fr;gap:8px}}
+
+/* ═══════════════  LEAD MAGNET  ═══════════════ */
+.magnet{background:var(--palm);color:var(--sand);position:relative;overflow:hidden}
+.magnet::before{
+  content:"";position:absolute;top:-20%;right:-8%;width:46%;height:140%;
+  background:radial-gradient(closest-side,rgba(217,133,89,.22),transparent 72%);pointer-events:none
+}
+.magnet-in{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(40px,6vw,84px);align-items:center}
+@media(max-width:940px){.magnet-in{grid-template-columns:1fr}}
+.magnet .eyebrow{color:rgba(245,242,236,.62)}
+.magnet .eyebrow::before{background:var(--corten-lt)}
+.magnet h2{max-width:16ch}
+.magnet .lead{color:rgba(245,242,236,.8)}
+.magnet-list{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:13px}
+.magnet-list li{display:flex;gap:13px;align-items:flex-start;font-size:.96rem;color:rgba(245,242,236,.9)}
+.magnet-list svg{width:16px;height:16px;flex:none;margin-top:5px;color:var(--corten-lt)}
+
+/* the guide, drawn as a physical object so the offer feels tangible */
+.guide-vis{display:flex;justify-content:center;align-items:center;padding:clamp(10px,2vw,26px)}
+.guide-vis svg{max-width:330px;width:100%;filter:drop-shadow(0 30px 54px rgba(0,0,0,.42))}
+
+/* ═══════════════  FORMS  ═══════════════ */
+.formcard{background:var(--sand);color:var(--steel);border-radius:3px;padding:clamp(26px,3.4vw,40px);box-shadow:0 24px 60px -30px rgba(0,0,0,.55)}
+.formcard h4{margin-bottom:6px}
+.formcard>p{font-size:.9rem;color:var(--muted);margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{
+  display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px
+}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 15px;border:1px solid var(--hair);border-radius:2px;background:#fff;
+  font-family:var(--sans);font-size:.97rem;color:var(--steel);transition:border-color .2s,box-shadow .2s
+}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--corten);box-shadow:0 0 0 3px rgba(184,92,56,.13)
+}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-fine{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);margin:16px 0 0;line-height:1.7;text-transform:uppercase}
+.formcard .btn{width:100%;justify-content:center;margin-top:6px}
+
+/* ═══════════════  GALLERY  ═══════════════ */
+.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,20px)}
+.gal figure{margin:0;position:relative;overflow:hidden;border-radius:3px;background:var(--sand-3);border:1px solid var(--hair)}
+.gal figure svg{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.gal figure:hover svg{transform:scale(1.04)}
+.gal figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 20px 16px;
+  background:linear-gradient(to top,rgba(20,23,26,.88),transparent);
+  color:var(--sand);font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase
+}
+.g-a{grid-column:span 7;aspect-ratio:16/11}
+.g-b{grid-column:span 5;aspect-ratio:4/3.6}
+.g-c{grid-column:span 5;aspect-ratio:4/3.2}
+.g-d{grid-column:span 7;aspect-ratio:16/10}
+@media(max-width:800px){.g-a,.g-b,.g-c,.g-d{grid-column:span 12;aspect-ratio:16/11}}
+
+/* ═══════════════  FINANCE  ═══════════════ */
+.fingrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
+@media(max-width:880px){.fingrid{grid-template-columns:1fr}}
+.fincard{border:1px solid var(--hair);border-radius:3px;padding:clamp(24px,3vw,34px);background:var(--sand)}
+.fincard .num{display:block;margin-bottom:18px}
+.fincard h4{margin-bottom:9px}
+.fincard p{color:var(--muted);font-size:.93rem;margin:0}
+
+/* ═══════════════  FAQ  ═══════════════ */
+.faq{max-width:900px;margin-inline:auto;border-top:1px solid var(--hair)}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:26px 46px 26px 0;position:relative;
+  font-family:var(--sans);font-size:1.06rem;font-weight:600;letter-spacing:-.01em;transition:color .2s
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--corten)}
+.faq summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:1.5px solid var(--corten);border-bottom:1.5px solid var(--corten);
+  transform:translateY(-70%) rotate(45deg);transition:transform .28s var(--ease)
+}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{margin:0 0 26px;color:var(--muted);max-width:74ch;font-size:.98rem}
+
+/* ═══════════════  CONTACT + FOOTER  ═══════════════ */
+.contact{background:var(--steel);color:var(--sand)}
+.contact-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,86px);align-items:start}
+@media(max-width:940px){.contact-in{grid-template-columns:1fr}}
+.contact .formcard{box-shadow:none;border:1px solid var(--hair-dark);background:var(--steel-2)}
+.contact .formcard h4,.contact .field label{color:var(--sand)}
+.contact .field label{color:var(--muted-dark)}
+.contact .formcard>p{color:#9aa2a9}
+.contact .field input,.contact .field select,.contact .field textarea{
+  background:var(--steel);border-color:var(--hair-dark);color:var(--sand)
+}
+.contact .form-fine{color:var(--muted-dark)}
+.ctitem{display:flex;gap:16px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--hair-dark)}
+.ctitem svg{width:19px;height:19px;flex:none;color:var(--corten-lt);margin-top:3px}
+.ctitem b{display:block;font-size:.97rem;font-weight:600;margin-bottom:3px}
+.ctitem span,.ctitem a{color:#9aa2a9;font-size:.93rem;text-decoration:none}
+.ctitem a:hover{color:var(--corten-lt)}
+
+footer{background:var(--steel-2);color:var(--sand);border-top:1px solid var(--hair-dark);padding:clamp(48px,6vw,72px) 0 34px}
+.foot-top{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;align-items:flex-start;padding-bottom:38px;border-bottom:1px solid var(--hair-dark)}
+.foot-nav{display:flex;flex-wrap:wrap;gap:26px}
+.foot-nav a{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#9aa2a9;text-decoration:none}
+.foot-nav a:hover{color:var(--corten-lt)}
+.foot-bot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;padding-top:26px;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-dark)}
+.foot-bot a{color:var(--muted-dark);text-decoration:none}
+.foot-bot a:hover{color:var(--corten-lt)}
+
+/* ═══════════════  WHATSAPP FAB  ═══════════════ */
+.fab{
+  position:fixed;right:20px;bottom:20px;z-index:70;width:56px;height:56px;border-radius:50%;
+  background:#25d366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 28px -8px rgba(37,211,102,.6);transition:transform .22s var(--ease)
+}
+.fab:hover{transform:scale(1.07)}
+.fab svg{width:29px;height:29px;color:#fff}
+
+/* ═══════════════  REVEAL  ═══════════════ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+
+/* ═══════════  PREVIEW CHROME  ═══════════
+   This build is shared as a concept preview, so two things behave differently
+   from the live site: the forms have no backend, and the contact details are
+   placeholders. Both are stated rather than left to be discovered. */
+.pv{
+  background:var(--steel-2);color:var(--sand);border-bottom:1px solid var(--hair-dark);
+  display:flex;align-items:center;gap:14px;padding:9px var(--gutter);
+  font-family:var(--mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;line-height:1.5
+}
+.pv b{color:var(--corten-lt);font-weight:500;flex:none}
+.pv span{color:var(--muted-dark)}
+.pv button{
+  margin-left:auto;flex:none;background:none;border:1px solid var(--hair-dark);color:var(--muted-dark);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+  padding:5px 10px;border-radius:2px;cursor:pointer;transition:color .2s,border-color .2s
+}
+.pv button:hover{color:var(--corten-lt);border-color:var(--corten-lt)}
+@media(max-width:720px){.pv{font-size:.58rem;gap:9px}.pv span{display:none}}
+
+/* form success state — shows the funnel working rather than failing silently */
+.sent{
+  border:1px solid var(--hair);border-radius:3px;padding:26px 24px;text-align:center;background:rgba(255,255,255,.5)
+}
+.contact .sent{border-color:var(--hair-dark);background:var(--steel)}
+.sent .ok{
+  width:44px;height:44px;border-radius:50%;background:var(--corten);margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center
+}
+.sent .ok svg{width:21px;height:21px;color:#fff}
+.sent h5{margin:0 0 8px;font-family:var(--serif);font-weight:400;font-size:1.5rem;letter-spacing:-.02em}
+.contact .sent h5{color:var(--sand)}
+.sent p{margin:0;font-size:.92rem;color:var(--muted);max-width:44ch;margin-inline:auto}
+.contact .sent p{color:#9aa2a9}
+.sent .note{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--hair);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)
+}
+.contact .sent .note{border-top-color:var(--hair-dark);color:var(--muted-dark)}
+
+/* toast for the placeholder WhatsApp links */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:120;
+  background:var(--steel);color:var(--sand);border:1px solid var(--hair-dark);border-radius:3px;
+  padding:13px 20px;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.6);opacity:0;pointer-events:none;
+  transition:opacity .26s var(--ease),transform .26s var(--ease);max-width:calc(100vw - 40px);text-align:center
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+
+
+<!-- ═══════════════  SHARED SVG DEFS  ═══════════════
+     One corrugation pattern, reused by every drawing on the page. The ribbed
+     profile is what makes a container read as a container at any scale. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="corr" width="15" height="10" patternUnits="userSpaceOnUse">
+      <rect width="15" height="10" fill="none"/>
+      <path d="M0 0V10M7.5 0V10" stroke="#000" stroke-opacity=".17" stroke-width="1.4"/>
+      <path d="M3.6 0V10M11.1 0V10" stroke="#fff" stroke-opacity=".13" stroke-width="1.4"/>
+    </pattern>
+    <pattern id="corrLite" width="14" height="10" patternUnits="userSpaceOnUse">
+      <path d="M0 0V10M7 0V10" stroke="#14171a" stroke-opacity=".13" stroke-width="1.3"/>
+    </pattern>
+    <linearGradient id="glassGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a3"/><stop offset="1" stop-color="#e39a55"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+
+<div class="pv" id="pv">
+  <b>Concept preview</b>
+  <span>Prepared for Design Container JA — model prices and contact details are placeholders pending confirmation.</span>
+  <button type="button" id="pvClose" aria-label="Dismiss preview notice">Hide</button>
+</div>
+
+<!-- ═══════════════  NAV  ═══════════════ -->
+<header class="nav">
+  <div class="wrap-wide nav-in">
+    <a class="brand" href="#top" aria-label="Design Container JA — home">
+      <!-- Mark: a container end-frame, corner castings picked out in corten -->
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="2.5" y="8.5" width="35" height="23" rx="1.5" stroke="#f5f2ec" stroke-width="2.2"/>
+        <path d="M10 12.5v15M16 12.5v15M22 12.5v15M28 12.5v15" stroke="#f5f2ec" stroke-opacity=".45" stroke-width="1.6"/>
+        <rect x="2.5" y="8.5" width="5" height="5" fill="#b85c38"/>
+        <rect x="32.5" y="26.5" width="5" height="5" fill="#b85c38"/>
+      </svg>
+      <span class="brand-txt"><b>Design Container</b><span>JAMAICA</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#models">Models</a>
+      <a href="#process">Process</a>
+      <a href="#built">Built for JA</a>
+      <a href="#guide">Free Guide</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-corten btn-sm" href="#contact">Book a viewing</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#models">Models</a><a href="#process">Process</a><a href="#built">Built for JA</a>
+    <a href="#guide">Free Guide</a><a href="#faq">FAQ</a><a href="#contact">Book a viewing</a>
+  </div>
+</header>
+
+<!-- ═══════════════  HERO  ═══════════════ -->
+<section class="hero" id="top">
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="presentation">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#16232b"/><stop offset=".42" stop-color="#3d5158"/>
+          <stop offset=".72" stop-color="#a87054"/><stop offset="1" stop-color="#e0a173"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#ffd9a8" stop-opacity=".95"/>
+          <stop offset="1" stop-color="#ffd9a8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="1600" height="900" fill="url(#sky)"/>
+      <circle cx="1180" cy="560" r="290" fill="url(#sunGlow)"/>
+      <circle cx="1180" cy="560" r="52" fill="#ffe3bb" opacity=".92"/>
+
+      <!-- Blue Mountain ridgelines, receding -->
+      <path d="M0 560 L190 470 L330 522 L520 424 L700 512 L880 452 L1080 528 L1290 448 L1450 516 L1600 470 V900 H0Z" fill="#2a3f45" opacity=".55"/>
+      <path d="M0 620 L230 552 L430 604 L640 534 L850 600 L1060 548 L1300 612 L1600 556 V900 H0Z" fill="#22343a" opacity=".8"/>
+
+      <!-- hillside the house sits on -->
+      <path d="M0 700 L300 676 L640 690 L1000 668 L1330 686 L1600 664 V900 H0Z" fill="#1b2b2a"/>
+
+      <!-- ── THE HOUSE ── lower 40ft charcoal unit, upper 20ft corten, cantilevered -->
+      <g transform="translate(880 400)">
+        <!-- thin roof canopy -->
+        <rect x="-34" y="-16" width="560" height="9" fill="#171b1e"/>
+        <rect x="20" y="-7" width="6" height="26" fill="#171b1e"/>
+        <rect x="470" y="-7" width="6" height="26" fill="#171b1e"/>
+
+        <!-- upper corten unit (20ft), offset right -->
+        <rect x="232" y="18" width="266" height="104" fill="#b85c38"/>
+        <rect x="232" y="18" width="266" height="104" fill="url(#corr)"/>
+        <rect x="232" y="18" width="266" height="6" fill="#000" opacity=".2"/>
+        <rect x="256" y="42" width="128" height="60" fill="url(#glassGlow)" opacity=".92"/>
+        <path d="M320 42v60" stroke="#171b1e" stroke-width="3"/>
+        <rect x="410" y="42" width="62" height="60" fill="#171b1e" opacity=".55"/>
+
+        <!-- lower charcoal unit (40ft) -->
+        <rect x="0" y="122" width="498" height="118" fill="#2b3238"/>
+        <rect x="0" y="122" width="498" height="118" fill="url(#corr)"/>
+        <rect x="0" y="122" width="498" height="7" fill="#fff" opacity=".07"/>
+        <!-- full-height glazing bay -->
+        <rect x="34" y="146" width="196" height="86" fill="url(#glassGlow)" opacity=".95"/>
+        <path d="M99 146v86M164 146v86" stroke="#171b1e" stroke-width="3"/>
+        <rect x="262" y="146" width="74" height="86" fill="#1d2226" opacity=".7"/>
+        <rect x="368" y="160" width="96" height="58" fill="url(#glassGlow)" opacity=".62"/>
+        <!-- corner castings -->
+        <rect x="0" y="122" width="15" height="14" fill="#1a1e22"/>
+        <rect x="483" y="226" width="15" height="14" fill="#1a1e22"/>
+
+        <!-- deck + slender columns -->
+        <rect x="-60" y="240" width="600" height="10" fill="#7d5c41"/>
+        <path d="M-40 250v52M120 250v52M300 250v52M470 250v52M520 250v52" stroke="#1f2528" stroke-width="5"/>
+        <path d="M-60 250 H540" stroke="#000" stroke-opacity=".25" stroke-width="2"/>
+        <!-- deck rail -->
+        <path d="M-60 240v-34M540 240v-34M-60 206H540" stroke="#5f4632" stroke-width="3" opacity=".85"/>
+      </g>
+
+      <!-- foreground vegetation mound -->
+      <path d="M0 760 L260 726 L560 748 L900 720 L1240 744 L1600 716 V900 H0Z" fill="#131f1f"/>
+
+      <!-- palm silhouettes -->
+      <g fill="#0d1717">
+        <g transform="translate(1420 300)">
+          <path d="M6 0c3 120 8 250 12 400h-22C0 250 3 120 6 0z"/>
+          <path d="M6 8C-38-34-96-46-140-30c50-6 96 12 130 46zM6 8C50-38 112-52 158-34c-52-4-100 16-134 50zM6 8C-24-46-30-104-8-146c-6 52 6 100 26 138zM6 8C40-42 96-70 146-62c-52 8-100 38-128 78zM6 8C-30-30-88-56-138-52c52 14 96 38 126 68z"/>
+        </g>
+        <g transform="translate(120 340) scale(.86)">
+          <path d="M6 0c3 118 9 246 13 400H-4C-1 246 3 118 6 0z"/>
+          <path d="M6 8C-40-36-100-48-146-32c52-6 100 12 134 48zM6 8C52-40 116-54 164-36c-54-4-104 16-140 52zM6 8C-26-48-32-108-10-152c-6 54 8 104 28 142zM6 8C42-44 100-72 152-64c-54 8-104 40-132 80z"/>
+        </g>
+      </g>
+      <path d="M0 838 L400 818 L820 836 L1200 814 L1600 834 V900 H0Z" fill="#0a1213"/>
+    </svg>
+  </div>
+
+  <div class="wrap hero-in">
+    <p class="eyebrow">Kingston &amp; islandwide delivery</p>
+    <h1>A real home,<br>in <span class="serif-it">fourteen weeks.</span></h1>
+    <p class="lead">Architect-designed container homes, engineered for hurricane country and finished to a standard you would expect from any concrete build — at a fixed price, agreed before we start.</p>
+    <div class="hero-cta">
+      <a class="btn btn-corten" href="#models">See the models <span class="arw">→</span></a>
+      <a class="btn btn-ghost" href="#guide">Free buyer's guide</a>
+    </div>
+    <p class="hero-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      Built to the Building Act 2018 &amp; CUBiC wind loading
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════  STAT BAR  ═══════════════ -->
+<section class="stats">
+  <div class="wrap-wide stats-grid">
+    <div class="stat"><b>10–14</b><span>Weeks, contract<br>to handover</span></div>
+    <div class="stat"><b><i>J$</i>2.9M</b><span>Starting price,<br>delivered</span></div>
+    <div class="stat"><b>150<i>mph</i></b><span>Design wind<br>load rating</span></div>
+    <div class="stat"><b>25<i>yr</i></b><span>Structural steel<br>warranty</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════  WHY  ═══════════════ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Why container</p>
+      <h2>Four walls of Corten steel,<br>and none of the <span class="serif-it">waiting.</span></h2>
+      <p class="lead">A block-and-steel house in Jamaica takes eighteen months and a budget that moves. Ours is fabricated in a controlled yard, priced once, and craned onto your foundation finished.</p>
+    </div>
+    <div class="vgrid rv">
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        <h4>Ten to fourteen weeks</h4>
+        <p>Fabrication runs while your foundation and utilities go in, so two timelines become one. Weather delays stop mattering.</p>
+      </article>
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 9.5 12 4l8 5.5V20H4z"/><path d="M9.5 20v-6h5v6"/></svg>
+        <h4>A price that holds</h4>
+        <p>You sign one fixed contract sum. No provisional quantities, no mid-build variation letters, no quiet creep in the finishes.</p>
+      </article>
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3s7 3 7 8c0 5-7 10-7 10S5 16 5 11c0-5 7-8 7-8z"/><circle cx="12" cy="11" r="2.4"/></svg>
+        <h4>Engineered for the island</h4>
+        <p>Marine-grade coatings, closed-cell insulation and a stamped structural design rated for 150&nbsp;mph gusts. Salt air and Category&nbsp;4 both accounted for.</p>
+      </article>
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18M7 15h3"/></svg>
+        <h4>Financeable</h4>
+        <p>We hand you the stamped engineer's report and drawings that credit unions ask for, so the lender conversation is short.</p>
+      </article>
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        <h4>It grows</h4>
+        <p>Every model is designed to take another module later. Start with a studio, add a bedroom wing when the family or the budget does.</p>
+      </article>
+      <article class="vcard">
+        <svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 20V9l7-5 7 5v11"/><path d="M5 20h14M10 20v-5h4v5"/></svg>
+        <h4>Permits handled</h4>
+        <p>We prepare and lodge the parish council submission — site plan, structural drawings, compliance schedule — and track it to approval.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  MODELS  ═══════════════
+     PRICING NOTE FOR THE CLIENT: the four figures below are indicative and
+     benchmarked against the published Jamaican market (KLC's range of roughly
+     J$2.5M–J$12.5M, and the 480 sq ft two-bedroom at J$8.5M). Replace each
+     "from" figure with your own confirmed numbers before this goes live. -->
+<section class="sec models" id="models">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The range</p>
+      <h2>Four homes. One <span class="serif-it">honest</span> price list.</h2>
+      <p class="lead">Every model arrives complete: kitchen, bathroom, electrical, plumbing, insulation, flooring and joinery. Delivered and set on your prepared foundation.</p>
+    </div>
+
+    <div class="mgrid">
+      <!-- ── THE COVE ── -->
+      <article class="model rv">
+        <div class="model-art">
+          <span class="model-tag">20 ft · Studio</span>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Elevation drawing of The Cove, a 20-foot studio container home on a timber deck">
+            <rect width="640" height="400" fill="none"/>
+            <g transform="translate(158 150)">
+              <rect x="-22" y="-14" width="368" height="8" fill="#20262b"/>
+              <rect x="0" y="6" width="324" height="128" fill="#b85c38"/>
+              <rect x="0" y="6" width="324" height="128" fill="url(#corr)"/>
+              <rect x="0" y="6" width="324" height="6" fill="#000" opacity=".18"/>
+              <rect x="30" y="34" width="140" height="76" fill="url(#glassGlow)" opacity=".9"/>
+              <path d="M100 34v76" stroke="#20262b" stroke-width="3"/>
+              <rect x="200" y="34" width="58" height="76" fill="#20262b" opacity=".62"/>
+              <rect x="282" y="46" width="26" height="52" fill="url(#glassGlow)" opacity=".55"/>
+              <rect x="0" y="6" width="13" height="12" fill="#8f4529"/>
+              <rect x="311" y="122" width="13" height="12" fill="#8f4529"/>
+              <rect x="-38" y="134" width="400" height="8" fill="#8a6647"/>
+              <path d="M-20 142v26M110 142v26M240 142v26M344 142v26" stroke="#3a4147" stroke-width="4"/>
+            </g>
+            <path d="M60 318H580" stroke="#b0a892" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <!-- scale figure -->
+            <g fill="#3a4147" opacity=".5" transform="translate(524 246)"><circle cx="0" cy="0" r="7"/><path d="M-7 12h14l-3 60h-8z"/></g>
+          </svg>
+        </div>
+        <div class="model-body">
+          <div class="model-top">
+            <h3>The Cove</h3>
+            <div class="model-price"><b>J$2.9M</b><span>from</span></div>
+          </div>
+          <p>A single 20-foot unit that lives far larger than it reads. Full kitchen, wet room, and a sleeping platform under a run of glazing. Guest cottage, studio, or a first home that pays for itself on Airbnb.</p>
+          <div class="specs">
+            <div class="spec"><b>160 ft²</b><span>Interior</span></div>
+            <div class="spec"><b>Studio</b><span>Layout</span></div>
+            <div class="spec"><b>10 wks</b><span>Build</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── THE RIDGE ── -->
+      <article class="model rv">
+        <div class="model-art">
+          <span class="model-tag">40 ft HC · 1 Bed</span>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Elevation drawing of The Ridge, a 40-foot high-cube one-bedroom container home">
+            <g transform="translate(78 138)">
+              <rect x="-24" y="-16" width="528" height="9" fill="#20262b"/>
+              <rect x="0" y="6" width="480" height="148" fill="#2b3238"/>
+              <rect x="0" y="6" width="480" height="148" fill="url(#corr)"/>
+              <rect x="0" y="6" width="480" height="6" fill="#fff" opacity=".07"/>
+              <rect x="28" y="34" width="188" height="96" fill="url(#glassGlow)" opacity=".92"/>
+              <path d="M90 34v96M152 34v96" stroke="#20262b" stroke-width="3"/>
+              <rect x="248" y="34" width="66" height="96" fill="#161a1d" opacity=".7"/>
+              <rect x="346" y="48" width="108" height="68" fill="url(#glassGlow)" opacity=".6"/>
+              <rect x="0" y="6" width="14" height="13" fill="#b85c38"/>
+              <rect x="466" y="141" width="14" height="13" fill="#b85c38"/>
+              <rect x="-42" y="154" width="566" height="9" fill="#8a6647"/>
+              <path d="M-24 163v30M140 163v30M330 163v30M506 163v30" stroke="#3a4147" stroke-width="4"/>
+              <path d="M-42 154v-38M524 154v-38M-42 116H524" stroke="#6d5138" stroke-width="3" opacity=".8"/>
+            </g>
+            <path d="M40 340H600" stroke="#b0a892" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <g fill="#3a4147" opacity=".5" transform="translate(566 262)"><circle cx="0" cy="0" r="7"/><path d="M-7 12h14l-3 60h-8z"/></g>
+          </svg>
+        </div>
+        <div class="model-body">
+          <div class="model-top">
+            <h3>The Ridge</h3>
+            <div class="model-price"><b>J$5.4M</b><span>from</span></div>
+          </div>
+          <p>Our most-requested unit. One proper bedroom, a full bathroom, and an open kitchen–living run that opens onto a covered timber deck. High-cube height gives you nine and a half feet of ceiling.</p>
+          <div class="specs">
+            <div class="spec"><b>320 ft²</b><span>Interior</span></div>
+            <div class="spec"><b>1 bed</b><span>Layout</span></div>
+            <div class="spec"><b>12 wks</b><span>Build</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── THE PALM ── -->
+      <article class="model rv">
+        <div class="model-art">
+          <span class="model-tag">20 + 40 ft · 2 Bed</span>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Elevation drawing of The Palm, a two-bedroom home combining a 20-foot and a 40-foot container">
+            <g transform="translate(66 118)">
+              <rect x="-26" y="-16" width="546" height="9" fill="#20262b"/>
+              <rect x="252" y="6" width="252" height="106" fill="#b85c38"/>
+              <rect x="252" y="6" width="252" height="106" fill="url(#corr)"/>
+              <rect x="252" y="6" width="252" height="6" fill="#000" opacity=".18"/>
+              <rect x="278" y="30" width="112" height="62" fill="url(#glassGlow)" opacity=".9"/>
+              <path d="M334 30v62" stroke="#20262b" stroke-width="3"/>
+              <rect x="418" y="30" width="60" height="62" fill="#20262b" opacity=".6"/>
+              <rect x="0" y="112" width="504" height="126" fill="#2b3238"/>
+              <rect x="0" y="112" width="504" height="126" fill="url(#corr)"/>
+              <rect x="0" y="112" width="504" height="6" fill="#fff" opacity=".07"/>
+              <rect x="26" y="140" width="176" height="78" fill="url(#glassGlow)" opacity=".92"/>
+              <path d="M84 140v78M143 140v78" stroke="#20262b" stroke-width="3"/>
+              <rect x="234" y="140" width="62" height="78" fill="#161a1d" opacity=".7"/>
+              <rect x="330" y="152" width="130" height="56" fill="url(#glassGlow)" opacity=".58"/>
+              <rect x="0" y="112" width="14" height="13" fill="#b85c38"/>
+              <rect x="490" y="225" width="14" height="13" fill="#161a1d"/>
+              <rect x="-44" y="238" width="592" height="9" fill="#8a6647"/>
+              <path d="M-26 247v28M150 247v28M350 247v28M530 247v28" stroke="#3a4147" stroke-width="4"/>
+            </g>
+            <path d="M30 372H610" stroke="#b0a892" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <g fill="#3a4147" opacity=".5" transform="translate(586 296)"><circle cx="0" cy="0" r="7"/><path d="M-7 12h14l-3 58h-8z"/></g>
+          </svg>
+        </div>
+        <div class="model-body">
+          <div class="model-top">
+            <h3>The Palm</h3>
+            <div class="model-price"><b>J$8.5M</b><span>from</span></div>
+          </div>
+          <p>A 20-foot unit set over a 40-foot high-cube, cantilevered to throw shade across the deck below. Two bedrooms, one and a half baths, and a living room that reads as double height where the two meet.</p>
+          <div class="specs">
+            <div class="spec"><b>480 ft²</b><span>Interior</span></div>
+            <div class="spec"><b>2 bed</b><span>Layout</span></div>
+            <div class="spec"><b>13 wks</b><span>Build</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── THE ESTATE ── -->
+      <article class="model rv">
+        <div class="model-art">
+          <span class="model-tag">2 × 40 ft HC · 3 Bed</span>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Elevation drawing of The Estate, a three-bedroom home from two stacked 40-foot high-cube containers">
+            <g transform="translate(52 108)">
+              <rect x="-28" y="-16" width="576" height="9" fill="#20262b"/>
+              <rect x="0" y="6" width="520" height="112" fill="#2b3238"/>
+              <rect x="0" y="6" width="520" height="112" fill="url(#corr)"/>
+              <rect x="0" y="6" width="520" height="6" fill="#fff" opacity=".07"/>
+              <rect x="26" y="30" width="98" height="64" fill="url(#glassGlow)" opacity=".88"/>
+              <rect x="152" y="30" width="98" height="64" fill="url(#glassGlow)" opacity=".88"/>
+              <rect x="280" y="30" width="64" height="64" fill="#161a1d" opacity=".62"/>
+              <rect x="374" y="30" width="120" height="64" fill="url(#glassGlow)" opacity=".72"/>
+              <rect x="0" y="118" width="520" height="126" fill="#b85c38"/>
+              <rect x="0" y="118" width="520" height="126" fill="url(#corr)"/>
+              <rect x="0" y="118" width="520" height="6" fill="#000" opacity=".2"/>
+              <rect x="26" y="146" width="204" height="76" fill="url(#glassGlow)" opacity=".92"/>
+              <path d="M94 146v76M162 146v76" stroke="#20262b" stroke-width="3"/>
+              <rect x="262" y="146" width="64" height="76" fill="#20262b" opacity=".6"/>
+              <rect x="360" y="158" width="134" height="54" fill="url(#glassGlow)" opacity=".58"/>
+              <rect x="0" y="6" width="14" height="13" fill="#b85c38"/>
+              <rect x="506" y="231" width="14" height="13" fill="#161a1d"/>
+              <!-- external stair to upper level -->
+              <path d="M528 244h30v-22h-30zM540 222h30v-22h-30zM552 200h30v-22h-30z" fill="#3a4147" opacity=".85"/>
+              <rect x="-46" y="244" width="620" height="9" fill="#8a6647"/>
+              <path d="M-28 253v26M160 253v26M370 253v26M556 253v26" stroke="#3a4147" stroke-width="4"/>
+            </g>
+            <path d="M20 386H620" stroke="#b0a892" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <g fill="#3a4147" opacity=".45" transform="translate(30 302)"><circle cx="0" cy="0" r="7"/><path d="M-7 12h14l-3 58h-8z"/></g>
+          </svg>
+        </div>
+        <div class="model-body">
+          <div class="model-top">
+            <h3>The Estate</h3>
+            <div class="model-price"><b>J$12.5M</b><span>from</span></div>
+          </div>
+          <p>Two 40-foot high-cubes stacked, with an external stair and a covered upper terrace. Three bedrooms, two full baths, laundry, and a kitchen sized for a family that actually cooks.</p>
+          <div class="specs">
+            <div class="spec"><b>640 ft²</b><span>Interior</span></div>
+            <div class="spec"><b>3 bed</b><span>Layout</span></div>
+            <div class="spec"><b>14 wks</b><span>Build</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="price-note rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      <p><strong>What the price covers.</strong> The unit, fully finished, delivered and set within 40 km of Kingston. Land, foundation, septic, utility connections and parish council fees are quoted separately once we have seen your site — we would rather show you those honestly than bury them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  PROCESS  ═══════════════ -->
+<section class="sec process" id="process">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">How it goes</p>
+      <h2>Six steps. You are<br>never <span class="serif-it">guessing</span> where it is.</h2>
+      <p class="lead">You get a named project manager on day one and a photo update every Friday from the yard. That is the whole reporting system, and it is enough.</p>
+    </div>
+    <div class="pgrid rv">
+      <article class="pstep"><span class="num">01</span><h4>Site visit &amp; consultation</h4>
+        <p>We walk the land with you, check access for the crane, and talk through what you actually need the house to do. Free, no obligation.</p>
+        <span class="dur">Week 1</span></article>
+      <article class="pstep"><span class="num">02</span><h4>Design &amp; fixed quotation</h4>
+        <p>Layout drawings, finish selections and one contract sum. You sign against a drawing set, not a sales brochure.</p>
+        <span class="dur">Weeks 1–3</span></article>
+      <article class="pstep"><span class="num">03</span><h4>Approvals</h4>
+        <p>We lodge the parish council submission with stamped structural drawings and a compliance schedule, and chase it to approval.</p>
+        <span class="dur">Weeks 3–8</span></article>
+      <article class="pstep"><span class="num">04</span><h4>Fabrication</h4>
+        <p>Your unit is cut, framed, insulated, wired, plumbed and finished under cover. Foundation and services go in on site at the same time.</p>
+        <span class="dur">Weeks 4–12</span></article>
+      <article class="pstep"><span class="num">05</span><h4>Delivery &amp; set</h4>
+        <p>Low-bed to your gate, crane onto the foundation, bolted down to the anchor plan. One day on site, most of the time.</p>
+        <span class="dur">Week 13</span></article>
+      <article class="pstep"><span class="num">06</span><h4>Commissioning &amp; handover</h4>
+        <p>Services tied in and tested, snag list closed with you present, warranty documents and as-built drawings handed over. Keys.</p>
+        <span class="dur">Week 14</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  BUILT FOR JAMAICA  ═══════════════ -->
+<section class="sec" id="built">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="eyebrow">Built for Jamaica</p>
+      <h2>Salt, sun, and a<br><span class="serif-it">Category 4.</span></h2>
+      <p class="lead">A shipping container spends its working life crossing oceans. That is a good start — but a box that survives the Atlantic is not automatically a house that survives a Jamaican August. Here is what we change.</p>
+      <p style="margin-top:26px"><a class="btn btn-ghost-dk" href="#guide">Read the full spec in the guide <span class="arw">→</span></a></p>
+    </div>
+    <dl class="speclist rv">
+      <div class="specrow"><dt>Wind</dt><dd><b>150 mph design gust</b><span>Anchored to a cast foundation with engineered hold-down plates at every corner casting, designed to CUBiC wind loading and signed off by a registered structural engineer.</span></dd></div>
+      <div class="specrow"><dt>Heat</dt><dd><b>Closed-cell spray foam, 50 mm</b><span>Applied to the inside face of the steel, so the wall never sweats. Paired with a ventilated roof canopy that keeps direct sun off the container entirely.</span></dd></div>
+      <div class="specrow"><dt>Corrosion</dt><dd><b>Marine-grade primer and topcoat</b><span>Shot-blasted back to bare steel, zinc-rich primed, then a two-pack polyurethane finish. The same system used on offshore plant.</span></dd></div>
+      <div class="specrow"><dt>Water</dt><dd><b>Sealed penetrations, gutter to tank</b><span>Every cut is framed and welded, not just sealed. Roof drains to a connection ready for your black tank.</span></dd></div>
+      <div class="specrow"><dt>Compliance</dt><dd><b>Building Act 2018 &amp; CUBiC</b><span>Full drawing set, structural calculations and a compliance schedule prepared for parish council or NEPA submission.</span></dd></div>
+      <div class="specrow"><dt>Power</dt><dd><b>Solar-ready as standard</b><span>Roof structure rated for a PV array and conduit run to a pre-wired inverter position, whether or not you fit panels on day one.</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════════  GALLERY  ═══════════════ -->
+<section class="sec" id="gallery" style="background:var(--sand-2)">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <p class="eyebrow center">Configurations</p>
+      <h2>The same box,<br>a dozen <span class="serif-it">different houses.</span></h2>
+    </div>
+    <!-- IMAGE SLOTS: replace each <svg> with a photograph of a completed unit
+         once site photography is shot. Keep the <figure>/<figcaption> shell. -->
+    <div class="gal rv">
+      <figure class="g-a">
+        <svg viewBox="0 0 800 550" role="img" aria-label="Courtyard configuration: two containers set in parallel around a shaded deck">
+          <rect width="800" height="550" fill="#cfc6b2"/>
+          <path d="M0 380h800v170H0z" fill="#b9ae97"/>
+          <g transform="translate(70 150)">
+            <rect x="-16" y="-14" width="330" height="8" fill="#20262b"/>
+            <rect x="0" y="6" width="290" height="150" fill="#2b3238"/><rect x="0" y="6" width="290" height="150" fill="url(#corr)"/>
+            <rect x="28" y="36" width="150" height="94" fill="url(#glassGlow)" opacity=".9"/><path d="M103 36v94" stroke="#20262b" stroke-width="3"/>
+            <rect x="210" y="36" width="54" height="94" fill="#161a1d" opacity=".65"/>
+          </g>
+          <g transform="translate(452 150)">
+            <rect x="-16" y="-14" width="330" height="8" fill="#20262b"/>
+            <rect x="0" y="6" width="290" height="150" fill="#b85c38"/><rect x="0" y="6" width="290" height="150" fill="url(#corr)"/>
+            <rect x="34" y="36" width="150" height="94" fill="url(#glassGlow)" opacity=".9"/><path d="M109 36v94" stroke="#20262b" stroke-width="3"/>
+            <rect x="216" y="36" width="50" height="94" fill="#20262b" opacity=".6"/>
+          </g>
+          <rect x="330" y="300" width="140" height="80" fill="#8a6647" opacity=".5"/>
+          <rect x="60" y="306" width="680" height="9" fill="#8a6647"/>
+          <g fill="#1f3a31" opacity=".7"><circle cx="392" cy="250" r="34"/><path d="M388 250h9v58h-9z"/></g>
+        </svg>
+        <figcaption>Courtyard · 2 × 40 ft</figcaption>
+      </figure>
+      <figure class="g-b">
+        <svg viewBox="0 0 600 540" role="img" aria-label="Elevated configuration: a single container raised on steel legs above a sloping site">
+          <rect width="600" height="540" fill="#c6bda9"/>
+          <path d="M0 420 L200 392 L420 414 L600 388 V540 H0Z" fill="#1f3a31" opacity=".45"/>
+          <g transform="translate(90 170)">
+            <rect x="-18" y="-14" width="440" height="8" fill="#20262b"/>
+            <rect x="0" y="6" width="400" height="132" fill="#b85c38"/><rect x="0" y="6" width="400" height="132" fill="url(#corr)"/>
+            <rect x="30" y="34" width="176" height="82" fill="url(#glassGlow)" opacity=".92"/><path d="M118 34v82" stroke="#20262b" stroke-width="3"/>
+            <rect x="240" y="34" width="58" height="82" fill="#161a1d" opacity=".68"/>
+            <rect x="330" y="46" width="48" height="58" fill="url(#glassGlow)" opacity=".55"/>
+            <path d="M20 138v120M180 138v112M360 138v124" stroke="#3a4147" stroke-width="7"/>
+            <path d="M20 200 L180 194M180 194 L360 206" stroke="#3a4147" stroke-width="4" opacity=".7"/>
+          </g>
+        </svg>
+        <figcaption>Elevated · Sloping site</figcaption>
+      </figure>
+      <figure class="g-c">
+        <svg viewBox="0 0 600 480" role="img" aria-label="Interior view: kitchen and living space along a glazed container wall">
+          <rect width="600" height="480" fill="#e2dbcb"/>
+          <rect x="0" y="0" width="600" height="60" fill="#d3cab6"/>
+          <rect x="40" y="60" width="230" height="290" fill="url(#glassGlow)" opacity=".82"/>
+          <path d="M117 60v290M194 60v290" stroke="#2b3238" stroke-width="5"/>
+          <rect x="40" y="60" width="230" height="290" fill="none" stroke="#2b3238" stroke-width="6"/>
+          <rect x="320" y="196" width="240" height="18" fill="#2b3238"/>
+          <rect x="320" y="214" width="240" height="112" fill="#b85c38" opacity=".9"/>
+          <path d="M400 214v112M480 214v112" stroke="#8f4529" stroke-width="3"/>
+          <rect x="340" y="96" width="200" height="72" fill="#cfc6b2"/>
+          <path d="M0 350h600v130H0z" fill="#a8946f" opacity=".55"/>
+          <path d="M0 350h600" stroke="#2b3238" stroke-width="3" opacity=".3"/>
+        </svg>
+        <figcaption>Interior · The Ridge</figcaption>
+      </figure>
+      <figure class="g-d">
+        <svg viewBox="0 0 800 500" role="img" aria-label="Terrace configuration: a stacked pair of containers with an upper covered terrace">
+          <rect width="800" height="500" fill="#cfc6b2"/>
+          <path d="M0 300 L180 268 L400 290 L620 262 L800 288 V500 H0Z" fill="#1f3a31" opacity=".3"/>
+          <g transform="translate(140 90)">
+            <rect x="-20" y="-14" width="560" height="8" fill="#20262b"/>
+            <rect x="0" y="6" width="330" height="112" fill="#2b3238"/><rect x="0" y="6" width="330" height="112" fill="url(#corr)"/>
+            <rect x="28" y="32" width="150" height="66" fill="url(#glassGlow)" opacity=".9"/><path d="M103 32v66" stroke="#20262b" stroke-width="3"/>
+            <rect x="212" y="32" width="52" height="66" fill="#161a1d" opacity=".65"/>
+            <path d="M330 60h180M330 118h180" stroke="#20262b" stroke-width="4" opacity=".55"/>
+            <path d="M360 6v112M440 6v112M508 6v112" stroke="#20262b" stroke-width="5"/>
+            <rect x="0" y="118" width="510" height="126" fill="#b85c38"/><rect x="0" y="118" width="510" height="126" fill="url(#corr)"/>
+            <rect x="30" y="148" width="190" height="72" fill="url(#glassGlow)" opacity=".92"/><path d="M95 148v72M160 148v72" stroke="#20262b" stroke-width="3"/>
+            <rect x="256" y="148" width="58" height="72" fill="#20262b" opacity=".6"/>
+            <rect x="352" y="160" width="128" height="52" fill="url(#glassGlow)" opacity=".55"/>
+            <rect x="-40" y="244" width="596" height="9" fill="#8a6647"/>
+          </g>
+        </svg>
+        <figcaption>Terrace · The Estate</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  LEAD MAGNET  ═══════════════ -->
+<section class="sec magnet" id="guide">
+  <div class="wrap magnet-in">
+    <div class="rv">
+      <p class="eyebrow">Free · 20 pages · PDF</p>
+      <h2>The 2026 Jamaican Container Home <span class="serif-it">Buyer's Guide.</span></h2>
+      <p class="lead">Everything we get asked in the first meeting, written down honestly — including the costs most sellers leave off the quotation until you are committed.</p>
+      <ul class="magnet-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>The true landed cost of an imported unit — duty, GCT and stamp duty, worked through with real numbers</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>What parish council actually asks for, and the four things that hold an approval up</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Which lenders finance prefabricated housing in Jamaica, and what they need from you</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>The seven questions to ask any container builder before you pay a deposit</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>A site-readiness checklist you can walk your land with this weekend</span></li>
+      </ul>
+    </div>
+
+    <div class="rv">
+      <div class="guide-vis" aria-hidden="true">
+        <svg viewBox="0 0 340 440" role="presentation">
+          <rect x="8" y="8" width="324" height="424" rx="3" fill="#14171a"/>
+          <rect x="8" y="8" width="16" height="424" fill="#0d1013"/>
+          <rect x="24" y="8" width="308" height="424" fill="#1b1f23"/>
+          <g transform="translate(56 56)">
+            <rect width="26" height="26" fill="#b85c38"/>
+            <text x="0" y="76" font-family="JetBrains Mono,monospace" font-size="9.5" letter-spacing="2.6" fill="#8b9299">2026 EDITION</text>
+          </g>
+          <text x="56" y="204" font-family="Instrument Serif,Georgia,serif" font-size="42" fill="#f5f2ec">The Jamaican</text>
+          <text x="56" y="248" font-family="Instrument Serif,Georgia,serif" font-size="42" fill="#f5f2ec">Container Home</text>
+          <text x="56" y="292" font-family="Instrument Serif,Georgia,serif" font-size="42" font-style="italic" fill="#d98559">Buyer's Guide</text>
+          <path d="M56 320h96" stroke="#b85c38" stroke-width="2"/>
+          <text x="56" y="356" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="2.2" fill="#8b9299">COSTS · PERMITS · FINANCING</text>
+          <text x="56" y="374" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="2.2" fill="#8b9299">SITE PREP · HURRICANE SPEC</text>
+          <g transform="translate(232 336)" opacity=".9">
+            <rect width="60" height="30" fill="#b85c38"/><rect width="60" height="30" fill="url(#corr)"/>
+            <rect y="34" width="60" height="30" fill="#2b3238"/><rect y="34" width="60" height="30" fill="url(#corr)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="max-width:760px;margin-top:clamp(40px,5vw,64px);position:relative;z-index:1">
+    <div class="formcard rv">
+      <h4>Send me the guide</h4>
+      <p>Straight to your inbox, no cost. We will follow up once — if it is not for you, say so and we will leave it there.</p>
+      <!-- Netlify Forms: no backend. Enable notifications under Forms in the
+           Netlify dashboard after the first deploy. -->
+      <form name="guide-download" data-demo="guide">
+        <p class="hp"><label>Do not fill this in <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field-row">
+          <div class="field"><label for="g-name">Your name</label><input id="g-name" name="name" type="text" required autocomplete="name" placeholder="Full name"></div>
+          <div class="field"><label for="g-phone">WhatsApp number</label><input id="g-phone" name="phone" type="tel" autocomplete="tel" placeholder="876 000 0000"></div>
+        </div>
+        <div class="field"><label for="g-email">Email address</label><input id="g-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field">
+          <label for="g-stage">Where are you in the process?</label>
+          <select id="g-stage" name="stage">
+            <option>Just researching</option>
+            <option>I have land already</option>
+            <option>Looking for land</option>
+            <option>Ready to build this year</option>
+            <option>Buying for rental or Airbnb</option>
+          </select>
+        </div>
+        <button class="btn btn-corten" type="submit">Send me the guide <span class="arw">→</span></button>
+        <p class="form-fine">No spam. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  FINANCING  ═══════════════ -->
+<section class="sec" id="finance">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Paying for it</p>
+      <h2>Three routes people<br>actually <span class="serif-it">use.</span></h2>
+      <p class="lead">We are not a lender and we will not pretend financing is simple. But we know what the institutions ask for, and we prepare it before you are asked.</p>
+    </div>
+    <div class="fingrid rv">
+      <article class="fincard"><span class="num">01</span><h4>Credit union facility</h4>
+        <p>Several Jamaican credit unions lend against prefabricated housing. They will want clear registered title to the land and a stamped engineer's report — both of which we supply as part of the contract.</p></article>
+      <article class="fincard"><span class="num">02</span><h4>Staged self-funding</h4>
+        <p>Start with a studio you can pay for outright, live in it, and add a module later. The structural design allows for it from day one, so nothing is wasted.</p></article>
+      <article class="fincard"><span class="num">03</span><h4>Rental-backed</h4>
+        <p>A well-sited unit lets short-let income service the borrowing. We will model it with you honestly, including the months when occupancy is poor.</p></article>
+    </div>
+    <div class="price-note rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      <p><strong>On importing it yourself.</strong> People ask. Prefabricated buildings land under HS&nbsp;9406 at 20% duty on the CIF value, then GCT on the duty-inclusive figure, plus stamp duty — roughly a third on top before it leaves the wharf, and site works are still ahead of you. The guide works a full example through. Confirm the current rates with a licensed customs broker before you commit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  FAQ  ═══════════════ -->
+<section class="sec" id="faq" style="background:var(--sand-2)">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <p class="eyebrow center">Straight answers</p>
+      <h2>The things people ask<br>before they <span class="serif-it">trust us.</span></h2>
+    </div>
+    <div class="faq rv">
+      <details open><summary>Will it hold up in a hurricane?</summary>
+        <p>The steel shell is the easy part — a container is built to be stacked nine high and thrown around the Atlantic. What matters is the connection to the ground. We anchor to a cast reinforced foundation through engineered hold-down plates at every corner casting, designed to CUBiC wind loading for a 150&nbsp;mph gust and signed off by a registered structural engineer. That drawing set goes to parish council and to your insurer.</p></details>
+      <details><summary>Does it get unbearably hot inside?</summary>
+        <p>An uninsulated container does, yes. Ours are sprayed internally with 50&nbsp;mm of closed-cell foam, which both insulates and stops condensation forming on the inside face of the steel. Every model also carries a ventilated roof canopy that keeps direct sun off the container entirely — that canopy does more for comfort than any air conditioner.</p></details>
+      <details><summary>Can I get a mortgage on it?</summary>
+        <p>Conventional mortgages remain difficult for prefabricated housing in Jamaica. In practice most of our clients use a credit union facility, staged self-funding, or rental income. What every one of them needs is clear registered title and a stamped engineer's report, and we prepare both. The buyer's guide names the institutions currently lending and what each asks for.</p></details>
+      <details><summary>Do I need planning approval?</summary>
+        <p>For permanent siting, yes — building approval from your parish council, or NEPA for larger developments. The submission needs site plans, structural drawings and evidence of compliance with the Building Act 2018. We prepare and lodge that package and track it through to approval. Budget six to twelve weeks, and note that it runs in parallel with fabrication, not after it.</p></details>
+      <details><summary>What does the price actually include?</summary>
+        <p>The unit, complete — kitchen, bathroom, electrical, plumbing, insulation, flooring, joinery, doors and glazing — delivered and craned onto your prepared foundation within 40&nbsp;km of Kingston. Separately quoted, once we have seen your site: land, foundation, septic or sewer connection, water and NWC or JPS connections, parish council fees, and delivery beyond 40&nbsp;km. We give you those numbers before you sign, not after.</p></details>
+      <details><summary>How long will it last?</summary>
+        <p>The structural steel carries a 25-year warranty. Realistically, a properly coated and maintained unit outlives that comfortably — the limiting factor is the coating system, and recoating every ten to twelve years is a weekend's work, not a rebuild.</p></details>
+      <details><summary>Can I see one before I commit?</summary>
+        <p>Yes, and you should. Never buy a container home you have not stood inside. Book a viewing and we will walk you through a completed unit — bring anyone whose opinion you trust.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  CONTACT  ═══════════════ -->
+<section class="sec contact" id="contact">
+  <div class="wrap contact-in">
+    <div class="rv">
+      <p class="eyebrow">Book a viewing</p>
+      <h2>Come and stand<br>inside <span class="serif-it">one.</span></h2>
+      <p class="lead">Tell us roughly what you are after and where the land is. We will come back within one working day with a time — and if we are not the right fit, we will tell you that instead.</p>
+      <div style="margin-top:34px">
+        <!-- CONTACT DETAILS: swap these for the client's real numbers before launch. -->
+        <div class="ctitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <div><b>WhatsApp</b><a href="https://wa.me/18760000000?text=Hi%20Design%20Container%20JA%20%E2%80%94%20I%27d%20like%20to%20book%20a%20viewing.">876 000 0000</a></div>
+        </div>
+        <div class="ctitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <div><b>Email</b><a href="mailto:hello@designcontainerja.com">hello@designcontainerja.com</a></div>
+        </div>
+        <div class="ctitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3s7 3 7 8c0 5-7 10-7 10S5 16 5 11c0-5 7-8 7-8z"/><circle cx="12" cy="11" r="2.4"/></svg>
+          <div><b>Showroom</b><span>Kingston, Jamaica — viewings by appointment.<br>Delivery islandwide.</span></div>
+        </div>
+        <div class="ctitem" style="border-bottom:0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <div><b>Hours</b><span>Monday–Friday, 8:30am–5:00pm<br>Saturday viewings by arrangement</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="formcard">
+        <h4>Request a viewing</h4>
+        <p>One working day for a reply, and a real person on the other end.</p>
+        <form name="viewing-enquiry" data-demo="viewing">
+          <p class="hp"><label>Do not fill this in <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field-row">
+            <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" required autocomplete="name" placeholder="Full name"></div>
+            <div class="field"><label for="c-phone">WhatsApp number</label><input id="c-phone" name="phone" type="tel" required autocomplete="tel" placeholder="876 000 0000"></div>
+          </div>
+          <div class="field"><label for="c-email">Email address</label><input id="c-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="c-model">Model of interest</label>
+              <select id="c-model" name="model">
+                <option>Not sure yet</option><option>The Cove — studio</option><option>The Ridge — 1 bed</option>
+                <option>The Palm — 2 bed</option><option>The Estate — 3 bed</option><option>Custom configuration</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-parish">Parish</label>
+              <select id="c-parish" name="parish">
+                <option>Kingston</option><option>St. Andrew</option><option>St. Catherine</option><option>Clarendon</option>
+                <option>Manchester</option><option>St. Elizabeth</option><option>Westmoreland</option><option>Hanover</option>
+                <option>St. James</option><option>Trelawny</option><option>St. Ann</option><option>St. Mary</option>
+                <option>Portland</option><option>St. Thomas</option><option>Overseas buyer</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="c-msg">Tell us about the site</label><textarea id="c-msg" name="message" placeholder="Do you own the land already? Is there road access for a low-bed and crane? Anything else we should know."></textarea></div>
+          <button class="btn btn-corten" type="submit">Request a viewing <span class="arw">→</span></button>
+          <p class="form-fine">We reply within one working day.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════  FOOTER  ═══════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top" aria-label="Design Container JA — back to top">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="2.5" y="8.5" width="35" height="23" rx="1.5" stroke="#f5f2ec" stroke-width="2.2"/>
+          <path d="M10 12.5v15M16 12.5v15M22 12.5v15M28 12.5v15" stroke="#f5f2ec" stroke-opacity=".45" stroke-width="1.6"/>
+          <rect x="2.5" y="8.5" width="5" height="5" fill="#b85c38"/>
+          <rect x="32.5" y="26.5" width="5" height="5" fill="#b85c38"/>
+        </svg>
+        <span class="brand-txt"><b>Design Container</b><span>JAMAICA</span></span>
+      </a>
+      <nav class="foot-nav">
+        <a href="#models">Models</a><a href="#process">Process</a><a href="#built">Built for JA</a>
+        <a href="#guide">Free guide</a><a href="#finance">Financing</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr">2026</span> Design Container JA. All rights reserved.</span>
+      <span>Prices indicative and subject to site survey · <a href="mailto:hello@designcontainerja.com">hello@designcontainerja.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/18760000000?text=Hi%20Design%20Container%20JA%20%E2%80%94%20I%27d%20like%20to%20know%20more." aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9z"/></svg>
+</a>
+
+
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var yr = document.getElementById('yr');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ── preview notice ── */
+  var pv = document.getElementById('pv'), pvClose = document.getElementById('pvClose');
+  try { if (localStorage.getItem('dcja-pv') === 'hidden' && pv) pv.hidden = true; } catch(e){}
+  if (pvClose) pvClose.addEventListener('click', function(){
+    if (pv) pv.hidden = true;
+    try { localStorage.setItem('dcja-pv','hidden'); } catch(e){}
+  });
+
+  /* ── mobile menu ── */
+  var burger = document.getElementById('burger'), menu = document.getElementById('mobileMenu');
+  if (burger && menu){
+    burger.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+      burger.textContent = open ? 'Close' : 'Menu';
+    });
+    menu.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+        burger.textContent = 'Menu';
+      }
+    });
+  }
+
+  /* ── toast ── */
+  var toast = document.getElementById('toast'), toastTimer;
+  function say(msg){
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 3600);
+  }
+
+  /* ── WhatsApp links point at a placeholder number in this preview ── */
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      say('On the live site this opens WhatsApp to your number');
+    });
+  });
+
+  /* ── forms: no backend here, so show the state the visitor would actually see ── */
+  var COPY = {
+    guide: {
+      h: "Check your inbox",
+      p: "On the live site the guide sends itself within seconds, and the enquiry reaches Design Container JA by email and on WhatsApp.",
+      n: "Preview \u2014 nothing was sent"
+    },
+    viewing: {
+      h: "Viewing requested",
+      p: "On the live site this arrives with the parish, the model of interest and the site notes already attached, and gets a reply within one working day.",
+      n: "Preview \u2014 nothing was sent"
+    }
+  };
+  document.querySelectorAll('form[data-demo]').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var c = COPY[f.getAttribute('data-demo')] || COPY.guide;
+      var box = document.createElement('div');
+      box.className = 'sent';
+      box.setAttribute('role','status');
+      box.innerHTML =
+        '<div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"'
+        + ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>'
+        + '<h5>' + c.h + '</h5><p>' + c.p + '</p><div class="note">' + c.n + '</div>';
+      f.replaceWith(box);
+      box.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+  });
+
+  /* ── reveal on scroll ── */
+  var items = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
