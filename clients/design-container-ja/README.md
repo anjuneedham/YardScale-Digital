@@ -86,3 +86,20 @@ worth knowing before you treat the contents as gated.
 
 The same content-verification pass is worth repeating on any edit: no page
 should have content running into the bottom 25 mm, where the running foot sits.
+
+## The pitch deck
+
+`deck.js` generates `YardScale-Pitch-Design-Container-JA.pptx` (11 slides, 16:9)
+from the images in `deck-assets/`. Speaker notes are on every slide.
+
+```bash
+npm install pptxgenjs      # once
+node deck.js
+```
+
+The screenshots in `deck-assets/` are captured from the live site — regenerate
+them if the site changes materially, or the deck will show stale prices.
+
+Fonts are Arial and Calibri rather than the brand's Archivo/Instrument Sans, so
+the deck renders identically on any machine the client opens it on. The PDFs use
+the real brand fonts, embedded.
