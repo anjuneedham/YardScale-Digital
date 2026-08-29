@@ -4,7 +4,8 @@ Two deliverables, same content, same brand tokens as the site:
 
 | File | What it is |
 |---|---|
-| `proposal.html` | The document to send. Self-contained — logo is a data URI, fonts come from Google Fonts. Opens in any browser, prints clean. |
+| `AV-Farm-Supplies-Proposal-YardScale-Digital.pdf` | **The one to send the client.** 7 pages, Letter, brand fonts embedded, page numbers in the footer. |
+| `proposal.html` | Same document as a web page. Self-contained — logo is a data URI, fonts from Google Fonts. This is the source the PDF is rendered from. |
 | `AV-Farm-Supplies-Proposal-YardScale-Digital.pptx` | 8-slide version for walking the client through it on a call. Speaker notes on every slide. |
 
 ## The offer, in one place
@@ -22,7 +23,15 @@ cd src
 npm install pptxgenjs                 # deck only
 node deck.js                          # -> ../AV-Farm-Supplies-Proposal-YardScale-Digital.pptx
 python3 build_proposal.py             # -> ../proposal.html
+node build_pdf.js                     # -> ../AV-Farm-Supplies-Proposal-YardScale-Digital.pdf
 ```
+
+`build_pdf.js` renders `proposal.html` through Chromium, so run it *after*
+`build_proposal.py`. It needs `playwright` (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+npm install playwright`) and a Chromium binary — set `CHROME_PATH` if yours
+isn't at the default in the script. It downloads Archivo, Instrument Sans and
+JetBrains Mono at build time and inlines them as base64, so the finished PDF
+carries its own type and needs no font host to render correctly.
 
 `src/icons/` holds the Feather icons already rasterised, so a rebuild needs
 only `pptxgenjs`. To regenerate them (`npm install react react-dom react-icons sharp`):

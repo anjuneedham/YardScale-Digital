@@ -101,7 +101,7 @@ h1{
 
 /* ---------- fact strip ---------- */
 .facts{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+  display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:var(--rule);
   border:1px solid var(--rule);
   margin:38px 0 0;
@@ -142,7 +142,7 @@ section{margin-top:62px}
   padding:26px 0;
   display:grid;grid-template-columns:190px 1fr;gap:28px;
 }
-.block:first-of-type{border-top:0;padding-top:0}
+.shead + .block{border-top:0;padding-top:0}
 .block-tag{
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);padding-top:5px;
@@ -171,7 +171,7 @@ ul.crosses li::before{
 }
 
 /* ---------- timeline ---------- */
-.weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(198px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
 .week{background:var(--bg);padding:20px 18px 22px;display:flex;flex-direction:column;gap:9px}
 .week .wk{
   font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
@@ -248,11 +248,11 @@ ol.needs li::before{
 .sig{border-top:1px solid var(--rule);padding-top:14px}
 .sig .who{
   font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
-  margin-bottom:34px;
+  margin-bottom:54px;
 }
 .sig .line{border-bottom:1px solid var(--fg);height:1px;margin-bottom:8px}
 .sig .cap{font-size:12.5px;color:var(--muted)}
-.sig .line+.cap{margin-bottom:30px}
+.sig .line+.cap{margin-bottom:50px}
 
 footer{
   margin-top:70px;border-top:1px solid var(--rule);padding-top:20px;
@@ -263,7 +263,12 @@ footer a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--acce
 footer a:hover{background:var(--accent);color:#131313}
 a:focus-visible,.plate:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
+@media (max-width:820px){
+  .weeks{grid-template-columns:repeat(2,1fr)}
+  .facts{grid-template-columns:repeat(2,1fr)}
+}
 @media (max-width:640px){
+  .weeks{grid-template-columns:1fr}
   .block{grid-template-columns:1fr;gap:12px}
   .block-tag{padding-top:0}
   .sign{grid-template-columns:1fr;gap:32px}
