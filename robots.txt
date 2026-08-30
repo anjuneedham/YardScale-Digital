@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Client proposals are shared by link, not indexed.
+Disallow: /proposals/
+
 Sitemap: __SITE_URL__/sitemap.xml

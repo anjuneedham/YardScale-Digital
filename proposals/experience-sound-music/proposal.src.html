@@ -1,0 +1,621 @@
+<title>Experience Sound &amp; Music Proposal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   Experience Sound & Music — proposal
+   Built on YardScale Digital's brand tokens. Deliberately a
+   single visual world: this is paper, and it prints as paper.
+   Every colour is painted explicitly so it holds on any ground.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --ink:#131313;
+  --ink-2:#1c1c1a;
+  --hair-dark:#2e2e2b;
+  --paper:#f9f8f4;
+  --paper-2:#efeee8;
+  --hair:#dedbd2;
+  --lime:#c3fc0f;
+  --muted-dark:#8f8f86;
+  --muted:#6b6b62;
+  --display:'Archivo','Archivo Expanded',Helvetica Neue,Arial,sans-serif;
+  --body:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gutter:clamp(22px,6vw,72px);
+  --maxw:880px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:2px}
+::selection{background:var(--lime);color:var(--ink)}
+
+/* ── type ── */
+h1,h2,h3{
+  margin:0;font-family:var(--display);font-weight:800;
+  text-transform:uppercase;line-height:.9;letter-spacing:-.02em;
+  font-variation-settings:'wdth' 118;text-wrap:balance;
+}
+h1{font-size:clamp(2.6rem,7.4vw,4.5rem);line-height:.87;letter-spacing:-.035em}
+h2{font-size:clamp(1.7rem,4.4vw,2.6rem)}
+h3{font-size:1.02rem;font-weight:700;font-variation-settings:'wdth' 112;letter-spacing:.01em;text-transform:none;line-height:1.3}
+p{margin:0 0 1.05em;max-width:66ch}
+p:last-child{margin-bottom:0}
+strong{font-weight:600}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+
+/* signature device: the logo's angled slash, reused as a marker */
+.tick{width:14px;height:10px;background:var(--lime);transform:skewX(-20deg);flex:none;display:inline-block}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:10px;margin:0 0 20px;font-weight:500;
+}
+.eyebrow.on-ink{color:var(--muted-dark)}
+
+/* ── cover ── */
+.cover{background:var(--ink);color:var(--paper);padding:clamp(34px,6vw,60px) 0 0}
+.cover .lockup{height:30px;width:auto;margin-bottom:clamp(46px,9vw,86px)}
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:20px 26px;border-top:1px solid var(--hair-dark);
+  padding-top:20px;margin-bottom:clamp(40px,7vw,64px);
+}
+.meta dt{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted-dark);margin:0 0 7px;
+}
+.meta dd{margin:0;font-size:.94rem;color:var(--paper);line-height:1.4}
+.cover h1{color:var(--paper);margin-bottom:26px}
+.cover h1 .em{color:var(--lime)}
+.lede{font-size:clamp(1.02rem,2.3vw,1.22rem);color:#d8d7cf;max-width:52ch;line-height:1.55}
+.cover-foot{
+  display:flex;flex-wrap:wrap;gap:12px 40px;align-items:baseline;
+  border-top:1px solid var(--hair-dark);margin-top:clamp(44px,8vw,76px);padding:22px 0 clamp(34px,6vw,54px);
+}
+.cover-foot .fig{font-family:var(--mono);font-size:1.28rem;color:var(--paper);font-variant-numeric:tabular-nums}
+.cover-foot .fig .cur{color:var(--muted-dark);font-size:.78rem;letter-spacing:.12em}
+.cover-foot .lbl{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted-dark);display:block;margin-bottom:6px;
+}
+
+/* ── sections ── */
+section{padding:clamp(46px,7.5vw,78px) 0}
+section + section{border-top:1px solid var(--hair)}
+.sec-head{margin-bottom:clamp(22px,3.4vw,32px)}
+.sec-head h2{margin-bottom:14px}
+
+/* ── observations ── */
+.obs{
+  display:grid;grid-template-columns:1fr;
+  gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:30px;
+}
+@media (min-width:600px){.obs{grid-template-columns:repeat(3,1fr)}}
+.obs > div{background:var(--paper-2);padding:22px 22px 24px}
+.obs .n{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--muted);
+  display:block;margin-bottom:11px;
+}
+.obs h3{margin-bottom:7px}
+.obs p{font-size:.9rem;color:var(--muted);line-height:1.55;margin:0}
+
+/* ── scope spec sheet ── */
+.spec{border-top:1px solid var(--ink);margin-top:6px}
+.spec-row{
+  display:grid;grid-template-columns:74px 1fr;gap:0 clamp(16px,3vw,34px);
+  padding:22px 0;border-bottom:1px solid var(--hair);break-inside:avoid;
+}
+.spec-row .ref{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);
+  padding-top:.28em;font-variant-numeric:tabular-nums;
+}
+.spec-row h3{margin-bottom:6px}
+.spec-row p{font-size:.94rem;color:var(--muted);margin:0;max-width:60ch}
+
+/* ── exclusions ── */
+.excl{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:0}
+.excl li{
+  display:flex;gap:14px;align-items:baseline;padding:12px 0;
+  border-bottom:1px solid var(--hair);font-size:.94rem;color:var(--muted);break-inside:avoid;
+}
+.excl li:first-child{border-top:1px solid var(--hair)}
+.excl .x{
+  font-family:var(--mono);font-size:.72rem;color:var(--ink);flex:none;width:16px;opacity:.4;
+}
+.excl b{color:var(--ink);font-weight:600}
+
+/* ── schedule (a real sequence, so it is numbered) ── */
+.sched{display:grid;gap:0;margin-top:6px;border-top:1px solid var(--ink)}
+.step{
+  display:grid;grid-template-columns:52px 1fr;gap:0 clamp(16px,3vw,30px);
+  padding:24px 0;border-bottom:1px solid var(--hair);break-inside:avoid;
+}
+.step .num{
+  font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1;
+  font-variation-settings:'wdth' 118;color:var(--hair);letter-spacing:-.03em;
+}
+.step .wk{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:8px;
+}
+.step h3{margin-bottom:6px}
+.step p{font-size:.94rem;color:var(--muted);margin:0;max-width:58ch}
+
+/* ── investment: the one flourish ──
+   The 50/50 split drawn as a pair of channel meters. The lit
+   segment count is the actual share of the fee, not decoration. */
+.money{background:var(--ink);color:var(--paper)}
+.money h2{color:var(--paper)}
+.money .intro{color:#d8d7cf;max-width:58ch;margin-bottom:38px}
+.total{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;
+  border-top:1px solid var(--hair-dark);border-bottom:1px solid var(--hair-dark);
+  padding:26px 0;margin-bottom:38px;
+}
+.total .lbl{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted-dark);width:100%;
+}
+.total .fig{
+  font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 118;
+  font-size:clamp(2.4rem,7vw,3.6rem);line-height:1;letter-spacing:-.035em;
+  color:var(--paper);font-variant-numeric:tabular-nums;
+}
+.total .cur{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted-dark)}
+
+.channels{display:grid;gap:26px}
+.ch{display:grid;gap:12px;break-inside:avoid}
+.ch-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.ch-name{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--paper)}
+.ch-when{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--muted-dark)}
+.ch-amt{font-family:var(--mono);font-size:1.06rem;color:var(--paper);font-variant-numeric:tabular-nums}
+.ch-amt .pct{color:var(--muted-dark);font-size:.72rem;letter-spacing:.1em;margin-left:8px}
+.meter{display:flex;gap:3px;height:16px}
+.seg{flex:1;background:var(--hair-dark);border-radius:1px}
+.ch--lit .seg.on{background:var(--lime)}
+.ch--dim .seg.on{background:#5c6b2c}
+.ch-note{font-size:.86rem;color:var(--muted-dark);margin:0;max-width:56ch;line-height:1.5}
+
+/* ── terms ── */
+.terms{display:grid;gap:0;margin-top:6px;border-top:1px solid var(--hair)}
+.term{
+  display:grid;grid-template-columns:minmax(140px,190px) 1fr;gap:6px clamp(16px,3vw,30px);
+  padding:16px 0;border-bottom:1px solid var(--hair);break-inside:avoid;
+}
+.term dt{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding-top:.3em;
+}
+.term dd{margin:0;font-size:.94rem;color:var(--ink);max-width:58ch}
+
+/* ── close ── */
+.close{background:var(--paper-2)}
+.close h2{margin-bottom:16px}
+.close .intro{color:var(--muted);max-width:54ch;margin-bottom:32px}
+.contact{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:22px;border-top:1px solid var(--hair);padding-top:26px;
+}
+.contact .lbl{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:8px;
+}
+.contact a,.contact span{font-size:.96rem;color:var(--ink);text-decoration:none;word-break:break-word}
+.contact a{border-bottom:1px solid var(--hair);padding-bottom:2px;transition:border-color .18s}
+.contact a:hover{border-color:var(--lime)}
+
+footer{background:var(--ink);color:var(--muted-dark);padding:26px 0}
+.foot-in{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between}
+footer img{height:19px;width:auto;opacity:.62}
+footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+
+/* ── responsive ── */
+@media (max-width:620px){
+  body{font-size:16px}
+  .spec-row,.step{grid-template-columns:1fr;gap:8px}
+  .spec-row .ref,.step .num{padding-top:0}
+  .step .num{font-size:1.15rem}
+  .term{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+/* ── print / PDF ── */
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:var(--paper)}
+  body{font-size:10.4pt;line-height:1.55}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  :root{--gutter:17mm;--maxw:210mm}
+  .wrap{max-width:210mm}
+  h1{font-size:34pt}
+  h2{font-size:19pt}
+  h3{font-size:10.8pt}
+  .cover{padding-top:17mm}
+  .cover .lockup{height:9mm;margin-bottom:22mm}
+  .cover-foot{padding-bottom:17mm;margin-top:20mm}
+  .lede{font-size:12pt}
+  section{padding:13mm 0}
+  /* short sections stay whole; over-tall ones (scope, terms) break as normal,
+     but still start on a fresh page rather than trailing one orphan line */
+  section{break-inside:avoid}
+  p,dd{orphans:3;widows:3}
+  /* the cover is a full sheet: figures pinned to the foot, section one starts overleaf */
+  .cover{height:297mm;display:flex;flex-direction:column;break-after:page;break-inside:avoid}
+  .cover > .wrap{display:flex;flex-direction:column;flex:1}
+  .cover .cover-foot{margin-top:auto;margin-bottom:0}
+  .closing{break-inside:avoid}
+  .page-break{break-before:page}
+  .obs > div{padding:5mm}
+  .total .fig{font-size:30pt}
+  .contact a{border-bottom:1px solid var(--hair)}
+  footer{padding:7mm 0}
+}
+</style>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<header class="cover">
+  <div class="wrap">
+    <img class="lockup" src="__LOGO_PAPER__" alt="YardScale Digital">
+
+    <dl class="meta">
+      <div>
+        <dt>Prepared for</dt>
+        <dd>Experience Sound &amp; Music</dd>
+      </div>
+      <div>
+        <dt>Prepared by</dt>
+        <dd>YardScale Digital</dd>
+      </div>
+      <div>
+        <dt>Date</dt>
+        <dd>30 August 2026</dd>
+      </div>
+      <div>
+        <dt>Valid until</dt>
+        <dd>20 September 2026</dd>
+      </div>
+      <div>
+        <dt>Reference</dt>
+        <dd>ESM&#8209;260830</dd>
+      </div>
+    </dl>
+
+    <h1>The link in<br>your message<br>needs <span class="em">somewhere<br>to land</span></h1>
+
+    <p class="lede">A booking page built for the traffic you are already generating by hand &mdash; so the people who tap that link can hire you on the spot instead of reading about you and leaving.</p>
+
+    <div class="cover-foot">
+      <div>
+        <span class="lbl">Total investment</span>
+        <span class="fig">J$50,000 <span class="cur">JMD</span></span>
+      </div>
+      <div>
+        <span class="lbl">Deposit to begin</span>
+        <span class="fig">J$25,000 <span class="cur">50%</span></span>
+      </div>
+      <div>
+        <span class="lbl">Build time</span>
+        <span class="fig">3 weeks</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SITUATION ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> Where this came from</p>
+      <h2>You are already<br>doing the hard part</h2>
+    </div>
+
+    <p>You reached out to us directly. The message was clear about what you offer &mdash; a live band, PA systems, DJs and a support team that knows how to run a room &mdash; and it ended with a link. That is outreach most businesses never get around to doing, and you are doing it by hand, one conversation at a time.</p>
+
+    <p>Then the link goes to an about page.</p>
+
+    <p>Someone with an event in six weeks reads your message, gets interested enough to tap, and arrives somewhere that tells them who you are rather than asking them what they need. There is nothing wrong with that page. It is just not the page that converts the click you worked for. <strong>The outreach is working; the destination is not built to catch it.</strong></p>
+
+    <div class="obs">
+      <div>
+        <span class="n">01</span>
+        <h3>The effort is manual</h3>
+        <p>Every enquiry costs you a message you typed yourself. That is real work, and right now it is the only thing bringing people in.</p>
+      </div>
+      <div>
+        <span class="n">02</span>
+        <h3>The click has nowhere to go</h3>
+        <p>An about page answers &ldquo;who are you&rdquo;. It does not answer &ldquo;are you free on the 14th, and what will it cost me&rdquo;.</p>
+      </div>
+      <div>
+        <span class="n">03</span>
+        <h3>Nothing is captured</h3>
+        <p>People who tap and leave are gone. No name, no date, no event type, nothing to follow up on next week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROPOSAL ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> What we propose</p>
+      <h2>One page,<br>one job</h2>
+    </div>
+
+    <p>We build you a single booking page and point every link you send at it &mdash; the DMs, the bio, the posts, the flyers. It opens fast on a phone, because a phone is what your traffic is on. It says what you do, shows the four things you hire out, and then does the one thing your current destination does not: it asks for the date.</p>
+
+    <p>Two ways to reach you from that page. A short enquiry form for the people who want to think, and a WhatsApp button for the people who want to talk now. Both land with you the same day, with the details already attached.</p>
+
+    <p>This is a one&#8209;off build, fixed price, fully handed over. When it is done it is yours &mdash; the files, the hosting account, the domain, all of it. Nothing you run afterwards depends on us.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SCOPE ═══════════════════ -->
+<section class="page-break">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> Scope of work</p>
+      <h2>What gets built</h2>
+    </div>
+
+    <div class="spec">
+      <div class="spec-row">
+        <div class="ref">S&#8209;01</div>
+        <div>
+          <h3>The booking page</h3>
+          <p>A single page, built mobile&#8209;first: the offer up top, your four services broken out &mdash; live band, PA and sound systems, DJs, event crew &mdash; and a clear path to enquire from anywhere on the page.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;02</div>
+        <div>
+          <h3>Enquiry form that asks the right questions</h3>
+          <p>Event date, event type, venue or parish, rough guest count, and which services they need. It arrives in your inbox already qualified, so your first reply can be a real answer instead of five questions.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;03</div>
+        <div>
+          <h3>One&#8209;tap WhatsApp booking</h3>
+          <p>A button that opens WhatsApp with the message part&#8209;written. The person only has to add their date and hit send &mdash; which is the difference between an enquiry and a page view.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;04</div>
+        <div>
+          <h3>Gallery and proof</h3>
+          <p>A section for your photos, video and past events, plus room for client quotes. Built to take the material you already have &mdash; we will tell you exactly what to send and what is missing.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;05</div>
+        <div>
+          <h3>Link previews that actually render</h3>
+          <p>Right now your link travels through WhatsApp and Instagram as bare text. We set the title, description and preview image so the URL unfurls into a proper card every time you paste it.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;06</div>
+        <div>
+          <h3>Found on search, locally</h3>
+          <p>Page titles, descriptions and structure set up for the terms people actually type &mdash; sound system rental, live band hire, DJ for hire &mdash; plus your Google Business Profile claimed and pointed at the new page.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;07</div>
+        <div>
+          <h3>Hosting, domain and speed</h3>
+          <p>Deployed on managed hosting under your own account, wired to your domain with SSL. Built as a static page so it loads in about a second on mobile data, and costs nothing per month to keep online.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">S&#8209;08</div>
+        <div>
+          <h3>Handover and a walkthrough</h3>
+          <p>A live session where we hand you the accounts and show you how it works, plus written notes for changing your own copy, prices and photos later without calling anyone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EXCLUSIONS ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> Not in this build</p>
+      <h2>What this<br>quote does not cover</h2>
+    </div>
+
+    <p>Listed so there are no surprises. Each of these is something we build, and each can be quoted separately once the page is live and we can both see what it is doing.</p>
+
+    <ul class="excl">
+      <li><span class="x">&mdash;</span><span><b>An AI booking agent</b> that answers your DMs on WhatsApp, Instagram and TikTok in your voice, quotes your prices and books the job.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Content production</b> &mdash; filming, editing, captions, or running a posting schedule for you.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Paid advertising</b> and any media spend that goes with it.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Photography and videography</b> of your events. You supply the images; we place them properly.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Logo or identity design.</b> We work with the brand you have.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Ongoing changes after handover.</b> You will be able to edit your own copy and prices; structural work is quoted when you need it.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ SCHEDULE ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> How it runs</p>
+      <h2>Three weeks,<br>start to handover</h2>
+    </div>
+
+    <div class="sched">
+      <div class="step">
+        <div class="num">01</div>
+        <div>
+          <span class="wk">Week one &middot; after deposit clears</span>
+          <h3>Call, content and structure</h3>
+          <p>A working session to get your prices, packages, service details and the questions you get asked most. You send photos and video; we come back with the page structure and the copy for your sign&#8209;off.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div>
+          <span class="wk">Week two</span>
+          <h3>The build</h3>
+          <p>The page gets built and put on a private link you can open on your phone. You see it coming together as it happens, not at the end.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div>
+          <span class="wk">Week three</span>
+          <h3>Revisions, launch, handover</h3>
+          <p>Two rounds of changes, then the domain gets pointed and the page goes live. We walk you through the accounts, hand over the notes, and you start putting the new link in every message you send.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ INVESTMENT ═══════════════════ -->
+<section class="money page-break">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow on-ink"><span class="tick"></span> Investment</p>
+      <h2>Fixed price,<br>split in half</h2>
+    </div>
+
+    <p class="intro">One number for the whole build, agreed before anything starts. It does not move &mdash; not for revisions inside the two included rounds, and not because something took us longer than we thought.</p>
+
+    <div class="total">
+      <span class="lbl">Total &mdash; scope items S&#8209;01 through S&#8209;08</span>
+      <span class="fig">J$50,000</span>
+      <span class="cur">JMD</span>
+    </div>
+
+    <div class="channels">
+      <div class="ch ch--lit">
+        <div class="ch-top">
+          <span class="ch-name">Deposit &middot; required to begin</span>
+          <span class="ch-amt">J$25,000 <span class="pct">50%</span></span>
+        </div>
+        <div class="meter" role="img" aria-label="Deposit: 50% of the total fee">
+          <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span>
+          <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span>
+          <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+          <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+        </div>
+        <p class="ch-note">Due on acceptance. This is what books your slot in the schedule and starts week one &mdash; no work begins before it clears.</p>
+      </div>
+
+      <div class="ch ch--dim">
+        <div class="ch-top">
+          <span class="ch-name">Balance &middot; on handover</span>
+          <span class="ch-amt">J$25,000 <span class="pct">50%</span></span>
+        </div>
+        <div class="meter" role="img" aria-label="Balance: the remaining 50% of the total fee">
+          <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span>
+          <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span>
+          <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+          <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+        </div>
+        <p class="ch-note">Due once the page is approved and live. Accounts and ownership transfer to you on the day it settles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TERMS ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> Terms</p>
+      <h2>The small print,<br>kept short</h2>
+    </div>
+
+    <dl class="terms">
+      <div class="term">
+        <dt>Quote validity</dt>
+        <dd>This price holds until 20 September 2026. After that we would want to re&#8209;quote, most likely at the same number.</dd>
+      </div>
+      <div class="term">
+        <dt>Deposit</dt>
+        <dd>J$25,000 on acceptance. It secures your place in the build schedule and is non&#8209;refundable once week one begins, though it can be moved to a later slot if you need to reschedule before we start.</dd>
+      </div>
+      <div class="term">
+        <dt>Revisions</dt>
+        <dd>Two rounds included, gathered as one list each time. Further rounds, or changes to scope agreed here, are quoted before any work on them starts.</dd>
+      </div>
+      <div class="term">
+        <dt>What you supply</dt>
+        <dd>Logo files, photos and video, your service list and prices, and access to your domain. We will send a single checklist in week one so nothing gets chased twice.</dd>
+      </div>
+      <div class="term">
+        <dt>Timeline</dt>
+        <dd>Three weeks from the day the deposit clears, assuming your material and sign&#8209;offs come back inside a few days. Delays on either side move the date, and we will tell you as soon as one does.</dd>
+      </div>
+      <div class="term">
+        <dt>Ownership</dt>
+        <dd>Everything built here transfers to you in full on final payment &mdash; the code, the page, the hosting and the domain, in accounts registered in your name. No lock&#8209;in and nothing held back.</dd>
+      </div>
+      <div class="term">
+        <dt>Third&#8209;party costs</dt>
+        <dd>Your domain renewal is yours. Hosting for a page this size sits on a free tier and is expected to cost nothing; if that ever changes we will tell you before it does.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════════════ CLOSE ═══════════════════ -->
+<div class="closing">
+<section class="close">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="tick"></span> Next step</p>
+      <h2>Twenty minutes<br>on a call</h2>
+    </div>
+
+    <p class="intro">Before you commit to anything, get on a call with us. Bring your real numbers &mdash; what you charge, how many enquiries you get in a month, how many turn into bookings. You leave with a next step either way, hired or not.</p>
+
+    <div class="contact">
+      <div>
+        <span class="lbl">Book a time</span>
+        <a href="https://calendar.app.google/Lr4EwPBgc7azDz7X7">calendar.app.google</a>
+      </div>
+      <div>
+        <span class="lbl">Or write first</span>
+        <a href="mailto:yardscaledigital@gmail.com?subject=Experience%20Sound%20%26%20Music%20%E2%80%94%20proposal%20ESM-260830">yardscaledigital@gmail.com</a>
+      </div>
+      <div>
+        <span class="lbl">To accept</span>
+        <span>Reply to this proposal by email quoting reference ESM&#8209;260830.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <img src="__LOGO_PAPER__" alt="YardScale Digital">
+    <span class="ref">Proposal ESM&#8209;260830 &middot; Prepared 30 August 2026 &middot; Valid to 20 September 2026</span>
+  </div>
+</footer>
+</div>
