@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Concept design demo by YardScale Digital for Experience Sound &amp; Music. Not a live booking page.">
+<meta name="theme-color" content="#120e17">
+<style>*{box-sizing:border-box}body{margin:0;background:#120e17}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Experience Sound &amp; Music Demo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Experience Sound & Music — concept demo
+   Built by YardScale Digital for proposal ESM-260830.
+
+   A deliberately single visual world: a dark, stage-lit room. No
+   theme stamps, no prefers-color-scheme block — every colour is
+   painted explicitly so the page holds on any host ground.
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --night:#120e17;
+  --night-2:#1b1522;
+  --night-3:#251d2e;
+  --brass:#e9b44c;
+  --brass-dim:#b8873a;
+  --gel:#e0457b;
+  --white:#f6f1ea;
+  --haze:#c9bfd4;
+  --haze-2:#8d8298;
+  --hair:rgba(246,241,234,.13);
+  --hair-2:rgba(246,241,234,.07);
+  --display:'Anton',Impact,Haettenschweiler,sans-serif;
+  --body:'Manrope',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gutter:clamp(20px,5vw,56px);
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--night);color:var(--white);
+  font-family:var(--body);font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:3px}
+::selection{background:var(--brass);color:var(--night)}
+section[id]{scroll-margin-top:104px}
+
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.94;letter-spacing:.005em;text-wrap:balance}
+h1{font-size:clamp(2.55rem,6vw,4.5rem);line-height:.94;letter-spacing:-.005em}
+h2{font-size:clamp(1.9rem,4.4vw,3rem)}
+h3{font-size:clamp(1.15rem,2.4vw,1.45rem)}
+p{margin:0 0 1em}
+p:last-child{margin-bottom:0}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brass);display:flex;align-items:center;gap:10px;margin:0 0 18px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--brass);flex:none}
+.lede{font-size:clamp(1.02rem,2.1vw,1.2rem);color:var(--haze);max-width:56ch;line-height:1.6}
+
+/* ── the demo ribbon: this page must never read as the live site ── */
+.ribbon{
+  position:sticky;top:0;z-index:90;background:var(--gel);color:#fff;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;line-height:1.45;
+  padding:9px 0;
+}
+.ribbon .wrap{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:center;text-align:center}
+.ribbon b{font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+
+/* ── nav ── */
+.nav{position:sticky;top:37px;z-index:80;background:rgba(18,14,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair-2)}
+.nav-in{display:flex;align-items:center;gap:24px;height:66px}
+.brand{font-family:var(--display);text-transform:uppercase;font-size:1.12rem;letter-spacing:.02em;text-decoration:none;line-height:1;display:flex;align-items:center;gap:9px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--brass);flex:none;box-shadow:0 0 12px var(--brass)}
+.brand i{font-style:normal;color:var(--brass)}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--haze);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--brass)}
+@media (max-width:860px){.nav-links{display:none}}
+
+/* ── buttons ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 26px;
+  text-decoration:none;font-family:var(--mono);font-size:.76rem;letter-spacing:.13em;
+  text-transform:uppercase;border:1px solid transparent;border-radius:3px;cursor:pointer;
+  transition:transform .18s,background .18s,border-color .18s,color .18s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--brass{background:var(--brass);color:var(--night);font-weight:500}
+.btn--brass:hover{background:#f3c469}
+.btn--ghost{border-color:var(--hair);color:var(--white);background:transparent}
+.btn--ghost:hover{border-color:var(--brass);color:var(--brass)}
+.btn--wa{background:#1f2f26;color:#7fe0a4;border-color:rgba(127,224,164,.28)}
+.btn--wa:hover{background:#25392e;border-color:#7fe0a4}
+
+/* ── hero: a lit stage ── */
+.hero{position:relative;overflow:hidden;padding:clamp(46px,6vw,74px) 0 clamp(50px,6.4vw,82px)}
+.hero::before,.hero::after{content:"";position:absolute;pointer-events:none;z-index:0}
+.hero::before{
+  top:-42%;left:-8%;width:70%;height:150%;
+  background:radial-gradient(closest-side,rgba(233,180,76,.20),rgba(233,180,76,0) 100%);
+}
+.hero::after{
+  top:-30%;right:-14%;width:60%;height:140%;
+  background:radial-gradient(closest-side,rgba(224,69,123,.17),rgba(224,69,123,0) 100%);
+}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:clamp(38px,5vw,56px);align-items:center}
+@media (min-width:980px){.hero-in{grid-template-columns:1.06fr .94fr}}
+.hero h1{margin-bottom:22px}
+.hero h1 .em{color:var(--brass)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.tag{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--haze);border:1px solid var(--hair);border-radius:100px;padding:7px 14px;
+}
+
+/* ── the agent demo: the piece the proposal turns on ── */
+.chat{
+  background:var(--night-2);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+  box-shadow:0 26px 60px -30px rgba(0,0,0,.9);
+}
+.chat-bar{
+  display:flex;align-items:center;gap:10px;padding:13px 16px;
+  border-bottom:1px solid var(--hair-2);background:var(--night-3);
+}
+.chat-bar .live{width:7px;height:7px;border-radius:50%;background:#4ade80;flex:none;box-shadow:0 0 9px #4ade80}
+.chat-bar .who{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
+.chat-bar .time{font-family:var(--mono);font-size:.66rem;color:var(--haze-2);margin-left:auto}
+.chat-log{padding:18px 16px;display:flex;flex-direction:column;gap:11px;min-height:392px}
+.msg{max-width:83%;padding:11px 15px;border-radius:14px;font-size:.92rem;line-height:1.5;opacity:0;transform:translateY(9px);animation:pop .34s ease forwards}
+.msg--them{align-self:flex-start;background:var(--night-3);border:1px solid var(--hair-2);border-bottom-left-radius:4px;color:var(--white)}
+.msg--agent{align-self:flex-end;background:var(--brass);color:var(--night);border-bottom-right-radius:4px;font-weight:500}
+@keyframes pop{to{opacity:1;transform:none}}
+.chat-foot{
+  border-top:1px solid var(--hair-2);padding:13px 16px;background:var(--night-3);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;color:var(--haze);line-height:1.55;
+}
+.chat-foot b{color:var(--brass);font-weight:500;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
+@media (prefers-reduced-motion:reduce){
+  .msg{opacity:1;transform:none;animation:none}
+}
+
+/* ── sections ── */
+section{padding:clamp(52px,6.4vw,82px) 0}
+.band{border-top:1px solid var(--hair-2)}
+.sec-head{margin-bottom:clamp(30px,4.4vw,46px);max-width:62ch}
+.sec-head h2{margin-bottom:16px}
+
+/* ── services ── */
+.svc{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:700px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1040px){.svc{grid-template-columns:repeat(4,1fr)}}
+.card{
+  background:var(--night-2);border:1px solid var(--hair-2);border-radius:6px;
+  padding:26px 24px 28px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .22s,transform .22s,background .22s;
+}
+.card:hover{border-color:var(--brass);transform:translateY(-3px);background:var(--night-3)}
+.card .n{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;color:var(--brass)}
+.card h3{line-height:1.05}
+.card p{font-size:.93rem;color:var(--haze);margin:0}
+.card ul{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:7px}
+.card li{font-size:.86rem;color:var(--haze-2);display:flex;gap:9px;align-items:baseline}
+.card li::before{content:"";width:5px;height:5px;background:var(--brass-dim);flex:none;transform:rotate(45deg);margin-top:.45em}
+
+/* ── steps ── */
+.steps{display:grid;grid-template-columns:1fr;gap:2px;background:var(--hair-2);border:1px solid var(--hair-2);border-radius:6px;overflow:hidden}
+@media (min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--night-2);padding:30px 26px 32px;display:flex;flex-direction:column;gap:11px}
+.step .n{font-family:var(--display);font-size:2.1rem;line-height:1;color:var(--brass);opacity:.32}
+.step h3{font-size:1.1rem}
+.step p{font-size:.92rem;color:var(--haze);margin:0}
+
+/* ── gallery: placeholders, and honest about it ── */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:820px){.gal{grid-template-columns:repeat(4,1fr)}}
+.shot{
+  position:relative;aspect-ratio:4/5;border-radius:5px;overflow:hidden;
+  border:1px dashed rgba(246,241,234,.22);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:16px;
+  background:linear-gradient(155deg,var(--night-3),var(--night-2) 62%);
+}
+.shot:nth-child(2){aspect-ratio:4/5;background:linear-gradient(155deg,#2c2033,var(--night-2) 62%)}
+.shot:nth-child(3){background:linear-gradient(155deg,#33261c,var(--night-2) 62%)}
+.shot:nth-child(4){background:linear-gradient(155deg,#1e2733,var(--night-2) 62%)}
+.shot .ph{
+  position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:.58rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--haze-2);
+  border:1px solid var(--hair);border-radius:3px;padding:4px 8px;
+}
+.shot .cap{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;color:var(--haze);line-height:1.5}
+
+/* ── quotes: clearly marked sample copy ── */
+.quotes{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:820px){.quotes{grid-template-columns:repeat(3,1fr)}}
+.quote{
+  background:var(--night-2);border:1px dashed rgba(246,241,234,.2);border-radius:6px;padding:24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.quote .ph{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gel)}
+.quote p{font-size:.95rem;color:var(--haze);margin:0;font-style:italic}
+.quote .by{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--haze-2)}
+
+/* ── enquiry form ── */
+.book{background:var(--night-2);border-top:1px solid var(--hair-2)}
+.book-in{display:grid;grid-template-columns:1fr;gap:clamp(34px,5vw,54px)}
+@media (min-width:940px){.book-in{grid-template-columns:.86fr 1.14fr}}
+.form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:560px){.row--2{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:7px}
+.field label{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--haze)}
+.field input,.field select,.field textarea{
+  background:var(--night);border:1px solid var(--hair);color:var(--white);
+  padding:13px 14px;font-family:var(--body);font-size:.98rem;border-radius:4px;width:100%;
+}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brass);outline:none}
+.checks{display:flex;flex-wrap:wrap;gap:9px}
+.chk{position:relative}
+.chk input{position:absolute;opacity:0;width:0;height:0}
+.chk span{
+  display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;border:1px solid var(--hair);border-radius:100px;
+  padding:9px 15px;cursor:pointer;color:var(--haze);transition:all .18s;
+}
+.chk input:checked + span{background:var(--brass);border-color:var(--brass);color:var(--night);font-weight:500}
+.chk input:focus-visible + span{outline:2px solid var(--brass);outline-offset:3px}
+.form-note{font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;color:var(--haze-2);line-height:1.6}
+
+.sent{
+  display:none;background:var(--night);border:1px solid var(--brass);border-radius:6px;padding:26px;
+}
+.sent.on{display:block}
+.sent h3{color:var(--brass);margin-bottom:14px;font-size:1.15rem}
+.sent .kv{display:grid;gap:9px;margin:16px 0 0;border-top:1px solid var(--hair-2);padding-top:16px}
+.sent .kv div{display:grid;grid-template-columns:130px 1fr;gap:12px;font-size:.88rem}
+.sent .kv dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--haze-2);padding-top:.25em}
+.sent .kv dd{margin:0;color:var(--white)}
+.sent .disc{font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;color:var(--haze-2);margin-top:18px;line-height:1.6}
+
+.aside-card{background:var(--night);border:1px solid var(--hair-2);border-radius:6px;padding:26px}
+.aside-card h3{font-size:1.1rem;margin-bottom:12px}
+.aside-card p{font-size:.93rem;color:var(--haze)}
+.aside-card .btn{margin-top:18px;width:100%}
+.aside-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px}
+.aside-list li{font-size:.88rem;color:var(--haze);display:flex;gap:10px;align-items:baseline}
+.aside-list li::before{content:"";width:5px;height:5px;background:var(--brass);flex:none;transform:rotate(45deg);margin-top:.45em}
+
+/* ── footer ── */
+footer{background:var(--night);border-top:1px solid var(--hair-2);padding:44px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:26px;margin-bottom:30px}
+@media (min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr}}
+.foot-grid h4{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--haze-2);margin:0 0 13px;font-weight:400}
+.foot-grid p,.foot-grid a{font-size:.9rem;color:var(--haze);text-decoration:none}
+.foot-grid a:hover{color:var(--brass)}
+.foot-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.built{
+  border-top:1px solid var(--hair-2);padding-top:22px;display:flex;flex-wrap:wrap;
+  gap:10px 20px;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;color:var(--haze-2);line-height:1.6;
+}
+.built a{color:var(--brass);text-decoration:none}
+</style>
+
+<!-- ══════════ demo ribbon — this page is a mockup, never the live site ══════════ -->
+<div class="ribbon">
+  <div class="wrap">
+    <b>Concept demo</b>
+    <span>Design mockup by YardScale Digital for Experience Sound &amp; Music &middot; proposal ESM&#8209;260830 &middot; not a live booking page &middot; prices, photos and reviews are placeholders</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot"></span>Experience <i>Sound&nbsp;&amp;&nbsp;Music</i></a>
+    <nav class="nav-links">
+      <a href="#services">What we bring</a>
+      <a href="#how">How booking works</a>
+      <a href="#work">Past events</a>
+      <a href="#book">Check your date</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════ hero ══════════ -->
+<main id="top" class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">Live band &middot; PA systems &middot; DJs &middot; Crew</p>
+      <h1>We bring the<br><span class="em">whole sound</span><br>to your event</h1>
+      <p class="lede">Band, sound system, DJ and the crew who run it &mdash; booked as one thing, from one team, so nobody is chasing four suppliers the week of the event.</p>
+      <div class="hero-cta">
+        <a class="btn btn--brass" href="#book">Check your date &rarr;</a>
+        <a class="btn btn--wa" href="#book">Message us on WhatsApp</a>
+      </div>
+      <div class="hero-tags">
+        <span class="tag">Weddings</span>
+        <span class="tag">Corporate</span>
+        <span class="tag">Parties</span>
+        <span class="tag">Church &amp; community</span>
+        <span class="tag">Stage shows</span>
+      </div>
+    </div>
+
+    <!-- the agent, demonstrated rather than described -->
+    <div class="chat" id="chat">
+      <div class="chat-bar">
+        <span class="live"></span>
+        <span class="who">Experience S&amp;M &middot; WhatsApp</span>
+        <span class="time">11:41 PM</span>
+      </div>
+      <div class="chat-log" id="log" aria-live="polite"></div>
+      <div class="chat-foot">
+        <b>What reaches the owner</b>
+        Name, date, parish, guest count and package &mdash; one message, already qualified. Everything else was answered without anyone waking up.
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ══════════ services ══════════ -->
+<section id="services" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we bring</p>
+      <h2>Four things,<br>one booking</h2>
+      <p class="lede">Hire the piece you need or the whole room. Either way it is one contact, one invoice and one crew who have worked together before.</p>
+    </div>
+
+    <div class="svc">
+      <div class="card">
+        <span class="n">01</span>
+        <h3>Live band</h3>
+        <p>A working band that reads the room and keeps the floor moving, from the first dance to the last set.</p>
+        <ul>
+          <li>Trios up to full horn sections</li>
+          <li>Reggae, soca, gospel, soul, pop</li>
+          <li>Your song list learned in advance</li>
+          <li>MC and vocals included</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="n">02</span>
+        <h3>PA &amp; sound systems</h3>
+        <p>Rigs sized to the room and the guest count, delivered, set up and run by someone who stays for the night.</p>
+        <ul>
+          <li>Speeches, ceremonies and full stage</li>
+          <li>Indoor, outdoor and marquee</li>
+          <li>Wireless mics and monitors</li>
+          <li>Delivery, setup and breakdown</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="n">03</span>
+        <h3>DJs</h3>
+        <p>Selectors who can hold a wedding and a warehouse, and know which one they are at.</p>
+        <ul>
+          <li>Full night or between band sets</li>
+          <li>Requests and do&#8209;not&#8209;play lists honoured</li>
+          <li>Own decks and backline</li>
+          <li>Dancefloor lighting available</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="n">04</span>
+        <h3>Event crew</h3>
+        <p>The people who make the rest invisible &mdash; load in, run the desk, handle the changeovers, load out.</p>
+        <ul>
+          <li>Sound engineer on site all night</li>
+          <li>Stage and cable management</li>
+          <li>Run sheet agreed beforehand</li>
+          <li>Backup gear on the truck</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ how ══════════ -->
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How booking works</p>
+      <h2>Three steps,<br>no chasing</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Send your date</h3>
+        <p>Message us or fill in the form below. Tell us the date, the venue and roughly how many people &mdash; that is enough for us to answer properly.</p>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>Get a real quote</h3>
+        <p>We come back with what we would bring, what it costs and whether the date is free. No site visit needed to get a number.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>We handle the night</h3>
+        <p>Crew arrives early, sets up, runs the sound and packs down. You go and enjoy your own event.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ gallery ══════════ -->
+<section id="work" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Past events</p>
+      <h2>Where this<br>gear has been</h2>
+      <p class="lede">These four frames are placeholders. In the live build they hold your own photos and video &mdash; we will send a shot list of exactly what to pull together.</p>
+    </div>
+
+    <div class="gal">
+      <div class="shot"><span class="ph">Placeholder</span><span class="cap">WEDDING RECEPTION<br>FULL BAND + PA</span></div>
+      <div class="shot"><span class="ph">Placeholder</span><span class="cap">CORPORATE LAUNCH<br>SPEECHES + DJ</span></div>
+      <div class="shot"><span class="ph">Placeholder</span><span class="cap">OUTDOOR STAGE<br>LINE ARRAY + CREW</span></div>
+      <div class="shot"><span class="ph">Placeholder</span><span class="cap">CHURCH ANNIVERSARY<br>SOUND + MONITORS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ reviews ══════════ -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What clients say</p>
+      <h2>Where your<br>reviews will go</h2>
+      <p class="lede">The three cards below are sample copy showing the layout only &mdash; nobody said these things. In the live build they carry real quotes you have collected, with the client's name and event.</p>
+    </div>
+
+    <div class="quotes">
+      <div class="quote">
+        <span class="ph">Sample copy &middot; not a real review</span>
+        <p>&ldquo;Placeholder quote in the voice of a wedding client, roughly this length, about how the band read the room.&rdquo;</p>
+        <span class="by">CLIENT NAME &middot; EVENT &middot; PARISH</span>
+      </div>
+      <div class="quote">
+        <span class="ph">Sample copy &middot; not a real review</span>
+        <p>&ldquo;Placeholder quote from a corporate booking, about the crew arriving early and the speeches being audible at the back.&rdquo;</p>
+        <span class="by">CLIENT NAME &middot; EVENT &middot; PARISH</span>
+      </div>
+      <div class="quote">
+        <span class="ph">Sample copy &middot; not a real review</span>
+        <p>&ldquo;Placeholder quote about a last&#8209;minute booking that still went smoothly, ending on a recommendation.&rdquo;</p>
+        <span class="by">CLIENT NAME &middot; EVENT &middot; PARISH</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ enquiry ══════════ -->
+<section id="book" class="book">
+  <div class="wrap book-in">
+    <div>
+      <p class="eyebrow">Check your date</p>
+      <h2>Tell us when,<br>and where</h2>
+      <p class="lede" style="margin-top:16px">Five details is all it takes for us to come back with a real answer instead of more questions.</p>
+
+      <div class="aside-card" style="margin-top:28px">
+        <h3>Rather just message?</h3>
+        <p>Most people do. The reply comes back in seconds, whatever time it is.</p>
+        <a class="btn btn--wa" href="#book" onclick="return false">WhatsApp &mdash; demo only</a>
+        <ul class="aside-list">
+          <li>Answered day or night</li>
+          <li>Your date checked while you type</li>
+          <li>Held 48 hours, no deposit</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <form class="form" id="enq" novalidate>
+        <div class="row row--2">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-contact">Phone or email</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="tel" required>
+          </div>
+        </div>
+
+        <div class="row row--2">
+          <div class="field">
+            <label for="f-date">Event date</label>
+            <input id="f-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="f-type">Event type</label>
+            <select id="f-type" name="type" required>
+              <option value="">Choose one</option>
+              <option>Wedding</option>
+              <option>Corporate</option>
+              <option>Private party</option>
+              <option>Church or community</option>
+              <option>Stage show</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row row--2">
+          <div class="field">
+            <label for="f-parish">Venue or parish</label>
+            <input id="f-parish" name="parish" type="text" required>
+          </div>
+          <div class="field">
+            <label for="f-guests">Roughly how many guests</label>
+            <input id="f-guests" name="guests" type="number" min="1" inputmode="numeric" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What do you need</label>
+          <div class="checks">
+            <label class="chk"><input type="checkbox" name="svc" value="Live band"><span>Live band</span></label>
+            <label class="chk"><input type="checkbox" name="svc" value="PA / sound"><span>PA / sound</span></label>
+            <label class="chk"><input type="checkbox" name="svc" value="DJ"><span>DJ</span></label>
+            <label class="chk"><input type="checkbox" name="svc" value="Crew"><span>Crew</span></label>
+            <label class="chk"><input type="checkbox" name="svc" value="Not sure yet"><span>Not sure yet</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-more">Anything else we should know</label>
+          <textarea id="f-more" name="more"></textarea>
+        </div>
+
+        <button class="btn btn--brass" type="submit">Send it &rarr;</button>
+        <p class="form-note">DEMO FORM &mdash; NOTHING IS SENT OR STORED. Submitting shows you what the owner would receive in the live build.</p>
+      </form>
+
+      <div class="sent" id="sent" role="status">
+        <h3>This is what would land in your inbox</h3>
+        <p style="font-size:.93rem;color:var(--haze)">In the live build this arrives by email the moment it is sent, and the agent has already answered the sender.</p>
+        <dl class="kv" id="kv"></dl>
+        <p class="disc">DEMO ONLY &middot; NO MESSAGE WAS SENT, NO DATA LEFT YOUR BROWSER AND NOTHING WAS STORED.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Experience Sound &amp; Music</h4>
+        <p>Live band, PA systems, DJs and event crew. One team for the whole night.</p>
+      </div>
+      <div>
+        <h4>Contact &mdash; placeholder</h4>
+        <ul class="foot-list">
+          <li>hello@example.com</li>
+          <li>+1 876 000 0000</li>
+          <li>experiencethesoundmusic.com</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul class="foot-list">
+          <li><a href="#services">What we bring</a></li>
+          <li><a href="#how">How booking works</a></li>
+          <li><a href="#work">Past events</a></li>
+          <li><a href="#book">Check your date</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="built">
+      <span>CONCEPT DEMO &middot; NOT AN OPERATING BUSINESS PAGE &middot; CONTACT DETAILS ABOVE ARE PLACEHOLDERS</span>
+      <span>Designed and built by <a href="https://calendar.app.google/Lr4EwPBgc7azDz7X7">YardScale Digital</a> &middot; proposal ESM&#8209;260830</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── the agent conversation, played once when it scrolls into view ──
+   Scripted, not live: this demonstrates the shape of the exchange the
+   proposal describes (A-01 to A-03), not a connected system. */
+(function(){
+  var script = [
+    ['them','Hi, do you have a band free for the 14th?'],
+    ['agent','Evening! Yes — the 14th is still open. Is that a wedding, corporate or a private party?'],
+    ['them','Wedding reception. About 150 people, up in St Ann.'],
+    ['agent','Lovely. For 150 in St Ann we’d bring the six-piece with full PA and an engineer for the night — that’s our Reception package.'],
+    ['agent','Want me to hold the 14th while you check with your partner? No deposit to hold it for 48 hours.'],
+    ['them','Yes please, that would help'],
+    ['agent','Held. I’ve passed your details to the team and they’ll confirm within the hour.']
+  ];
+  var log = document.getElementById('log');
+  var chat = document.getElementById('chat');
+  if(!log || !chat) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function add(i){
+    if(i >= script.length) return;
+    var m = document.createElement('div');
+    m.className = 'msg msg--' + script[i][0];
+    m.textContent = script[i][1];
+    log.appendChild(m);
+    if(reduce){ add(i+1); return; }
+    setTimeout(function(){ add(i+1); }, 900 + script[i][1].length * 11);
+  }
+
+  var started = false;
+  function start(){ if(started) return; started = true; add(0); }
+
+  if(reduce || !('IntersectionObserver' in window)){ start(); return; }
+
+  // Already on screen at load (the usual case on desktop) — just play it.
+  var r = chat.getBoundingClientRect();
+  if(r.top < (window.innerHeight || 0) && r.bottom > 0){ start(); }
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ start(); io.disconnect(); } });
+    }, {threshold:.3});
+    io.observe(chat);
+    // Safety net: never leave the panel sitting empty.
+    setTimeout(start, 4000);
+  }
+})();
+
+/* ── enquiry form: shows what the owner would receive, sends nothing ── */
+(function(){
+  var form = document.getElementById('enq');
+  var sent = document.getElementById('sent');
+  var kv   = document.getElementById('kv');
+  if(!form || !sent || !kv) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+
+    var d = new FormData(form);
+    var svc = d.getAll('svc');
+    var rows = [
+      ['Name',        d.get('name')],
+      ['Reach them',  d.get('contact')],
+      ['Event date',  d.get('date')],
+      ['Event type',  d.get('type')],
+      ['Venue',       d.get('parish')],
+      ['Guests',      d.get('guests')],
+      ['Needs',       svc.length ? svc.join(', ') : 'Not specified'],
+      ['Notes',       (d.get('more') || '').trim() || '—']
+    ];
+
+    kv.textContent = '';
+    rows.forEach(function(r){
+      var wrap = document.createElement('div');
+      var dt = document.createElement('dt'); dt.textContent = r[0];
+      var dd = document.createElement('dd'); dd.textContent = r[1] || '—';
+      wrap.appendChild(dt); wrap.appendChild(dd); kv.appendChild(wrap);
+    });
+
+    form.style.display = 'none';
+    sent.classList.add('on');
+    sent.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+
+</body>
+</html>

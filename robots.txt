@@ -4,4 +4,7 @@ Allow: /
 # Client proposals are shared by link, not indexed.
 Disallow: /proposals/
 
+# Client concept demos are shared by link, not indexed.
+Disallow: /demo/
+
 Sitemap: __SITE_URL__/sitemap.xml
