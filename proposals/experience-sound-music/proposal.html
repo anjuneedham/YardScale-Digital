@@ -267,6 +267,38 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
   .contact a{border-bottom:1px solid var(--hair)}
   footer{padding:7mm 0}
 }
+
+/* ── scope groups: the offer is four parts, so the spec sheet is too ── */
+.grp{margin-top:clamp(30px,4.4vw,44px);break-inside:avoid}
+.grp:first-child{margin-top:8px}
+.grp-head{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  border-bottom:2px solid var(--ink);padding-bottom:10px;
+}
+.grp-num{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;color:var(--muted);flex:none}
+.grp-title{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-variation-settings:'wdth' 118;font-size:1.16rem;letter-spacing:-.012em;line-height:1;
+}
+.grp .spec-row:last-child{border-bottom:1px solid var(--hair)}
+
+/* ── signal path: four sources, one inbox ── */
+figure{margin:34px 0 0}
+figure svg{width:100%;height:auto;display:block;color:var(--ink)}
+figcaption{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;color:var(--muted);
+  line-height:1.55;margin-top:16px;padding-top:14px;border-top:1px solid var(--hair);max-width:64ch;
+}
+.dg-box{fill:var(--paper-2);stroke:currentColor;stroke-width:1.25}
+.dg-hero{fill:#eaf9c4;stroke:#8fb810;stroke-width:2.25}
+.dg-out{fill:var(--ink);stroke:var(--ink);stroke-width:1.25}
+.dg-t{font-family:var(--body);font-size:16px;font-weight:600;fill:currentColor}
+.dg-t--out{fill:var(--paper)}
+.dg-s{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.06em;fill:var(--muted)}
+.dg-s--out{fill:var(--muted-dark)}
+.dg-w{stroke:currentColor;stroke-width:1.25;fill:none;opacity:.55}
+.dg-w--hero{stroke:#8fb810;stroke-width:2;opacity:1}
+.dg-lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.08em;fill:var(--muted)}
 </style>
 
 <!-- ═══════════════════ COVER ═══════════════════ -->
@@ -297,9 +329,9 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
       </div>
     </dl>
 
-    <h1>The link in<br>your message<br>needs <span class="em">somewhere<br>to land</span></h1>
+    <h1>Four ways in.<br>One inbox.<br><span class="em">None of it<br>typed by hand.</span></h1>
 
-    <p class="lede">A booking page built for the traffic you are already generating by hand &mdash; so the people who tap that link can hire you on the spot instead of reading about you and leaving.</p>
+    <p class="lede">A website, an AI agent, organic content and paid ads &mdash; built as one lead generation system, so enquiries arrive qualified instead of arriving because you sat down and typed something.</p>
 
     <div class="cover-foot">
       <div>
@@ -312,7 +344,7 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
       </div>
       <div>
         <span class="lbl">Build time</span>
-        <span class="fig">3 weeks</span>
+        <span class="fig">5 weeks</span>
       </div>
     </div>
   </div>
@@ -323,20 +355,20 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow"><span class="tick"></span> Where this came from</p>
-      <h2>You are already<br>doing the hard part</h2>
+      <h2>Right now, you are<br>the whole system</h2>
     </div>
 
-    <p>You reached out to us directly. The message was clear about what you offer &mdash; a live band, PA systems, DJs and a support team that knows how to run a room &mdash; and it ended with a link. That is outreach most businesses never get around to doing, and you are doing it by hand, one conversation at a time.</p>
+    <p>You reached out to us directly. The message was clear about what you offer &mdash; a live band, PA systems, DJs and a support team that knows how to run a room &mdash; and it ended with a link. That is outreach most businesses never get around to doing.</p>
 
-    <p>Then the link goes to an about page.</p>
+    <p>It is also the problem. Every enquiry you get costs you a message you typed yourself, so the number of leads your business can produce is capped by the number of messages one person can send in a day. The link goes to an about page, so the people who do tap arrive somewhere that tells them who you are instead of asking them what they need. And when someone decides at eleven at night that they need a band for the 14th, nobody answers until morning.</p>
 
-    <p>Someone with an event in six weeks reads your message, gets interested enough to tap, and arrives somewhere that tells them who you are rather than asking them what they need. There is nothing wrong with that page. It is just not the page that converts the click you worked for. <strong>The outreach is working; the destination is not built to catch it.</strong></p>
+    <p><strong>Nothing here is broken. It is just all being done by hand, by you.</strong> This proposal replaces that with four things that run whether you are working or not, and routes every one of them into the same place.</p>
 
     <div class="obs">
       <div>
         <span class="n">01</span>
-        <h3>The effort is manual</h3>
-        <p>Every enquiry costs you a message you typed yourself. That is real work, and right now it is the only thing bringing people in.</p>
+        <h3>The reach is capped</h3>
+        <p>Outreach only happens on the days you have time to do it. Nothing is working on the days you are running an event.</p>
       </div>
       <div>
         <span class="n">02</span>
@@ -352,19 +384,77 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
   </div>
 </section>
 
-<!-- ═══════════════════ PROPOSAL ═══════════════════ -->
+<!-- ═══════════════════ THE SYSTEM ═══════════════════ -->
 <section>
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow"><span class="tick"></span> What we propose</p>
-      <h2>One page,<br>one job</h2>
+      <h2>One system,<br>four inputs</h2>
     </div>
 
-    <p>We build you a single booking page and point every link you send at it &mdash; the DMs, the bio, the posts, the flyers. It opens fast on a phone, because a phone is what your traffic is on. It says what you do, shows the four things you hire out, and then does the one thing your current destination does not: it asks for the date.</p>
+    <p>Organic content and paid ads put you in front of people who are planning events. Both send them to a website built to take a booking rather than tell a story. That site, and every DM that arrives on WhatsApp, Instagram or TikTok, feeds into an agent trained on your prices, your packages and your tone &mdash; which answers immediately, at any hour, in your voice.</p>
 
-    <p>Two ways to reach you from that page. A short enquiry form for the people who want to think, and a WhatsApp button for the people who want to talk now. Both land with you the same day, with the details already attached.</p>
+    <p>The agent handles the questions you answer fifty times a month. It takes the date, the venue, the guest count and the services they need. Then it passes you the people worth your time, with the details already attached &mdash; and answers everyone else without involving you at all.</p>
 
-    <p>This is a one&#8209;off build, fixed price, fully handed over. When it is done it is yours &mdash; the files, the hosting account, the domain, all of it. Nothing you run afterwards depends on us.</p>
+    <figure>
+      <svg viewBox="0 0 830 300" role="img" aria-label="Organic content and paid ads drive traffic to the website. The website and inbound DMs both feed the agent, which qualifies every conversation and passes only booked jobs and real leads through to you.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity=".55"/>
+          </marker>
+          <marker id="ar-hero" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb810"/>
+          </marker>
+        </defs>
+
+        <!-- inputs -->
+        <rect class="dg-box" x="1" y="16" width="175" height="62" rx="2"/>
+        <text class="dg-t" x="17" y="43">Organic content</text>
+        <text class="dg-s" x="17" y="62">POSTED ON A SCHEDULE</text>
+
+        <rect class="dg-box" x="1" y="96" width="175" height="62" rx="2"/>
+        <text class="dg-t" x="17" y="123">Paid ads</text>
+        <text class="dg-s" x="17" y="142">RUNNING DAILY</text>
+
+        <rect class="dg-box" x="1" y="222" width="175" height="62" rx="2"/>
+        <text class="dg-t" x="17" y="249">DMs to your pages</text>
+        <text class="dg-s" x="17" y="268">WHATSAPP, IG, TIKTOK</text>
+
+        <!-- website -->
+        <rect class="dg-box" x="238" y="56" width="176" height="62" rx="2"/>
+        <text class="dg-t" x="254" y="83">The website</text>
+        <text class="dg-s" x="254" y="102">ASKS FOR THE DATE</text>
+
+        <!-- agent: the piece the whole offer turns on -->
+        <rect class="dg-hero" x="470" y="132" width="160" height="76" rx="2"/>
+        <text class="dg-t" x="486" y="158">The agent</text>
+        <text class="dg-s" x="486" y="177">ANSWERS, QUOTES</text>
+        <text class="dg-s" x="486" y="192">QUALIFIES, BOOKS</text>
+
+        <!-- output -->
+        <rect class="dg-out" x="706" y="135" width="124" height="70" rx="2"/>
+        <text class="dg-t dg-t--out" x="722" y="162">You</text>
+        <text class="dg-s dg-s--out" x="722" y="181">BOOKED JOBS</text>
+        <text class="dg-s dg-s--out" x="722" y="196">AND REAL LEADS</text>
+
+        <!-- routing -->
+        <path class="dg-w" d="M 176 47 L 207 47 L 207 76 L 232 76" marker-end="url(#ar)"/>
+        <text class="dg-lbl" x="182" y="39">TRAFFIC</text>
+
+        <path class="dg-w" d="M 176 127 L 207 127 L 207 98 L 232 98" marker-end="url(#ar)"/>
+        <text class="dg-lbl" x="182" y="145">TRAFFIC</text>
+
+        <path class="dg-w" d="M 414 87 L 442 87 L 442 152 L 464 152" marker-end="url(#ar)"/>
+        <text class="dg-lbl" x="418" y="79">ENQUIRY FORM</text>
+
+        <path class="dg-w" d="M 176 253 L 442 253 L 442 188 L 464 188" marker-end="url(#ar)"/>
+        <text class="dg-lbl" x="186" y="245">EVERY MESSAGE, ANSWERED IN SECONDS</text>
+
+        <path class="dg-w dg-w--hero" d="M 630 170 L 700 170" marker-end="url(#ar-hero)"/>
+        <text class="dg-lbl" x="634" y="162">QUALIFIED</text>
+      </svg>
+      <figcaption>Every route ends at the same place. The agent sits in front of you, not beside you &mdash; which is what turns four separate channels into one inbox you can actually work.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -376,61 +466,147 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
       <h2>What gets built</h2>
     </div>
 
-    <div class="spec">
+    <!-- ─── 01 website ─── -->
+    <div class="grp">
+      <div class="grp-head">
+        <span class="grp-num">PART 01</span>
+        <span class="grp-title">The website</span>
+      </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;01</div>
+        <div class="ref">W&#8209;01</div>
         <div>
           <h3>The booking page</h3>
-          <p>A single page, built mobile&#8209;first: the offer up top, your four services broken out &mdash; live band, PA and sound systems, DJs, event crew &mdash; and a clear path to enquire from anywhere on the page.</p>
+          <p>Built mobile&#8209;first, because a phone is what your traffic is on. The offer up top, your four services broken out &mdash; live band, PA and sound systems, DJs, event crew &mdash; and a clear way to enquire from anywhere on the page.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;02</div>
+        <div class="ref">W&#8209;02</div>
         <div>
-          <h3>Enquiry form that asks the right questions</h3>
-          <p>Event date, event type, venue or parish, rough guest count, and which services they need. It arrives in your inbox already qualified, so your first reply can be a real answer instead of five questions.</p>
+          <h3>An enquiry form that qualifies</h3>
+          <p>Event date, event type, venue or parish, rough guest count, services needed. It arrives already answered, so your first reply can be a price instead of five questions.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;03</div>
-        <div>
-          <h3>One&#8209;tap WhatsApp booking</h3>
-          <p>A button that opens WhatsApp with the message part&#8209;written. The person only has to add their date and hit send &mdash; which is the difference between an enquiry and a page view.</p>
-        </div>
-      </div>
-      <div class="spec-row">
-        <div class="ref">S&#8209;04</div>
+        <div class="ref">W&#8209;03</div>
         <div>
           <h3>Gallery and proof</h3>
-          <p>A section for your photos, video and past events, plus room for client quotes. Built to take the material you already have &mdash; we will tell you exactly what to send and what is missing.</p>
+          <p>A section for your photos, video and past events, with room for client quotes. We will tell you exactly what to send and what is missing.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;05</div>
+        <div class="ref">W&#8209;04</div>
         <div>
-          <h3>Link previews that actually render</h3>
-          <p>Right now your link travels through WhatsApp and Instagram as bare text. We set the title, description and preview image so the URL unfurls into a proper card every time you paste it.</p>
+          <h3>Hosting, domain, speed and link previews</h3>
+          <p>Deployed under your own account, wired to your domain with SSL, and built static so it opens in about a second on mobile data. Preview cards set so the URL unfurls properly every time it is pasted into WhatsApp or Instagram.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 02 agent ─── -->
+    <div class="grp">
+      <div class="grp-head">
+        <span class="grp-num">PART 02</span>
+        <span class="grp-title">The agent</span>
+      </div>
+      <div class="spec-row">
+        <div class="ref">A&#8209;01</div>
+        <div>
+          <h3>A DM agent on WhatsApp, Instagram and TikTok</h3>
+          <p>It answers every message that arrives, in seconds, at any hour. The enquiry that lands at eleven at night gets a real reply at eleven at night rather than whenever you next open your phone.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;06</div>
+        <div class="ref">A&#8209;02</div>
         <div>
-          <h3>Found on search, locally</h3>
-          <p>Page titles, descriptions and structure set up for the terms people actually type &mdash; sound system rental, live band hire, DJ for hire &mdash; plus your Google Business Profile claimed and pointed at the new page.</p>
+          <h3>Trained on your business, in your voice</h3>
+          <p>Your prices, packages, service areas, availability rules and the questions you get asked most, written the way you would write them. We build this from a working session with you and refine it against real conversations before it goes live.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;07</div>
+        <div class="ref">A&#8209;03</div>
         <div>
-          <h3>Hosting, domain and speed</h3>
-          <p>Deployed on managed hosting under your own account, wired to your domain with SSL. Built as a static page so it loads in about a second on mobile data, and costs nothing per month to keep online.</p>
+          <h3>Qualifies, quotes and books</h3>
+          <p>It takes the date, venue, guest count and services, gives your standard pricing where the rules are clear, and hands you the people worth your time with the details attached. Anything outside its rules is escalated to you rather than guessed at.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 03 organic ─── -->
+    <div class="grp">
+      <div class="grp-head">
+        <span class="grp-num">PART 03</span>
+        <span class="grp-title">Organic</span>
+      </div>
+      <div class="spec-row">
+        <div class="ref">O&#8209;01</div>
+        <div>
+          <h3>A content system and a 30&#8209;day calendar</h3>
+          <p>What to post, when, and why &mdash; built around what you actually do in a week. Formats and hooks chosen for your market, not a generic template, and simple enough that you can keep running it after handover.</p>
         </div>
       </div>
       <div class="spec-row">
-        <div class="ref">S&#8209;08</div>
+        <div class="ref">O&#8209;02</div>
         <div>
-          <h3>Handover and a walkthrough</h3>
-          <p>A live session where we hand you the accounts and show you how it works, plus written notes for changing your own copy, prices and photos later without calling anyone.</p>
+          <h3>A first batch of content, produced</h3>
+          <p>We cut, caption and title the opening month from footage you already have, so the system launches with content in it rather than an empty calendar and good intentions.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">O&#8209;03</div>
+        <div>
+          <h3>Profiles set up to convert</h3>
+          <p>Bio, link, highlights and pinned posts across your pages, all pointed at the new site. Google Business Profile claimed and completed so you turn up when someone searches for sound system or band hire near them.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 04 paid ─── -->
+    <div class="grp">
+      <div class="grp-head">
+        <span class="grp-num">PART 04</span>
+        <span class="grp-title">Paid</span>
+      </div>
+      <div class="spec-row">
+        <div class="ref">P&#8209;01</div>
+        <div>
+          <h3>Campaigns built and launched</h3>
+          <p>Meta ads across Instagram and Facebook, targeted at people planning events in the parishes you serve. Audiences, budgets and structure set up in an ad account registered in your name.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">P&#8209;02</div>
+        <div>
+          <h3>Ad creative, and more than one of it</h3>
+          <p>Several versions built from your material and run against each other, so within the first weeks you know which offer and which cut people respond to instead of guessing.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">P&#8209;03</div>
+        <div>
+          <h3>Tracking, so you can see what worked</h3>
+          <p>Conversion tracking wired from the ad through to the enquiry. You will be able to see which campaign produced which booking &mdash; which is the only thing that makes an ad budget a decision rather than a gamble.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 05 handover ─── -->
+    <div class="grp">
+      <div class="grp-head">
+        <span class="grp-num">PART 05</span>
+        <span class="grp-title">Handover</span>
+      </div>
+      <div class="spec-row">
+        <div class="ref">H&#8209;01</div>
+        <div>
+          <h3>One place everything lands</h3>
+          <p>Website enquiries, agent conversations and ad leads routed into a single inbox with the same details on each, so working your leads is one list and not four apps.</p>
+        </div>
+      </div>
+      <div class="spec-row">
+        <div class="ref">H&#8209;02</div>
+        <div>
+          <h3>Accounts in your name, and a walkthrough</h3>
+          <p>A live session where we hand over every account &mdash; hosting, domain, ad account, agent &mdash; and show you how the parts fit, plus written notes for changing your own copy, prices and agent answers later without calling anyone.</p>
         </div>
       </div>
     </div>
@@ -445,15 +621,15 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
       <h2>What this<br>quote does not cover</h2>
     </div>
 
-    <p>Listed so there are no surprises. Each of these is something we build, and each can be quoted separately once the page is live and we can both see what it is doing.</p>
+    <p>Listed so there are no surprises and the fixed price holds. Most of these are things we do &mdash; they are simply quoted separately, once the system is live and we can both see what it is producing.</p>
 
     <ul class="excl">
-      <li><span class="x">&mdash;</span><span><b>An AI booking agent</b> that answers your DMs on WhatsApp, Instagram and TikTok in your voice, quotes your prices and books the job.</span></li>
-      <li><span class="x">&mdash;</span><span><b>Content production</b> &mdash; filming, editing, captions, or running a posting schedule for you.</span></li>
-      <li><span class="x">&mdash;</span><span><b>Paid advertising</b> and any media spend that goes with it.</span></li>
-      <li><span class="x">&mdash;</span><span><b>Photography and videography</b> of your events. You supply the images; we place them properly.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Your advertising budget.</b> Media spend is paid by you directly to Meta, on your own card, in an account you own. We build and launch the campaigns; the money that runs them never passes through us.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Ongoing campaign management</b> after launch &mdash; the weekly optimising, budget shifting and new creative that keeps ads working past the first month.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Content production past the first batch.</b> You get the system, the calendar and the opening month; producing month two onward is a separate arrangement.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Photography and videography</b> of your events. You supply the footage; we cut and place it.</span></li>
       <li><span class="x">&mdash;</span><span><b>Logo or identity design.</b> We work with the brand you have.</span></li>
-      <li><span class="x">&mdash;</span><span><b>Ongoing changes after handover.</b> You will be able to edit your own copy and prices; structural work is quoted when you need it.</span></li>
+      <li><span class="x">&mdash;</span><span><b>Third&#8209;party subscriptions</b> the agent or the ad platform may require. We will tell you what these are and what they cost before anything is signed up for.</span></li>
     </ul>
   </div>
 </section>
@@ -463,7 +639,7 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow"><span class="tick"></span> How it runs</p>
-      <h2>Three weeks,<br>start to handover</h2>
+      <h2>Five weeks,<br>start to handover</h2>
     </div>
 
     <div class="sched">
@@ -471,15 +647,15 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
         <div class="num">01</div>
         <div>
           <span class="wk">Week one &middot; after deposit clears</span>
-          <h3>Call, content and structure</h3>
-          <p>A working session to get your prices, packages, service details and the questions you get asked most. You send photos and video; we come back with the page structure and the copy for your sign&#8209;off.</p>
+          <h3>Everything we need, in one session</h3>
+          <p>A working session for your prices, packages, service areas and the questions you get asked most &mdash; the same material the site copy and the agent are both built from. You send footage and photos; we come back with the page structure for sign&#8209;off.</p>
         </div>
       </div>
       <div class="step">
         <div class="num">02</div>
         <div>
           <span class="wk">Week two</span>
-          <h3>The build</h3>
+          <h3>The website</h3>
           <p>The page gets built and put on a private link you can open on your phone. You see it coming together as it happens, not at the end.</p>
         </div>
       </div>
@@ -487,8 +663,24 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
         <div class="num">03</div>
         <div>
           <span class="wk">Week three</span>
-          <h3>Revisions, launch, handover</h3>
-          <p>Two rounds of changes, then the domain gets pointed and the page goes live. We walk you through the accounts, hand over the notes, and you start putting the new link in every message you send.</p>
+          <h3>The agent, built and tested</h3>
+          <p>Trained, connected to your channels, then tested against real conversations &mdash; including the awkward ones &mdash; until its answers sound like you. Nothing goes live until you have read what it says.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div>
+          <span class="wk">Week four</span>
+          <h3>Organic and paid, prepared</h3>
+          <p>Calendar built and the first batch of content produced. Ad account set up, campaigns and creative built, tracking wired in and verified end to end.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">05</div>
+        <div>
+          <span class="wk">Week five</span>
+          <h3>Launch, revisions, handover</h3>
+          <p>Two rounds of changes, then the domain is pointed, the agent is switched on and the campaigns start. We walk you through every account, hand over the notes, and the system starts working without you.</p>
         </div>
       </div>
     </div>
@@ -503,10 +695,10 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
       <h2>Fixed price,<br>split in half</h2>
     </div>
 
-    <p class="intro">One number for the whole build, agreed before anything starts. It does not move &mdash; not for revisions inside the two included rounds, and not because something took us longer than we thought.</p>
+    <p class="intro">One number for the whole build, agreed before anything starts. It does not move &mdash; not for revisions inside the two included rounds, and not because something took us longer than we thought. Your advertising budget sits outside this figure and is paid straight to the platform.</p>
 
     <div class="total">
-      <span class="lbl">Total &mdash; scope items S&#8209;01 through S&#8209;08</span>
+      <span class="lbl">Total &mdash; parts 01 through 05, all fifteen items</span>
       <span class="fig">J$50,000</span>
       <span class="cur">JMD</span>
     </div>
@@ -537,7 +729,7 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
           <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
           <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
         </div>
-        <p class="ch-note">Due once the page is approved and live. Accounts and ownership transfer to you on the day it settles.</p>
+        <p class="ch-note">Due once the system is live and approved. Every account transfers into your name on the day it settles.</p>
       </div>
     </div>
   </div>
@@ -561,24 +753,32 @@ footer .ref{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-t
         <dd>J$25,000 on acceptance. It secures your place in the build schedule and is non&#8209;refundable once week one begins, though it can be moved to a later slot if you need to reschedule before we start.</dd>
       </div>
       <div class="term">
+        <dt>Advertising spend</dt>
+        <dd>Not included and never invoiced by us. Campaigns run on your card in your own ad account, so you can see, cap or stop the spend at any time without going through anyone.</dd>
+      </div>
+      <div class="term">
+        <dt>What results we promise</dt>
+        <dd>We commit to building, launching and handing over everything listed in parts 01 to 05, on the schedule above. We do not promise a specific number of leads or bookings &mdash; anyone who does is guessing. What you get is a system that measures itself, so what it produces is visible from week one rather than argued about later.</dd>
+      </div>
+      <div class="term">
         <dt>Revisions</dt>
-        <dd>Two rounds included, gathered as one list each time. Further rounds, or changes to scope agreed here, are quoted before any work on them starts.</dd>
+        <dd>Two rounds included, gathered as one list each time. Further rounds, or changes to the scope agreed here, are quoted before any work on them starts.</dd>
       </div>
       <div class="term">
         <dt>What you supply</dt>
-        <dd>Logo files, photos and video, your service list and prices, and access to your domain. We will send a single checklist in week one so nothing gets chased twice.</dd>
+        <dd>Logo files, photos and footage, your service list and prices, and access to your domain and social accounts. We will send a single checklist in week one so nothing gets chased twice.</dd>
       </div>
       <div class="term">
         <dt>Timeline</dt>
-        <dd>Three weeks from the day the deposit clears, assuming your material and sign&#8209;offs come back inside a few days. Delays on either side move the date, and we will tell you as soon as one does.</dd>
+        <dd>Five weeks from the day the deposit clears, assuming your material and sign&#8209;offs come back inside a few days. Delays on either side move the date, and we will tell you as soon as one does.</dd>
+      </div>
+      <div class="term">
+        <dt>Platform dependencies</dt>
+        <dd>The agent and the ad campaigns run on Meta and TikTok's platforms and are subject to their rules and approvals, which those companies change without notice. We build to their current requirements and will tell you promptly if a change affects you.</dd>
       </div>
       <div class="term">
         <dt>Ownership</dt>
-        <dd>Everything built here transfers to you in full on final payment &mdash; the code, the page, the hosting and the domain, in accounts registered in your name. No lock&#8209;in and nothing held back.</dd>
-      </div>
-      <div class="term">
-        <dt>Third&#8209;party costs</dt>
-        <dd>Your domain renewal is yours. Hosting for a page this size sits on a free tier and is expected to cost nothing; if that ever changes we will tell you before it does.</dd>
+        <dd>Everything built here transfers to you in full on final payment &mdash; the site, the agent and its training, the ad account, the hosting and the domain, in accounts registered in your name. No lock&#8209;in and nothing held back.</dd>
       </div>
     </dl>
   </div>

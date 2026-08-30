@@ -1,7 +1,13 @@
 # Experience Sound & Music — proposal ESM-260830
 
-Fixed-price booking-page build. **J$50,000 JMD**, 50% deposit (J$25,000) on
-acceptance, balance on handover. Three-week build, one-off, full handover.
+Fixed-price build of a four-part lead generation system — website, AI DM
+agent, organic content and paid ads. **J$50,000 JMD**, 50% deposit (J$25,000)
+on acceptance, balance on handover. Five-week build, one-off, full handover.
+
+Media spend is deliberately **excluded** and runs on the client's own card in
+an ad account in their name. If that changes, it needs updating in three
+places: the cover-adjacent *Investment* intro, the first exclusion, and the
+*Advertising spend* term.
 
 ```
 proposal.src.html   the source — edit this one
@@ -33,6 +39,9 @@ back into a full document before printing.
   anything that no longer holds.
 - **Dates.** Prepared 30 August 2026, valid to 20 September 2026. Both appear
   on the cover, in *Terms* and in the footer.
+- **Check the agent claims** in part 02 against what you can actually deliver
+  on each platform — WhatsApp, Instagram and TikTok have different automation
+  rules and approval paths.
 - **Reference ESM-260830** appears on the cover, the accept line and the footer.
 
 ## Hosting it
