@@ -94,6 +94,75 @@ and it is the single biggest thing you can do for inbox placement.
 
 ---
 
+## If you uploaded and still see a Namecheap / "coming soon" page
+
+There are only two causes, and they need opposite fixes. **Find out which one
+first** — the test takes thirty seconds.
+
+### The test: open the hosting account's temporary URL
+
+Namecheap gives every cPanel account an address that bypasses the domain
+entirely, so it works before DNS does. Find it in the Namecheap dashboard under
+**Hosting List → Manage**, or in cPanel's right sidebar. It looks like:
+
+```
+http://serverNNN.web-hosting.com/~yourcpanelusername/
+```
+
+- **The site shows there** → the files are fine. **It is DNS.** Go to A below.
+- **You still get a placeholder there** → DNS is fine. **It is the files.** Go to B.
+
+### A. DNS — the domain isn't pointed at the hosting
+
+Buying a domain and buying hosting does not connect them; that is a separate
+step people miss constantly.
+
+Namecheap dashboard → **Domain List → Manage → Nameservers** → choose
+**Namecheap Web Hosting DNS** → save. Then in cPanel confirm
+`yardscaledigital.com` is listed under **Domains** with its document root set
+to `public_html`.
+
+Give it an hour. A parking page cached in your browser can outlive the change —
+check in a private window.
+
+### B. Files — something outranks index.html
+
+Apache serves the first match in its `DirectoryIndex` list, and on a fresh
+Namecheap account that list usually puts **`index.php` before `index.html`**.
+Namecheap drops a placeholder `index.php` into `public_html` on setup, so it
+keeps winning even though your `index.html` is sitting right next to it.
+
+In cPanel **File Manager → public_html**:
+
+1. **Settings → Show Hidden Files (dotfiles)** — turn this on first, or you
+   cannot see `.htaccess` and half of what follows is invisible.
+2. **Delete** any of these that exist: `index.php`, `default.html`,
+   `default.htm`, `index.htm`.
+3. Confirm `index.html` sits **directly** in `public_html` — not in
+   `public_html/site/` or `public_html/yardscaledigital-public_html/`. If it is
+   one level down, select all and **Move** it up.
+4. Confirm `.htaccess` is there. Its `DirectoryIndex index.html` line is what
+   stops this happening again.
+
+### Still stuck? Let the server answer
+
+Upload `check.php`, visit `https://yardscaledigital.com/check.php` (or the temp
+URL above), and send the page back. It reports the PHP version, whether the
+files landed at the web root or in a subfolder, which expected files are
+missing, any leftover placeholder that would outrank `index.html`, and how the
+server reports SSL. **Delete it once you're done.**
+
+### A 500 error or a redirect loop instead?
+
+That is always `.htaccess`. Delete it, rename `htaccess-minimal.txt` to
+`.htaccess`, reload. If that fixes it, tell me which directive was rejected and
+I'll adjust — do not just leave the minimal one in place, you lose compression
+and caching.
+
+Do **not** add a force-HTTPS rule to `.htaccess` by hand. Use cPanel →
+**Domains → Force HTTPS Redirect**; it knows how the server is fronted and
+cannot cause the loop that a hand-written rule can.
+
 ## Editing later
 
 Everything is one file per page with the CSS at the top — open `index.html`,
