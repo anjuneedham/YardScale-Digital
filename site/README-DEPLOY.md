@@ -8,10 +8,14 @@ index.html          the whole site
 thanks.html         where the contact form lands after a send
 404.html            not-found page
 send.php            contact form handler (replaces Netlify Forms)
-.htaccess           HTTPS, canonical domain, caching, compression, 404
+.htaccess           canonical domain, caching, compression, 404 (hidden file)
+htaccess.txt        the same config, visible — rename it to .htaccess if the
+                    dotfile didn't survive the upload
+htaccess-minimal.txt safe-mode config, if the full one ever causes a 500
+check.php           one-off deployment diagnostic — delete after using
 robots.txt          + sitemap.xml
 og-image.png        link preview for WhatsApp / socials
-favicon.ico         + favicon-32.png, apple-touch-icon.png, icon-512.png
+favicon.ico         + favicon-32.png, apple-touch-icon.png
 brand/              logos
 ```
 
@@ -24,12 +28,26 @@ cPanel → **File Manager** → open **public_html** → **Upload**.
 Upload the **contents** of this folder, not the folder itself. `index.html`
 must sit directly in `public_html`, not in `public_html/site/`.
 
-**`.htaccess` is a hidden file.** File Manager hides it by default and it is the
-single most common thing to miss — without it you get no HTTPS redirect, no
-www redirect and no custom 404. Turn on **Settings → Show Hidden Files (dotfiles)**
-before you upload, then confirm it is listed afterwards.
-
 If you drag a ZIP up instead, use File Manager's **Extract**, then delete the ZIP.
+
+### About `.htaccess`
+
+It ships twice, on purpose:
+
+- **`.htaccess`** — the real one. It is a hidden file, so File Manager will not
+  show it unless you turn on **Settings → Show Hidden Files (dotfiles)**, and
+  some cPanel extractors skip dotfiles altogether.
+- **`htaccess.txt`** — the identical config as an ordinary, visible file. If you
+  cannot see `.htaccess` after extracting, **rename `htaccess.txt` to
+  `.htaccess`** (right-click → Rename). It disappears from the listing once
+  renamed; that is expected, not a failure.
+
+**A missing `.htaccess` does not stop the site loading.** You lose caching,
+security headers, tidy URLs and the custom 404 — the pages still serve. The one
+exception is a leftover `index.php` in `public_html`, because
+`DirectoryIndex index.html` is what stops that file outranking yours. So if you
+are looking at a placeholder, delete the placeholder first and sort out
+`.htaccess` second.
 
 ## 2. Point the domain
 

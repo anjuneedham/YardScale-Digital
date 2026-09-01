@@ -46,6 +46,36 @@ foreach (array('index.php', 'default.html', 'default.htm', 'index.htm') as $f) {
 }
 echo "  leftover placeholder ..... " . ($stray ? implode(', ', $stray) . "  <-- DELETE THESE, they win over index.html" : 'none') . "\n\n";
 
+// A full listing, dotfiles included. File Manager hides these unless you dig
+// into Settings, so this is the reliable way to see what actually landed.
+echo "EVERYTHING IN THIS FOLDER (dotfiles included)\n";
+$items = scandir($here);
+$shown = 0;
+foreach ($items as $f) {
+    if ($f === '.' || $f === '..') { continue; }
+    $path = $here . '/' . $f;
+    $isDir = is_dir($path);
+    printf("  %-36s %10s  %s\n",
+        $f . ($isDir ? '/' : ''),
+        $isDir ? '<dir>' : number_format(filesize($path)) . ' B',
+        date('d M H:i', filemtime($path))
+    );
+    $shown++;
+}
+if (!$shown) { echo "  (empty — nothing was extracted here)\n"; }
+echo "\n";
+
+echo "APACHE CONFIG\n";
+echo "  .htaccess present ........ " . yn(file_exists($here . '/.htaccess')) . "\n";
+echo "  htaccess.txt present ..... " . yn(file_exists($here . '/htaccess.txt')) . "\n";
+if (!file_exists($here . '/.htaccess')) {
+    echo "     ^ not fatal. Without it you lose caching, security headers, tidy\n";
+    echo "       URLs and the custom 404 — the site itself still works, UNLESS a\n";
+    echo "       leftover index.php is listed above. To install it: rename\n";
+    echo "       htaccess.txt to .htaccess in File Manager.\n";
+}
+echo "\n";
+
 echo "HOW THE SERVER SEES HTTPS   (this decides the redirect question)\n";
 echo "  HTTPS .................... " . val('HTTPS') . "\n";
 echo "  X-Forwarded-Proto ........ " . val('HTTP_X_FORWARDED_PROTO') . "\n";
