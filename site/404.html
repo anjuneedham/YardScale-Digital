@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — YardScale Digital</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#131313">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#131313;--paper:#f9f8f4;--lime:#c3fc0f;--muted-dark:#8f8f86;--hair-dark:#2e2e2b;
+  --display:'Archivo','Arial Narrow',Helvetica,sans-serif;
+  --body:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:hidden}
+body{
+  margin:0;min-height:100vh;background:var(--ink);color:var(--paper);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;
+  position:relative;overflow-x:hidden;
+}
+body::after{
+  content:"";position:absolute;width:min(720px,90vw);aspect-ratio:1;right:-14%;top:-26%;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(195,252,15,.13),transparent 66%);
+}
+.shell{width:100%;max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px);position:relative;z-index:1}
+header{padding:28px 0}
+header img{width:132px;display:block}
+main{flex:1;display:flex;align-items:center;padding:clamp(40px,9vw,90px) 0}
+.code{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);background:var(--lime);display:inline-block;padding:5px 10px;border-radius:3px;
+  font-weight:500;
+}
+h1{
+  font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:.96;
+  font-size:clamp(42px,8.4vw,86px);margin:26px 0 0;
+}
+p.sub{font-size:clamp(17px,2vw,20px);color:var(--muted-dark);max-width:44ch;margin:26px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;
+  padding:14px 22px;border-radius:999px;border:1px solid transparent;text-decoration:none;
+  transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:#d2ff45}
+.btn-ghost{border-color:var(--hair-dark);color:var(--paper)}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:4px}
+footer{
+  border-top:1px solid var(--hair-dark);padding:24px 0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--muted-dark);
+}
+footer a{color:var(--muted-dark)}
+footer a:hover{color:var(--lime)}
+@media (prefers-reduced-motion:reduce){ .btn{transition:none} .btn:hover{transform:none} }
+</style>
+</head>
+<body>
+
+<header class="shell">
+  <a href="/" aria-label="YardScale Digital home">
+    <img src="/brand/yardscale-lockup-paper.png" alt="YardScale Digital" width="132" height="27">
+  </a>
+</header>
+
+<main>
+  <div class="shell">
+    <span class="code">Error 404</span>
+    <h1>That page<br>isn't here.</h1>
+    <p class="sub">The link is either old or slightly wrong. Everything we do lives on one page — start there.</p>
+    <div class="cta">
+      <a class="btn btn-lime" href="/">Back to the site &rarr;</a>
+      <a class="btn btn-ghost" href="/#book">Book a call</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">
+    &copy; <span id="yr">2026</span> YardScale Digital &middot;
+    <a href="mailto:yardscaledigital@gmail.com">yardscaledigital@gmail.com</a>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

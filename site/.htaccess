@@ -1,0 +1,74 @@
+# yardscaledigital.com — Apache config for Namecheap shared hosting (cPanel)
+# Replaces what netlify.toml used to do: HTTPS, one canonical host, caching,
+# compression, security headers and the custom 404.
+
+Options -Indexes
+DirectoryIndex index.html
+
+# ─────────── canonical host: https://yardscaledigital.com ───────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https  (Namecheap terminates SSL upstream, so check both signals)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # www -> bare domain
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # /index.html -> /
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # /thanks -> /thanks.html  (tidy URL, no redirect)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^([^./]+)/?$ $1.html [L]
+</IfModule>
+
+ErrorDocument 404 /404.html
+
+# ─────────── security headers ───────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Turn this on once you have confirmed HTTPS works on every page.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ─────────── compression ───────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+# ─────────── caching ───────────
+# HTML always revalidates, so an edit you upload is live immediately.
+# Images and icons are content-stable, so cache them hard.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                        "access plus 1 month"
+  ExpiresByType text/html               "access plus 0 seconds"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ─────────── don't serve the notes ───────────
+<FilesMatch "\.(md|sh|toml)$">
+  Require all denied
+</FilesMatch>
