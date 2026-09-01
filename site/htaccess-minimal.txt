@@ -1,0 +1,11 @@
+# SAFE-MODE .htaccess for yardscaledigital.com
+#
+# If the site returns "500 Internal Server Error" or a redirect loop, the
+# .htaccess is the cause. Delete .htaccess, rename THIS file to .htaccess,
+# and reload. It contains only directives that cannot fail.
+#
+# You lose: compression, cache headers, security headers, tidy URLs.
+# You keep: the right home page and the custom 404. The site works.
+
+DirectoryIndex index.html index.htm
+ErrorDocument 404 /404.html

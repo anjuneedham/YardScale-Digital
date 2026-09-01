@@ -1,34 +1,37 @@
 # yardscaledigital.com — Apache config for Namecheap shared hosting (cPanel)
-# Replaces what netlify.toml used to do: HTTPS, one canonical host, caching,
-# compression, security headers and the custom 404.
+#
+# Every directive here is either guarded by <IfModule> or is core Apache, so a
+# missing module degrades quietly instead of returning 500.
+#
+# NOTE ON HTTPS: forcing https from .htaccess is deliberately NOT done here.
+# When the host terminates SSL upstream and doesn't pass X-Forwarded-Proto, the
+# usual rewrite sees every request as plain http and redirects forever
+# (ERR_TOO_MANY_REDIRECTS). Use cPanel's own switch instead — it knows how the
+# server is fronted:  cPanel -> Domains -> Force HTTPS Redirect.
 
 Options -Indexes
-DirectoryIndex index.html
+DirectoryIndex index.html index.htm
 
-# ─────────── canonical host: https://yardscaledigital.com ───────────
+ErrorDocument 404 /404.html
+
+# ─────────── tidy URLs ───────────
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # http -> https  (Namecheap terminates SSL upstream, so check both signals)
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-  # www -> bare domain
+  # www -> bare domain. REQUEST_SCHEME keeps whatever protocol they arrived on,
+  # so this still works before the SSL certificate has been issued.
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+  RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [R=301,L]
 
   # /index.html -> /
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
   RewriteRule ^ / [R=301,L]
 
-  # /thanks -> /thanks.html  (tidy URL, no redirect)
+  # /thanks -> /thanks.html  (internal, no redirect)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^([^./]+)/?$ $1.html [L]
 </IfModule>
-
-ErrorDocument 404 /404.html
 
 # ─────────── security headers ───────────
 <IfModule mod_headers.c>
@@ -36,7 +39,8 @@ ErrorDocument 404 /404.html
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-  # Turn this on once you have confirmed HTTPS works on every page.
+  # Only switch this on once https works everywhere — it commits browsers to
+  # https for a year and is painful to undo.
   # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
@@ -48,7 +52,7 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 # ─────────── caching ───────────
-# HTML always revalidates, so an edit you upload is live immediately.
+# HTML always revalidates, so an edit you upload is live on refresh.
 # Images and icons are content-stable, so cache them hard.
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -69,6 +73,15 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 # ─────────── don't serve the notes ───────────
-<FilesMatch "\.(md|sh|toml)$">
-  Require all denied
-</FilesMatch>
+# Apache 2.4 and 2.2 spell this differently; using the wrong one is a 500.
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(md|sh|toml)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(md|sh|toml)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
