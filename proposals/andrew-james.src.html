@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YardScale Digital — Proposal for Andrew James</title>
+<style>
+__FONTS__
+
+:root{
+  --ink:#131313;
+  --ink-2:#1c1c1a;
+  --ink-3:#2e2e2b;
+  --paper:#F9F8F4;
+  --paper-2:#efeee8;
+  --lime:#C3FC0F;
+  --rule:#dedbd2;
+  --rule-dk:#3b3b35;
+  --mute:#6b6b62;
+  --mute-2:#8f8f86;
+  --mute-dk:#a8a89e;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+@page{ size:A4; margin:0 }
+
+html{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+body{
+  font-family:"Instrument Sans", system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  font-size:10pt;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  width:210mm; height:297mm;
+  padding:18mm 17mm 15mm;
+  position:relative;
+  overflow:hidden;
+  page-break-after:always;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+}
+.page:last-child{page-break-after:auto}
+.page.dark{background:var(--ink); color:var(--paper)}
+
+/* ---------- type ---------- */
+.display{
+  font-family:"Archivo", system-ui, sans-serif;
+  font-weight:800;
+  font-stretch:112%;
+  line-height:0.95;
+  letter-spacing:-0.02em;
+}
+h1.display{font-size:38pt}
+h2.display{font-size:23pt; margin-bottom:5mm}
+h3.display{font-size:12.5pt; line-height:1.1; margin-bottom:2mm}
+
+.label{
+  font-family:"JetBrains Mono", ui-monospace, monospace;
+  font-size:7pt;
+  font-weight:500;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--mute);
+}
+.dark .label{color:var(--mute-dk)}
+.label .dot{color:var(--ink); }
+.dark .label .dot{color:var(--lime)}
+
+.lede{font-size:11.5pt; line-height:1.5; color:var(--ink-3)}
+.dark .lede{color:#d5d4cc}
+.muted{color:var(--mute)}
+.dark .muted{color:var(--mute-dk)}
+strong{font-weight:600}
+.lime{color:var(--lime)}
+
+/* ---------- cover ---------- */
+.cover-top{display:flex; justify-content:space-between; align-items:flex-start}
+.cover-logo{width:52mm; display:block}
+.cover-mid{margin-top:auto; margin-bottom:auto}
+.cover-rule{height:2px; background:var(--lime); width:34mm; margin:0 0 7mm}
+.cover-sub{margin-top:6mm; max-width:118mm; font-size:11pt; color:#c9c8c0; line-height:1.5}
+
+.cover-meta{
+  margin-top:auto;
+  border-top:1px solid var(--rule-dk);
+  padding-top:5mm;
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:6mm;
+}
+.cover-meta .k{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.16em; text-transform:uppercase; color:var(--mute-dk); margin-bottom:1.5mm}
+.cover-meta .v{font-size:10pt; color:var(--paper); line-height:1.35}
+.cover-meta .v .s{display:block; color:var(--mute-dk); font-size:8.5pt}
+
+.price-flag{
+  display:inline-flex; align-items:baseline; gap:3mm;
+  background:var(--lime); color:var(--ink);
+  padding:3.5mm 6mm; border-radius:2mm;
+  margin-top:7mm;
+}
+.price-flag .amt{font-family:"Archivo",sans-serif; font-weight:800; font-stretch:112%; font-size:16pt; letter-spacing:-0.02em}
+.price-flag .cond{font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:0.1em; text-transform:uppercase}
+
+/* ---------- interior chrome ---------- */
+.head{
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px solid var(--rule); padding-bottom:3mm; margin-bottom:9mm;
+}
+.dark .head{border-color:var(--rule-dk)}
+.head img{width:26mm; display:block}
+.head .pg{font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:0.14em; color:var(--mute-2)}
+
+.foot{
+  margin-top:auto; padding-top:4mm; border-top:1px solid var(--rule);
+  display:flex; justify-content:space-between;
+  font-family:"JetBrains Mono",monospace; font-size:6.5pt;
+  letter-spacing:0.13em; text-transform:uppercase; color:var(--mute-2);
+}
+.dark .foot{border-color:var(--rule-dk); color:var(--mute-dk)}
+
+/* ---------- components ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--rule); border-radius:2mm; overflow:hidden; margin:6mm 0 8mm}
+.stats > div{padding:4.5mm 4mm; border-right:1px solid var(--rule)}
+.stats > div:last-child{border-right:0}
+.stats .n{font-family:"Archivo",sans-serif; font-weight:800; font-stretch:112%; font-size:17pt; letter-spacing:-0.02em; line-height:1}
+.stats .t{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.13em; text-transform:uppercase; color:var(--mute); margin-top:2mm}
+
+.leaks{display:flex; flex-direction:column; gap:4mm}
+.leak{display:grid; grid-template-columns:11mm 1fr; gap:4mm; align-items:start;
+  border:1px solid var(--rule); border-radius:2mm; padding:5mm 5mm 5mm 4mm; background:#fff}
+.leak .num{font-family:"Archivo",sans-serif; font-weight:800; font-stretch:112%; font-size:15pt; color:var(--ink);
+  background:var(--lime); border-radius:1.5mm; width:11mm; height:11mm; display:flex; align-items:center; justify-content:center; line-height:1}
+.leak p{font-size:9.5pt; color:var(--ink-3); margin-top:1.5mm}
+.leak .obs{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.1em; text-transform:uppercase; color:var(--mute-2); margin-top:2.5mm}
+
+.build{display:grid; grid-template-columns:1fr 1fr; gap:3.5mm}
+.card{border:1px solid var(--rule); border-radius:2mm; padding:4.5mm; background:#fff; display:flex; flex-direction:column}
+.card .tag{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--mute-2); margin-bottom:2.5mm}
+.card p{font-size:9pt; color:var(--ink-3)}
+.card ul{list-style:none; margin-top:2.6mm; display:flex; flex-direction:column; gap:1.4mm}
+.card li{font-size:8.5pt; color:var(--ink-3); padding-left:4.5mm; position:relative; line-height:1.35}
+.card li::before{content:""; position:absolute; left:0; top:1.55mm; width:2mm; height:2mm; background:var(--lime); border-radius:0.4mm}
+
+.flow{display:flex; flex-direction:column; gap:0; margin:2mm 0 0}
+.step{display:grid; grid-template-columns:14mm 1fr; gap:5mm; align-items:start; padding:4.5mm 0; border-bottom:1px solid var(--rule)}
+.step:last-child{border-bottom:0}
+.step .st{font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:0.1em; color:var(--mute-2); padding-top:1mm}
+.step h3{margin-bottom:1.5mm}
+.step p{font-size:9pt; color:var(--ink-3)}
+
+.callout{
+  background:var(--ink); color:var(--paper); border-radius:2mm; padding:5mm 6mm; margin-top:5mm;
+}
+.callout p{font-size:10pt; color:#d5d4cc}
+.callout .big{font-family:"Archivo",sans-serif; font-weight:800; font-stretch:112%; font-size:13pt; color:var(--paper); letter-spacing:-0.01em; line-height:1.15; margin-bottom:2.5mm}
+.callout .big em{font-style:normal; color:var(--lime)}
+
+table{width:100%; border-collapse:collapse; margin-top:2mm}
+th{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--mute);
+  text-align:left; padding:0 0 2.5mm; border-bottom:1px solid var(--rule); font-weight:500}
+th.r,td.r{text-align:right}
+td{padding:3.5mm 0; border-bottom:1px solid var(--rule); font-size:9.5pt; vertical-align:top}
+td .s{display:block; font-size:8pt; color:var(--mute); margin-top:0.8mm; line-height:1.35}
+tr.total td{border-bottom:0; border-top:2px solid var(--ink); font-weight:600; font-size:11pt; padding-top:4mm}
+td.amt{font-family:"Archivo",sans-serif; font-weight:800; font-stretch:112%; letter-spacing:-0.01em; white-space:nowrap}
+
+.terms{display:grid; grid-template-columns:1fr 1fr; gap:5mm 7mm; margin-top:2mm}
+.term .t{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--mute-2); margin-bottom:1.5mm}
+.term p{font-size:8.5pt; color:var(--ink-3); line-height:1.45}
+.dark .term .t{color:var(--lime)}
+.dark .term p{color:#c9c8c0}
+
+.incl{display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-top:5mm}
+.incl h4{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--mute); font-weight:500; margin-bottom:2.5mm; padding-bottom:2mm; border-bottom:1px solid var(--rule)}
+.incl ul{list-style:none; display:flex; flex-direction:column; gap:1.8mm}
+.incl li{font-size:8.5pt; color:var(--ink-3); padding-left:4.5mm; position:relative; line-height:1.35}
+.incl li::before{content:"+"; position:absolute; left:0; top:-0.2mm; color:var(--ink); font-weight:600}
+.incl .out li::before{content:"–"; color:var(--mute-2)}
+.incl .out li{color:var(--mute)}
+
+.sign{display:grid; grid-template-columns:1fr 1fr; gap:9mm; margin-top:auto; padding-top:6mm}
+.sig-line{border-bottom:1px solid var(--ink); height:16mm}
+.sig-cap{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.13em; text-transform:uppercase; color:var(--mute); margin-top:2.5mm}
+.sig-name{font-size:9.5pt; margin-top:1mm}
+.dark .sig-line{border-bottom-color:var(--paper)}
+.dark .sig-cap{color:var(--mute-dk)}
+.dark .sig-name{color:var(--paper)}
+
+.next{display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; margin-top:6mm}
+.next .n{border:1px solid var(--rule-dk); border-radius:2mm; padding:4.5mm}
+.next .n .k{font-family:"JetBrains Mono",monospace; font-size:6.5pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--lime); margin-bottom:2mm}
+.next .n p{font-size:8.5pt; color:#c9c8c0; line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 1 · COVER ═══════════ -->
+<section class="page dark">
+  <div class="cover-top">
+    <img class="cover-logo" src="__LOGO_PAPER__" alt="YardScale Digital">
+    <div class="label">Proposal <span class="dot">·</span> 02 Sep 2026</div>
+  </div>
+
+  <div class="cover-mid">
+    <div class="cover-rule"></div>
+    <div class="label" style="margin-bottom:5mm">Lead generation <span class="dot">·</span> Website build</div>
+    <h1 class="display">Turn 39.3K<br>likes into<br>booked<br>viewings.</h1>
+    <p class="cover-sub">
+      The content already works. What's missing is somewhere for it to land —
+      a site you own that captures the people your videos are already reaching,
+      instead of losing them in a DM inbox.
+    </p>
+    <div class="price-flag">
+      <span class="amt">JMD&nbsp;$50,000</span>
+      <span class="cond">50% deposit to start</span>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div>
+      <div class="k">Prepared for</div>
+      <div class="v">Andrew James<span class="s">@drewsellsja · A.S. James &amp; Associates</span></div>
+    </div>
+    <div>
+      <div class="k">Prepared by</div>
+      <div class="v">YardScale Digital<span class="s">yardscaledigital@gmail.com</span></div>
+    </div>
+    <div>
+      <div class="k">Valid until</div>
+      <div class="v">02 October 2026<span class="s">30 days from issue</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2 · THE SITUATION ═══════════ -->
+<section class="page">
+  <div class="head">
+    <img src="__LOGO_INK__" alt="YardScale Digital">
+    <div class="pg">01 / 05</div>
+  </div>
+
+  <div class="label" style="margin-bottom:4mm">The situation</div>
+  <h2 class="display">You've already<br>done the hard part.</h2>
+  <p class="lede" style="max-width:150mm">
+    Most agents can't get attention. You have it. The price-anchored tours —
+    <em>what $130K a month gets you in Phoenix Park</em>, <em>what $45M gets you in Red&nbsp;Hills</em> —
+    are doing the job a paid ad would charge you for.
+  </p>
+
+  <div class="stats">
+    <div><div class="n">1,623</div><div class="t">Followers</div></div>
+    <div><div class="n">39.3K</div><div class="t">Total likes</div></div>
+    <div><div class="n">51.7K</div><div class="t">Top video</div></div>
+    <div><div class="n">0</div><div class="t">Captured leads</div></div>
+  </div>
+
+  <h3 class="display" style="font-size:13pt; margin-bottom:4mm">Three places the money leaks out</h3>
+
+  <div class="leaks">
+    <div class="leak">
+      <div class="num">1</div>
+      <div>
+        <h3 class="display">Your bio link sends people to someone else's platform.</h3>
+        <p>It currently points at an Instagram profile. Every viewer you worked to earn gets handed
+        to a second app that owns the relationship, shows them competitors, and can change the rules
+        whenever it likes. You're renting the audience twice over.</p>
+        <div class="obs">Observed 02 Sep 2026 — link in bio → instagram.com/nextmove…</div>
+      </div>
+    </div>
+
+    <div class="leak">
+      <div class="num">2</div>
+      <div>
+        <h3 class="display">"DM HOME for listings" only works while you're awake.</h3>
+        <p>Every enquiry is a message you have to open, read, qualify and answer by hand.
+        They arrive at 11pm, or while you're standing in a client's living room. The serious buyer
+        and the person who'll never make it past a deposit look identical in the inbox.</p>
+        <div class="obs">Observed — bio CTA is a manual DM funnel</div>
+      </div>
+    </div>
+
+    <div class="leak">
+      <div class="num">3</div>
+      <div>
+        <h3 class="display">51,700 people watched — you can't name one of them.</h3>
+        <p>Views expire. A list doesn't. Without capture, every video starts from zero
+        and the buyer who wasn't quite ready in September is gone by the time the right
+        Portmore unit lands in November.</p>
+        <div class="obs">Observed — no owned capture point in funnel</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>YardScale Digital</span><span>Proposal · Andrew James</span></div>
+</section>
+
+<!-- ═══════════ 3 · WHAT WE BUILD ═══════════ -->
+<section class="page">
+  <div class="head">
+    <img src="__LOGO_INK__" alt="YardScale Digital">
+    <div class="pg">02 / 05</div>
+  </div>
+
+  <div class="label" style="margin-bottom:4mm">The build</div>
+  <h2 class="display">One site, built<br>around how you<br>already sell.</h2>
+  <p class="lede" style="max-width:150mm; margin-bottom:6mm">
+    Not a brochure. A site shaped like your content — budget first, property second —
+    so the person arriving from a video finds exactly what the video promised.
+  </p>
+
+  <div class="build">
+    <div class="card">
+      <div class="tag">Landing</div>
+      <h3 class="display">Built for the bio link</h3>
+      <p>The one page TikTok traffic lands on. Loads in under two seconds on mobile data,
+      opens with the property they just watched, and asks for one thing.</p>
+    </div>
+
+    <div class="card">
+      <div class="tag">Core feature</div>
+      <h3 class="display">"What your budget gets you"</h3>
+      <p>Your best-performing hook, made permanent. Visitors pick a price band —
+      $100K/m, $130K/m, $45M, $69M — and see what's actually available in it.</p>
+    </div>
+
+    <div class="card">
+      <div class="tag">Listings</div>
+      <h3 class="display">For sale &amp; for rent</h3>
+      <ul>
+        <li>Photo galleries, priced, filterable by parish and budget</li>
+        <li>Beds, baths, sq. ft. and features at a glance</li>
+        <li>Sold / Rented badges — your proof, working around the clock</li>
+        <li>You add and edit listings yourself, no developer needed</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="tag">Lead capture</div>
+      <h3 class="display">The form that replaces the DM</h3>
+      <ul>
+        <li>Budget, buying or renting, preferred areas, timeline</li>
+        <li>Financing status — pre-approved, in progress, not yet</li>
+        <li>Lands in your email and your WhatsApp instantly</li>
+        <li>Every lead stored and exportable — the list is yours</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="tag">Contact</div>
+      <h3 class="display">One tap to you</h3>
+      <ul>
+        <li>Click-to-chat WhatsApp, pre-filled with the listing they viewed</li>
+        <li>Click-to-call on (876) 396-0411</li>
+        <li>Viewing request booked straight into your calendar</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="tag">Foundations</div>
+      <h3 class="display">Yours, and findable</h3>
+      <ul>
+        <li>Mobile-first — where all of your traffic comes from</li>
+        <li>Google-indexed for "houses for rent Portmore" and similar</li>
+        <li>Link previews that render properly in WhatsApp</li>
+        <li>Your domain, your hosting, your logins</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="big">Everything is branded to <em>you</em> — not to us.</div>
+    <p>A.S. James &amp; Associates alongside your own name and face. You are the reason
+    people follow the account; the site should look like the person in the videos.</p>
+  </div>
+
+  <div class="foot"><span>YardScale Digital</span><span>Proposal · Andrew James</span></div>
+</section>
+
+<!-- ═══════════ 4 · THE FUNNEL + PROCESS ═══════════ -->
+<section class="page">
+  <div class="head">
+    <img src="__LOGO_INK__" alt="YardScale Digital">
+    <div class="pg">03 / 05</div>
+  </div>
+
+  <div class="label" style="margin-bottom:4mm">How a lead travels</div>
+  <h2 class="display">From a view to<br>a viewing.</h2>
+
+  <div class="flow">
+    <div class="step">
+      <div class="st">01</div>
+      <div>
+        <h3 class="display">They watch the video</h3>
+        <p>Same content you're making now. Nothing about your posting changes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="st">02</div>
+      <div>
+        <h3 class="display">They tap the link in bio</h3>
+        <p>It now goes to your site instead of another social profile. The property from
+        the video is the first thing they see — no hunting, no drop-off.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="st">03</div>
+      <div>
+        <h3 class="display">They tell you what they can spend</h3>
+        <p>Budget, area, buying or renting, how soon, financing status. Thirty seconds,
+        four fields. The people who won't fill it in were never going to buy.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="st">04</div>
+      <div>
+        <h3 class="display">It reaches you already qualified</h3>
+        <p>Email and WhatsApp, the moment it's submitted. You open a lead knowing the budget
+        before you've typed a word — and you decide who's worth the drive.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="st">05</div>
+      <div>
+        <h3 class="display">The rest stay on your list</h3>
+        <p>The buyer who isn't ready until January is saved, not lost. When the right unit
+        comes up, you already know exactly who to call.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="display" style="font-size:13pt; margin:9mm 0 4mm">How we get there</h3>
+  <table>
+    <thead><tr><th style="width:22mm">Stage</th><th>What happens</th><th class="r" style="width:26mm">Timing</th></tr></thead>
+    <tbody>
+      <tr><td>Kick-off</td><td>Twenty minutes. We collect your listings, photos, logos and numbers.<span class="s">Nothing to prepare — bring what you have.</span></td><td class="r">Day 1</td></tr>
+      <tr><td>Design</td><td>You see the homepage before a line of it is built. Two rounds of changes included.</td><td class="r">Days 2–5</td></tr>
+      <tr><td>Build</td><td>Full site, listings loaded, forms and WhatsApp wired and tested.</td><td class="r">Days 6–14</td></tr>
+      <tr><td>Handover</td><td>Live on your domain. We walk you through adding a listing yourself, and you get the logins.<span class="s">Nothing you run depends on us afterwards.</span></td><td class="r">Day 14–21</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot"><span>YardScale Digital</span><span>Proposal · Andrew James</span></div>
+</section>
+
+<!-- ═══════════ 5 · INVESTMENT ═══════════ -->
+<section class="page">
+  <div class="head">
+    <img src="__LOGO_INK__" alt="YardScale Digital">
+    <div class="pg">04 / 05</div>
+  </div>
+
+  <div class="label" style="margin-bottom:4mm">Investment</div>
+  <h2 class="display">One fixed price.<br>No surprises.</h2>
+  <p class="lede" style="max-width:150mm; margin-bottom:6mm">
+    Quoted in full before anything is built. If the scope on the previous pages doesn't
+    change, neither does this number.
+  </p>
+
+  <table>
+    <thead><tr><th>Item</th><th class="r" style="width:38mm">Amount (JMD)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Lead generation website — design, build &amp; handover
+          <span class="s">Everything described on pages 02 and 03, including listings system, lead capture, WhatsApp and booking integration, and training at handover.</span></td>
+        <td class="r amt">$50,000</td>
+      </tr>
+      <tr class="total"><td>Total</td><td class="r amt">$50,000</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="display" style="font-size:13pt; margin:9mm 0 3mm">Payment schedule</h3>
+  <table>
+    <thead><tr><th>Stage</th><th style="width:24mm">Share</th><th class="r" style="width:38mm">Amount (JMD)</th></tr></thead>
+    <tbody>
+      <tr><td>Deposit — due on acceptance<span class="s">Required before work begins. Secures your build slot.</span></td><td>50%</td><td class="r amt">$25,000</td></tr>
+      <tr><td>Balance — due on handover<span class="s">Payable when the site is live on your domain and the logins are in your hands.</span></td><td>50%</td><td class="r amt">$25,000</td></tr>
+      <tr class="total"><td>Total</td><td></td><td class="r amt">$50,000</td></tr>
+    </tbody>
+  </table>
+
+  <div class="incl">
+    <div>
+      <h4>Included</h4>
+      <ul>
+        <li>Full design and build, mobile-first</li>
+        <li>Up to 20 listings loaded at launch</li>
+        <li>Lead capture form + email and WhatsApp routing</li>
+        <li>Booking link and click-to-call wired in</li>
+        <li>Two rounds of design revisions</li>
+        <li>Basic Google search setup and analytics</li>
+        <li>Training session at handover</li>
+        <li>14 days of post-launch fixes</li>
+      </ul>
+    </div>
+    <div class="out">
+      <h4>Not included</h4>
+      <ul>
+        <li>Domain registration and hosting fees<span class="s"></span></li>
+        <li>Professional photography or videography</li>
+        <li>Paid advertising spend</li>
+        <li>Ongoing content or social media management</li>
+        <li>Monthly maintenance beyond the 14-day window</li>
+      </ul>
+      <p style="font-size:8pt; color:var(--mute); margin-top:3mm; line-height:1.45">
+        Domain and hosting typically run JMD $12,000–$18,000 a year, paid directly to the provider
+        in your own name so the accounts stay yours. We set them up at no charge.
+        Anything else above can be quoted separately.
+      </p>
+    </div>
+  </div>
+
+  <div class="foot"><span>YardScale Digital</span><span>Proposal · Andrew James</span></div>
+</section>
+
+<!-- ═══════════ 6 · ACCEPTANCE ═══════════ -->
+<section class="page dark">
+  <div class="head">
+    <img src="__LOGO_PAPER__" alt="YardScale Digital">
+    <div class="pg" style="color:var(--mute-dk)">05 / 05</div>
+  </div>
+
+  <div class="label" style="margin-bottom:4mm">Acceptance</div>
+  <h2 class="display">Ready when<br>you are.</h2>
+  <p class="lede" style="max-width:145mm">
+    Sign below and return this page. We'll send payment details for the deposit
+    and book your kick-off call the same day.
+  </p>
+
+  <div class="next">
+    <div class="n"><div class="k">Step 01</div><p>Sign and return this page by WhatsApp or email.</p></div>
+    <div class="n"><div class="k">Step 02</div><p>Pay the JMD $25,000 deposit to secure the slot.</p></div>
+    <div class="n"><div class="k">Step 03</div><p>Twenty-minute kick-off call, then we build.</p></div>
+  </div>
+
+  <div style="margin-top:9mm; border-top:1px solid var(--rule-dk); padding-top:6mm">
+    <div class="label" style="margin-bottom:4mm">Terms</div>
+    <div class="terms">
+      <div class="term">
+        <div class="t">Quote validity</div>
+        <p>This quote is fixed for 30 days from 02 September 2026. The price does not change unless
+        the scope described on pages 02 and 03 changes, and any change is agreed in writing first.</p>
+      </div>
+      <div class="term">
+        <div class="t">Deposit</div>
+        <p>A 50% deposit of JMD $25,000 is required before work begins and is non-refundable once
+        design work has started. The balance falls due on handover.</p>
+      </div>
+      <div class="term">
+        <div class="t">Timeline</div>
+        <p>Two to three weeks from the kick-off call, provided listing content, photos and
+        feedback arrive within two working days of each request.</p>
+      </div>
+      <div class="term">
+        <div class="t">Ownership</div>
+        <p>On final payment, the site, its content, the domain and every login belong to you outright.
+        Lead data is yours at all times and is never shared or resold.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sign">
+    <div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Accepted by — client</div>
+      <div class="sig-name">Andrew James · A.S. James &amp; Associates</div>
+    </div>
+    <div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Date</div>
+      <div class="sig-name">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="foot" style="margin-top:7mm">
+    <span>YardScale Digital · yardscaledigital@gmail.com</span>
+    <span>Proposal · Valid to 02 Oct 2026</span>
+  </div>
+</section>
+
+</body>
+</html>
