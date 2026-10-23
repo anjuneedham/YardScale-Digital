@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Singh Zima × YardScale</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A potential strategic partnership between Singh Zima and Andrew Needham of YardScale Digital. A short read before our call.">
+<!-- Private brief: shared by link only. Kept out of search and the sitemap. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#131313">
+<meta property="og:title" content="Potential Strategic Partnership">
+<meta property="og:description" content="Building products, audiences and growth systems together. Andrew Needham, YardScale Digital.">
+<meta property="og:image" content="https://yardscaledigital.com/og-image.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column on paper, ink bands for cover + close.
+   Brand tokens match index.html (README → Brand tokens). Deliberately a single light look, like the main site. */
+:root{
+  --ink:#131313;
+  --ink-2:#1c1c1a;
+  --hair-dark:#2e2e2b;
+  --paper:#f9f8f4;
+  --paper-2:#efeee8;
+  --card:#ffffff;
+  --hair:#dedbd2;
+  --lime:#c3fc0f;
+  --lime-ink:#3d5200;   /* lime family, dark enough to read as text on paper */
+  --lime-wash:#eef9c8;
+  --muted:#5f5f57;
+  --muted-dark:#9a9a90;
+  --amber:#8a5a00;
+  --amber-wash:#fbf0d6;
+
+  --display:'Archivo',Helvetica Neue,Arial,sans-serif;
+  --body:'Instrument Sans',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --maxw:1080px;
+  --sec:clamp(64px,9vw,120px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+.band-ink :focus-visible{outline-color:var(--lime)}
+::selection{background:var(--lime);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px),4vw);padding-right:max(16px,env(safe-area-inset-right,0px),4vw)}
+section{padding-block:var(--sec);border-top:1px solid var(--hair)}
+section[id]{scroll-margin-top:64px}
+.band-ink{background:var(--ink);color:var(--paper);border-top:0}
+
+/* type */
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:750;letter-spacing:-.025em;text-wrap:balance;font-variation-settings:'wdth' 108}
+h1{font-size:clamp(2.6rem,8.4vw,5.6rem);line-height:.95;letter-spacing:-.035em;font-weight:800;font-variation-settings:'wdth' 116}
+h2{font-size:clamp(1.85rem,4.6vw,3rem);line-height:1.02}
+h3{font-size:1.14rem;line-height:1.25;letter-spacing:-.01em;font-weight:700;font-variation-settings:'wdth' 100}
+p{margin:0}
+.lead{font-size:clamp(1.08rem,2vw,1.28rem);line-height:1.5;max-width:58ch;color:var(--muted)}
+.band-ink .lead{color:#cfcec6}
+.prose{max-width:62ch;display:grid;gap:1em}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:0 0 20px}
+.band-ink .eyebrow{color:var(--muted-dark)}
+.tick{width:14px;height:10px;background:var(--lime);transform:skewX(-20deg);flex:none;display:inline-block}
+.head{display:grid;gap:18px;margin-bottom:clamp(32px,5vw,52px)}
+
+/* source tags: keep public research visibly separate from what was shared privately */
+.src{justify-self:start;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:99px;white-space:nowrap;vertical-align:middle;line-height:1.5}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.src.pub{background:var(--lime-wash);color:var(--lime-ink)}
+.src.chat{background:#e7eefb;color:#23468a}
+.src.idea{background:var(--amber-wash);color:var(--amber)}
+.band-ink .src.pub{background:rgba(195,252,15,.14);color:var(--lime)}
+.band-ink .src.chat{background:rgba(160,190,255,.14);color:#b9cdfa}
+.band-ink .src.idea{background:rgba(255,200,90,.14);color:#f3cf86}
+
+/* ── top progress nav ── */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(19,19,19,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--paper);border-bottom:1px solid var(--hair-dark)}
+.topnav .wrap{display:flex;align-items:center;gap:14px;height:52px}
+.topnav .brand{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:9px}
+.topnav .now{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.topnav .now b{color:var(--paper);font-weight:500}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--lime);width:0;transition:width .1s linear}
+
+/* ── cover ── */
+.cover{padding-block:clamp(56px,9vw,112px) clamp(56px,8vw,96px);position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;top:-30%;right:-18%;width:48%;height:160%;background:linear-gradient(180deg,rgba(195,252,15,.10),rgba(195,252,15,0) 70%);transform:skewX(-20deg);pointer-events:none}
+.cover .wrap{position:relative;z-index:1}
+.cover .lockup{display:inline-flex;background:var(--paper);padding:10px 14px;border-radius:6px;margin-bottom:clamp(36px,6vw,64px)}
+.cover .lockup img{height:28px;width:auto}
+.cover h1 .em{color:var(--lime)}
+.cover .lead{margin-top:22px}
+.by{margin-top:28px;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark)}
+.by b{color:var(--paper);font-weight:500}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:clamp(36px,5vw,56px);max-width:760px}
+.pair .who{border:1px solid var(--hair-dark);border-radius:10px;padding:16px 18px;background:var(--ink-2);min-width:0}
+.pair .who small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:6px}
+.pair .who strong{display:block;font-family:var(--display);font-size:1.15rem;letter-spacing:-.01em}
+.pair .who span{display:block;font-size:.9rem;color:#bdbcb3;margin-top:4px}
+.pair .x{align-self:center;font-family:var(--mono);color:var(--lime);font-size:1.1rem}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:28px;padding-top:20px;border-top:1px solid var(--hair-dark);font-size:.86rem;color:#bdbcb3;max-width:760px}
+.legend div{display:flex;align-items:center;gap:8px}
+@media (max-width:560px){.pair{grid-template-columns:1fr}.pair .x{justify-self:center}}
+
+/* ── facts ── */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;margin-top:8px}
+.fact{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:18px 20px;display:grid;gap:8px;align-content:start;min-width:0}
+.fact .num{font-family:var(--display);font-size:1.7rem;font-weight:750;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.fact p{font-size:.95rem;color:var(--muted)}
+.fact p b{color:var(--ink);font-weight:600}
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,56px);align-items:start;margin-top:clamp(32px,5vw,48px)}
+@media (max-width:820px){.split{grid-template-columns:1fr}}
+.shared{background:var(--paper-2);border-radius:12px;padding:20px 22px;display:grid;gap:12px}
+.shared ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.96rem}
+.signal{margin-top:clamp(28px,4vw,40px);border-left:3px solid var(--lime);background:var(--card);border-radius:0 12px 12px 0;padding:18px 22px;display:grid;gap:12px;max-width:820px}
+.bars{display:grid;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.bar{display:grid;grid-template-columns:minmax(0,11.5em) 1fr auto;gap:10px;align-items:center}
+.bar i{display:block;height:10px;border-radius:3px;background:var(--ink)}
+.bar.b i{background:var(--hair)}
+.bar span{font-variant-numeric:tabular-nums;color:var(--ink)}
+
+/* ── tabs (businesses) ── */
+.tabs{display:flex;gap:6px;background:var(--paper-2);padding:5px;border-radius:10px;width:max-content;max-width:100%;overflow-x:auto}
+.tab{border:0;background:none;padding:10px 16px;border-radius:7px;cursor:pointer;font-weight:600;font-size:.95rem;color:var(--muted);white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.panel{margin-top:18px;background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
+.panel-top{padding:clamp(20px,3vw,28px);display:grid;gap:12px;border-bottom:1px solid var(--hair)}
+.panel-top .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.panel-top p{color:var(--muted);max-width:62ch}
+.opps{list-style:none;margin:0;padding:0}
+.opps li{border-bottom:1px solid var(--hair)}
+.opps li:last-child{border-bottom:0}
+details summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:16px clamp(20px,3vw,28px)}
+details summary::-webkit-details-marker{display:none}
+details summary:hover{background:#fcfcfa}
+.opps .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-width:7.5em}
+.opps .t{font-weight:600}
+.chev{width:22px;height:22px;border-radius:50%;border:1px solid var(--hair);display:grid;place-items:center;transition:transform .2s;font-size:.8rem;color:var(--muted)}
+details[open] .chev{transform:rotate(45deg)}
+.opps .body{padding:0 clamp(20px,3vw,28px) 18px;color:var(--muted);max-width:68ch}
+@media (max-width:560px){details summary{grid-template-columns:1fr auto}.opps .k{grid-column:1/-1;margin-bottom:-8px}}
+
+/* ── growth loop ── */
+.loopwrap{margin-top:clamp(40px,6vw,64px);display:grid;gap:18px}
+.loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.node{border:1px solid var(--hair);background:var(--card);border-radius:99px;padding:9px 16px;cursor:pointer;font-weight:600;font-size:.95rem;transition:background .15s,border-color .15s,transform .15s}
+.node:hover{border-color:var(--ink)}
+.node[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.node.value{box-shadow:inset 0 -3px 0 var(--lime)}
+.arrow{color:var(--muted);font-family:var(--mono);font-size:.9rem}
+.loop .back{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+.loop-detail{background:var(--ink);color:var(--paper);border-radius:14px;padding:clamp(20px,3vw,28px);display:grid;grid-template-columns:1fr 1fr;gap:24px;min-height:150px}
+.loop-detail h3{color:var(--lime);font-size:1.3rem}
+.loop-detail p{color:#d2d1c9;margin-top:8px}
+.loop-detail .ex small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:8px}
+.loop-detail .ex p{margin:0;color:var(--paper)}
+@media (max-width:640px){.loop-detail{grid-template-columns:1fr}}
+.loop-note{font-size:.95rem;color:var(--muted)}
+.loop-note b{color:var(--ink)}
+
+/* ── capability grid ── */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
+.cap{background:var(--card);padding:20px;display:grid;gap:8px;align-content:start}
+.cap .ico{width:30px;height:30px;border-radius:8px;background:var(--paper-2);display:grid;place-items:center}
+.cap .ico svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cap p{font-size:.94rem;color:var(--muted)}
+.callout{margin-top:22px;padding:18px 22px;border-radius:12px;background:var(--paper-2);max-width:820px}
+.callout b{font-weight:600}
+
+/* ── BuildFlow ── */
+.bf{background:var(--ink);color:var(--paper);border-radius:18px;overflow:hidden;display:grid}
+.bf-top{padding:clamp(24px,4vw,44px);display:grid;gap:16px;border-bottom:1px solid var(--hair-dark)}
+.bf-top .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pill-lime{background:var(--lime);color:var(--ink);font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:99px;font-weight:500}
+.bf h2{font-size:clamp(2.4rem,6vw,4rem);font-variation-settings:'wdth' 118;font-weight:800}
+.bf-cols{display:grid;grid-template-columns:1fr 1fr}
+.bf-col{padding:clamp(22px,3.5vw,36px);display:grid;gap:14px;align-content:start}
+.bf-col+.bf-col{border-left:1px solid var(--hair-dark)}
+.bf-col small{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark)}
+.bf-col h3{font-size:1.3rem}
+.bf-col ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.bf-col li{display:flex;gap:10px;align-items:baseline;color:#d6d5cd}
+.bf-col li::before{content:"";width:9px;height:7px;background:var(--lime);transform:skewX(-20deg);flex:none}
+.bf-foot{padding:16px clamp(22px,3.5vw,36px);border-top:1px solid var(--hair-dark);font-size:.9rem;color:var(--muted-dark)}
+@media (max-width:700px){.bf-cols{grid-template-columns:1fr}.bf-col+.bf-col{border-left:0;border-top:1px solid var(--hair-dark)}}
+.focus{margin-top:22px;display:flex;gap:14px;align-items:flex-start;max-width:760px}
+.focus p{font-size:1.05rem}
+
+/* ── help list ── */
+.help{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.hcard{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:20px;display:grid;gap:10px;align-content:start}
+.hcard .row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.hcard p{color:var(--muted);font-size:.95rem}
+.hcard .why{font-size:.86rem;color:var(--ink);border-top:1px dashed var(--hair);padding-top:10px}
+.hcard.idea{background:var(--amber-wash);border-color:#efdcae}
+
+/* ── mutual loop ── */
+.mutual{display:grid;grid-template-columns:1fr minmax(0,200px) 1fr;gap:16px;align-items:stretch}
+.side{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:20px;display:grid;gap:10px;align-content:start}
+.side h3{margin-bottom:4px}
+.side small{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:s}
+.steps li{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:8px;background:var(--paper);border:1px solid transparent;transition:background .25s,border-color .25s;font-size:.95rem}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-size:.68rem;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--hair);flex:none}
+.steps li.on{background:var(--lime-wash);border-color:#cfe68a}
+.steps li.on::before{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.ret{display:block;font-family:var(--mono);font-size:.68rem;color:var(--muted);padding-left:44px}
+.hub{background:var(--ink);color:var(--paper);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:center;text-align:center}
+.hub small{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark)}
+.hub span{display:block;padding:8px;border:1px solid var(--hair-dark);border-radius:8px;font-size:.9rem}
+.hub span:nth-of-type(1){border-color:var(--lime)}
+.mut-ctl{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+@media (max-width:820px){.mutual{grid-template-columns:1fr}.hub{grid-template-columns:repeat(3,1fr);text-align:center}.hub small{grid-column:1/-1}}
+@media (max-width:420px){.hub{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:8px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--hair)}
+.btn.lime{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.band-ink .btn.ghost{color:var(--paper);border-color:var(--hair-dark)}
+
+/* ── roadmap ── */
+.months{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative}
+.month{border:1px solid var(--hair);background:var(--card);border-radius:10px;padding:12px 10px;cursor:pointer;text-align:left;display:grid;gap:4px;transition:border-color .15s,background .15s;min-width:0}
+.month small{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.month b{font-size:.92rem;font-weight:600;line-height:1.25}
+.month:hover{border-color:var(--ink)}
+.month[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.month[aria-selected="true"] small{color:var(--lime)}
+.mdetail{margin-top:14px;background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:clamp(20px,3vw,28px);display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+.mdetail h3{font-size:1.35rem}
+.mdetail p{color:var(--muted);margin-top:10px}
+.mdetail dl{margin:0;display:grid;gap:12px}
+.mdetail dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mdetail dd{margin:2px 0 0;font-size:.95rem}
+@media (max-width:760px){.months{grid-template-columns:repeat(3,1fr)}.mdetail{grid-template-columns:1fr}}
+@media (max-width:380px){.months{grid-template-columns:repeat(2,1fr)}}
+
+/* ── equity ── */
+.equity{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:820px){.equity{grid-template-columns:1fr}}
+.status{display:inline-flex;align-items:center;gap:8px;background:var(--amber-wash);color:var(--amber);border:1px solid #efdcae;padding:6px 12px;border-radius:99px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+.big20{font-family:var(--display);font-weight:800;font-size:clamp(4.5rem,13vw,8rem);line-height:.85;letter-spacing:-.05em;font-variation-settings:'wdth' 120;margin:18px 0 6px}
+.big20 sup{font-size:.4em;vertical-align:.95em;margin-left:.04em}
+.checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
+.checklist header{padding:16px 20px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.checklist header b{font-weight:600}
+.checklist header span{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.checklist label{display:flex;gap:12px;align-items:flex-start;padding:13px 20px;border-bottom:1px solid var(--hair);cursor:pointer;font-size:.96rem}
+.checklist label:last-of-type{border-bottom:0}
+.checklist input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1.5px solid var(--hair);border-radius:5px;flex:none;margin:2px 0 0;display:grid;place-items:center;cursor:pointer;background:var(--card)}
+.checklist input:checked{background:var(--ink);border-color:var(--ink)}
+.checklist input:checked::after{content:"";width:9px;height:5px;border-left:2px solid var(--lime);border-bottom:2px solid var(--lime);transform:rotate(-45deg) translate(1px,-1px)}
+.checklist label small{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
+.fine{font-size:.86rem;color:var(--muted);margin-top:14px}
+
+/* ── success ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:700px){.two{grid-template-columns:1fr}}
+.out{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:22px;display:grid;gap:12px;align-content:start}
+.out ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.out li{display:flex;gap:10px;align-items:baseline}
+.out li::before{content:"";width:9px;height:7px;background:var(--lime);transform:skewX(-20deg);flex:none;outline:1px solid #b5d84a}
+
+/* ── boundaries + flow ── */
+.bounds{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:820px;border-top:1px solid var(--hair)}
+.bounds li{display:grid;grid-template-columns:minmax(0,13em) 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.bounds b{font-weight:600}
+.bounds span{color:var(--muted)}
+@media (max-width:600px){.bounds li{grid-template-columns:1fr;gap:4px}}
+.flow{margin-top:clamp(32px,5vw,48px);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flow span{padding:10px 16px;border-radius:99px;border:1px solid var(--hair);background:var(--card);font-weight:600;font-size:.95rem}
+.flow span:first-child{background:var(--lime);border-color:var(--lime)}
+.flow i{font-style:normal;color:var(--muted);font-family:var(--mono)}
+
+/* ── close ── */
+.close h2{font-size:clamp(2.8rem,9vw,6rem);font-weight:800;font-variation-settings:'wdth' 118;letter-spacing:-.04em}
+.close h2 .em{color:var(--lime)}
+.close .lead{margin-top:22px;max-width:52ch}
+.sign{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;padding-top:22px;border-top:1px solid var(--hair-dark)}
+.sign .n{font-family:var(--display);font-weight:700;font-size:1.15rem}
+.sign .r{font-size:.9rem;color:var(--muted-dark)}
+.email{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.email code{font-family:var(--mono);font-size:.86rem;background:var(--ink-2);border:1px solid var(--hair-dark);padding:9px 12px;border-radius:8px;user-select:all}
+.toast{font-family:var(--mono);font-size:.7rem;color:var(--lime);min-height:1em}
+
+.sources{padding-block:40px 56px;font-size:.84rem;color:var(--muted);border-top:1px solid var(--hair)}
+.sources h3{font-size:.95rem;margin-bottom:12px}
+.sources ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:80ch}
+.sources p{margin-top:14px;max-width:80ch}
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Brief progress">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="tick" aria-hidden="true"></span>Partnership brief</a>
+    <span class="now" aria-live="polite"><span id="nowNum">01</span> / 12 · <b id="nowName">Cover</b></span>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<main>
+
+<!-- 01 COVER -->
+<header class="band-ink cover" id="top" data-name="Cover">
+  <div class="wrap">
+    <div class="lockup"><img src="/brand/yardscale-lockup-ink.png" alt="YardScale Digital" width="168" height="28"></div>
+    <p class="eyebrow"><span class="tick" aria-hidden="true"></span>Prepared for Singh Zima · October 2026</p>
+    <h1>Potential Strategic <span class="em">Partnership</span></h1>
+    <p class="lead">Building products, audiences and growth systems together.</p>
+    <p class="by">By <b>Andrew Needham</b>, YardScale Digital · about a 3-minute read</p>
+
+    <div class="pair">
+      <div class="who"><small>You</small><strong>Singh Zima</strong><span>Creator, developer, founder of Linkio</span></div>
+      <div class="x" aria-hidden="true">×</div>
+      <div class="who"><small>Me</small><strong>Andrew Needham</strong><span>YardScale Digital, building BuildFlow</span></div>
+    </div>
+
+    <div class="legend" aria-label="How to read the tags in this brief">
+      <div><span class="src pub">Public</span> from your channel, site or press</div>
+      <div><span class="src chat">From our chat</span> what you've told me</div>
+      <div><span class="src idea">Idea</span> to discuss, nothing agreed</div>
+    </div>
+  </div>
+</header>
+
+<!-- 02 WHY -->
+<section id="why" data-name="Why this could make sense">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>02 · Why this could make sense</p>
+      <h2>You've already built the hard parts.</h2>
+      <p class="lead">Most people trying to grow a product don't have an audience. Most creators with an audience don't have a product. You have both, and you write the code yourself.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <span class="src pub">Public · YouTube</span>
+        <span class="num">49.1K</span>
+        <p><b>subscribers</b> across 195 videos and 1.35M total views, on a channel running since 2016.</p>
+      </div>
+      <div class="fact">
+        <span class="src pub">Public · linkio.tech, Jamaica Observer</span>
+        <span class="num">Linkio</span>
+        <p><b>NFC business cards</b> with free profile pages, started in March 2024. Your video descriptions already point people to it.</p>
+      </div>
+      <div class="fact">
+        <span class="src pub">Public · YouTube</span>
+        <span class="num">Jamaica</span>
+        <p><b>Exploring the island</b> from Portland to St. James to St. Ann, plus your community, Summit Society.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="prose">
+        <p><b>Where I think we fit.</b> What I can add is the part between attention and revenue: positioning, funnels, onboarding, measurement, and the systems that make a good result repeatable.</p>
+        <p>What you could add for BuildFlow is credibility with Jamaican founders and business owners, introductions, and honest product feedback from someone who ships software.</p>
+        <p>Neither of us would need to change what we're already doing. The question is whether working together makes both things grow faster.</p>
+      </div>
+      <div class="shared">
+        <span class="src chat">From our chat</span>
+        <ul>
+          <li>You're building a finance app with global reach in mind.</li>
+          <li>You sell NFC tap cards locally.</li>
+          <li>You mentioned a growth operator might be what you need.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="signal">
+      <span class="src pub">Public · views at time of writing</span>
+      <p><b>One early signal.</b> Your founder video has nearly three times the views of the Portland video in a third of the time.</p>
+      <div class="bars" role="img" aria-label="Average views per day: I Built a Tech Company in Jamaica, about 5,250 per day; Portland, Jamaica in 48 Hours, about 630 per day.">
+        <div class="bar"><span style="color:var(--muted)">Tech company · 4 days</span><i style="width:100%"></i><span>21K</span></div>
+        <div class="bar b"><span style="color:var(--muted)">Portland · 12 days</span><i style="width:12%"></i><span>7.6K</span></div>
+      </div>
+      <p style="font-size:.92rem;color:var(--muted)">Bars show average views per day. Two videos isn't a trend, but it suggests people want to watch you build. That could matter for Linkio, the finance app, and BuildFlow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BUSINESSES -->
+<section id="businesses" data-name="Your businesses">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>03 · Your businesses and growth opportunities</p>
+      <h2>Where I'd start looking.</h2>
+      <p class="lead">Starting points for our conversation, based on what's public and what you've told me. Tap any one to open it.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Businesses">
+      <button class="tab" role="tab" id="tab-linkio" aria-controls="panel-linkio" aria-selected="true">Linkio · NFC cards</button>
+      <button class="tab" role="tab" id="tab-finance" aria-controls="panel-finance" aria-selected="false" tabindex="-1">Finance app</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-linkio" aria-labelledby="tab-linkio">
+      <div class="panel-top">
+        <div class="row"><h3>Linkio</h3><span class="src pub">Public</span><span class="src chat">Sold locally · from our chat</span></div>
+        <p>NFC business cards. Tap the card on a phone and the holder's contact details and profile open. Profile pages are free to build, and your descriptions invite viewers to "build your first site for free."</p>
+      </div>
+      <ul class="opps">
+        <li><details><summary><span class="k">Positioning</span><span class="t">Pick the first buyer</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Individuals, sales teams, small businesses, tradespeople. Choosing one to lead with makes the site, the content and the price easier to get right. The others can follow.</p></details></li>
+        <li><details><summary><span class="k">Funnel</span><span class="t">Free page → card order</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">The free page is a strong way in. The useful number is how many free pages turn into card orders, and where people drop off in between. That tells us what to fix first.</p></details></li>
+        <li><details><summary><span class="k">Onboarding</span><span class="t">Get every card set up and tapped</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">A card only works for the buyer, and only spreads Linkio, once it's set up and used. A short setup flow and a "first tap" reminder are cheap to test.</p></details></li>
+        <li><details><summary><span class="k">Referral loop</span><span class="t">Every tap is a referral moment</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">The person on the receiving end of a tap sees Linkio. If the profile page gives them a clear way to get their own, each card becomes a small acquisition channel. I'd want to check what the page shows today before suggesting changes.</p></details></li>
+        <li><details><summary><span class="k">Monetization</span><span class="t">Team and business orders</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">One business buying cards for ten staff is worth more than ten single sales, and easier to win. A simple team offer would be a quick test.</p></details></li>
+        <li><details><summary><span class="k">Content sales</span><span class="t">Show real customers using it</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Short clips of real customers tapping their cards at work, filmed the way you already film. Each one doubles as proof and as a demo.</p></details></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-finance" aria-labelledby="tab-finance" hidden>
+      <div class="panel-top">
+        <div class="row"><h3>Your finance app</h3><span class="src chat">From our chat · in development</span></div>
+        <p>A finance app you're building for a global audience. I haven't seen it yet and haven't found public details, so these are questions and areas to explore, not prescriptions.</p>
+      </div>
+      <ul class="opps">
+        <li><details><summary><span class="k">Positioning</span><span class="t">Choose a first market</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Global is the destination. Which country and which kind of user comes first? A narrow start makes it easier to learn quickly and to get the message right.</p></details></li>
+        <li><details><summary><span class="k">Acquisition</span><span class="t">A waitlist or beta from your channel</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Your audience could fill an early beta. A waitlist with one or two short questions shows who's actually interested and why, before money goes into ads.</p></details></li>
+        <li><details><summary><span class="k">Onboarding</span><span class="t">Earn trust early</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">People are careful with money apps. Plain explanations of security and data use, plus a quick path to the first useful moment, tend to decide whether someone stays.</p></details></li>
+        <li><details><summary><span class="k">Monetization</span><span class="t">Decide pricing with real usage</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Subscription, fees, or free with a paid tier. Those are easier to choose once a beta shows how people actually use the app.</p></details></li>
+        <li><details><summary><span class="k">Retention</span><span class="t">Habit before spend</span><span class="chev" aria-hidden="true">+</span></summary><p class="body">Finance apps live on regular use. Measure how many people come back each week before spending on acquisition, then add referrals once they do.</p></details></li>
+      </ul>
+    </div>
+
+    <!-- growth loop -->
+    <div class="loopwrap">
+      <h3>The loop I'd want to build</h3>
+      <div class="loop" id="loop" aria-label="Growth loop. Select a step to see what it means.">
+        <button class="node" data-i="0" aria-pressed="false">Audience</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node" data-i="1" aria-pressed="false">Attention</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node value" data-i="2" aria-pressed="false">Product</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node value" data-i="3" aria-pressed="true">Customer</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node value" data-i="4" aria-pressed="false">Retention</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node" data-i="5" aria-pressed="false">Referrals</button><span class="arrow" aria-hidden="true">→</span>
+        <button class="node" data-i="6" aria-pressed="false">Growth</button>
+        <span class="back" aria-hidden="true">↺ back to audience</span>
+      </div>
+      <div class="loop-detail" aria-live="polite">
+        <div><h3 id="lTitle">Customer</h3><p id="lText">Someone who pays for it or actively uses it. This is the step where attention turns into value.</p></div>
+        <div class="ex"><small>For Linkio, this could be</small><p id="lEx">An order placed, and a card that's actually been set up.</p></div>
+      </div>
+      <p class="loop-note"><b>The aim is customer value, not views.</b> Views start the loop. The underlined steps are where the value gets created.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 WHAT I BRING -->
+<section id="bring" data-name="What I bring">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>04 · What I bring</p>
+      <h2>Growth systems, not more noise.</h2>
+    </div>
+    <div class="grid4">
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><h3>Growth strategy</h3><p>Choosing the few bets worth making, and the ones to skip.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></span><h3>Funnels &amp; conversion</h3><p>Landing pages, offers, and the steps between a click and a sale.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><h3>App &amp; product thinking</h3><p>Onboarding, activation, and what to build next based on real use.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg></span><h3>Monetization</h3><p>Pricing, packaging, and testing what people will actually pay for.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2L14 9V3"/></svg></span><h3>Acquisition experiments</h3><p>Small, cheap tests with a clear pass or fail before anything gets scaled.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Analytics</h3><p>A handful of numbers we both trust, set up to update themselves.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span><h3>Technical development</h3><p>I build, so changes don't sit waiting on someone else.</p></div>
+      <div class="cap"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H15a3 3 0 0 1 3 3v6.5M6 8.5V15a3 3 0 0 0 3 3h6.5"/></svg></span><h3>Systems</h3><p>Automations and routines, so what works keeps running without either of us.</p></div>
+    </div>
+    <p class="callout"><b>To be clear:</b> I want to build growth systems around priorities we agree on together. I'm not proposing to become an outsourced department running every part of your businesses, and I don't think that would serve either of us.</p>
+  </div>
+</section>
+
+<!-- 05 BUILDFLOW -->
+<section id="buildflow" data-name="BuildFlow">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>05 · My primary focus</p>
+    </div>
+    <article class="bf">
+      <div class="bf-top">
+        <div class="row"><span class="pill-lime">Primary focus</span><span class="src idea">In development</span></div>
+        <h2>BuildFlow</h2>
+        <p class="lead">A construction CRM and project management platform, designed around how contractors actually work.</p>
+      </div>
+      <div class="bf-cols">
+        <div class="bf-col">
+          <small>For contractors</small>
+          <h3>Run the work</h3>
+          <ul>
+            <li>Clients and leads in one place</li>
+            <li>Projects managed the way jobs actually run</li>
+            <li>Less admin between the quote and the handover</li>
+          </ul>
+        </div>
+        <div class="bf-col">
+          <small>For the public</small>
+          <h3>Discover the work</h3>
+          <ul>
+            <li>Contractor profiles</li>
+            <li>Showcases of finished work</li>
+            <li>An explore feed where customers find contractors</li>
+          </ul>
+        </div>
+      </div>
+      <p class="bf-foot">This describes the product concept. Parts of it are still being built, and I'll show you exactly where it stands on the call.</p>
+    </article>
+    <div class="focus">
+      <span class="tick" style="margin-top:9px" aria-hidden="true"></span>
+      <p><b>BuildFlow is where my long-term focus is going.</b> YardScale Digital is moving from a marketing agency to an app studio and growth company, and BuildFlow is the main thing it's building. Anything we do together needs to fit around that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 HOW YOU COULD HELP -->
+<section id="help" data-name="How you could help">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>06 · How you could help BuildFlow</p>
+      <h2>Only where there's a real fit.</h2>
+      <p class="lead">Most of your subscribers aren't contractors, and I'm not assuming they are. These are the places where I think there's genuine overlap. You'd decide what suits your channel.</p>
+    </div>
+    <div class="help">
+      <div class="hcard">
+        <div class="row"><h3>Introductions</h3></div>
+        <p>Contractors, tradespeople and business owners you know, including any Linkio customers in construction or the trades.</p>
+        <p class="why">Why it fits: a warm intro from someone they trust is worth more than any ad.</p>
+      </div>
+      <div class="hcard">
+        <div class="row"><h3>Founder content, if it fits</h3></div>
+        <p>You already make videos about building a tech company in Jamaica. A conversation about building software for Jamaican industries could work for your audience without being an ad.</p>
+        <p class="why">Only a video you'd want to make anyway. No obligation to promote.</p>
+      </div>
+      <div class="hcard">
+        <div class="row"><h3>Audience questions</h3></div>
+        <p>A community post or poll, such as "How did you find the last contractor you hired?"</p>
+        <p class="why">Why it fits: real answers shape BuildFlow's discovery side, and the topic is relevant to most homeowners.</p>
+      </div>
+      <div class="hcard">
+        <div class="row"><h3>Product feedback</h3></div>
+        <p>You build software. An honest look at BuildFlow's onboarding and flows from another developer and founder.</p>
+        <p class="why">Why it fits: blunt feedback early saves months later.</p>
+      </div>
+      <div class="hcard">
+        <div class="row"><h3>Testing with real users</h3></div>
+        <p>Help finding a few contractors willing to try it and tell us what's missing.</p>
+        <p class="why">Why it fits: five engaged testers teach more than five hundred sign-ups.</p>
+      </div>
+      <div class="hcard idea">
+        <div class="row"><h3>Linkio × BuildFlow</h3><span class="src idea">Idea</span></div>
+        <p>Contractors hand out a lot of business cards. A Linkio card that opens a contractor's BuildFlow profile and work showcase could be useful for both products.</p>
+        <p class="why">Just an idea to discuss. Nothing built or agreed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 MUTUAL LOOP -->
+<section id="mutual" data-name="The mutual growth loop">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>07 · The mutual growth loop</p>
+      <h2>Two loops, one shared middle.</h2>
+    </div>
+    <div class="mutual" id="mutualGrid">
+      <div class="side">
+        <small>Your businesses</small>
+        <h3>Linkio and the finance app</h3>
+        <ol class="steps" data-side="a">
+          <li>Focused growth experiments</li>
+          <li>Better customer experience</li>
+          <li>Learning and improvement</li>
+        </ol>
+        <span class="ret" aria-hidden="true">↺ feeds the next experiment</span>
+      </div>
+      <div class="hub">
+        <small>Connected through</small>
+        <span>Strategic collaboration</span>
+        <span>Useful content</span>
+        <span>Shared learning</span>
+      </div>
+      <div class="side">
+        <small>My focus</small>
+        <h3>BuildFlow</h3>
+        <ol class="steps" data-side="b">
+          <li>Relevant exposure</li>
+          <li>Real user feedback</li>
+          <li>Product improvement</li>
+          <li>Stronger distribution opportunities</li>
+        </ol>
+        <span class="ret" aria-hidden="true">↺ earns more relevant exposure</span>
+      </div>
+    </div>
+    <div class="mut-ctl">
+      <button class="btn ghost" id="stepBtn" type="button">Step through the loop →</button>
+      <span class="loop-note" id="stepNote">What one of us learns feeds straight into the other's loop.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 08 ROADMAP -->
+<section id="roadmap" data-name="Six-month roadmap">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>08 · Six-month roadmap</p>
+      <h2>Six months to find out.</h2>
+      <p class="lead">A flexible plan, not a promise of specific results. We'd adjust it as we learn.</p>
+    </div>
+    <div class="months" role="tablist" aria-label="Months" id="months"></div>
+    <div class="mdetail" role="tabpanel" id="mdetail" aria-live="polite">
+      <div><small class="eyebrow" style="margin:0 0 8px" id="mLabel">Month 1</small><h3 id="mTitle"></h3></div>
+      <dl>
+        <div><dt>What it looks like</dt><dd id="mDo"></dd></div>
+        <div><dt>What we'd have at the end</dt><dd id="mOut"></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 09 EQUITY -->
+<section id="ownership" data-name="Potential ownership">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>09 · Potential strategic ownership</p>
+    </div>
+    <div class="equity">
+      <div>
+        <span class="status">Under consideration · not a final offer</span>
+        <p class="big20">20<sup>%</sup></p>
+        <p style="font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">of YardScale Digital</p>
+        <div class="prose" style="margin-top:22px">
+          <p>I'm considering offering you 20% ownership of YardScale Digital. The reason is long-term alignment. If we're both putting meaningful work in, we should both share in what it becomes.</p>
+          <p>It wouldn't be payment for access to your audience or for a few posts. It would reflect real, ongoing contributions from both of us, and it only makes sense once we've agreed what those are.</p>
+        </div>
+      </div>
+      <div>
+        <div class="checklist" id="checklist">
+          <header><b>To agree before anything is signed</b><span id="flagCount">Tick what you want to cover on the call</span></header>
+          <label><input type="checkbox" id="eq-contrib" value="contrib"><span>Contributions<small>What each of us puts in, and how we'd know it's happening.</small></span></label>
+          <label><input type="checkbox" id="eq-resp" value="resp"><span>Responsibilities and time<small>Who owns what, and realistic hours on both sides.</small></span></label>
+          <label><input type="checkbox" id="eq-vest" value="vest"><span>Vesting<small>Ownership earned over time rather than all at once.</small></span></label>
+          <label><input type="checkbox" id="eq-struct" value="struct"><span>Company structure<small>Including how BuildFlow and your businesses relate to it.</small></span></label>
+          <label><input type="checkbox" id="eq-dec" value="dec"><span>Decision-making<small>Which calls are shared and which stay with each of us.</small></span></label>
+          <label><input type="checkbox" id="eq-exit" value="exit"><span>If either of us steps back<small>What happens, agreed up front while things are good.</small></span></label>
+          <label><input type="checkbox" id="eq-legal" value="legal"><span>Legal documents<small>Drafted properly, with independent advice for each of us.</small></span></label>
+        </div>
+        <p class="fine">Nothing here is legal or tax advice. We'd each get our own before agreeing anything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 SUCCESS -->
+<section id="success" data-name="What success could look like">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>10 · What success could look like</p>
+      <h2>Intended outcomes, not guarantees.</h2>
+    </div>
+    <div class="two">
+      <div class="out">
+        <small class="eyebrow" style="margin:0">For you</small>
+        <ul>
+          <li>Stronger growth systems behind Linkio and the finance app</li>
+          <li>Better-informed decisions on pricing and monetization</li>
+          <li>Smoother customer journeys, from first view to repeat use</li>
+          <li>More product feedback from real customers</li>
+        </ul>
+      </div>
+      <div class="out">
+        <small class="eyebrow" style="margin:0">For me</small>
+        <ul>
+          <li>Real-world validation of BuildFlow</li>
+          <li>Relevant distribution where it fits</li>
+          <li>Feedback from contractors and their customers</li>
+          <li>Strategic introductions</li>
+          <li>Content opportunities that make sense for both of us</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 BOUNDARIES -->
+<section id="next" data-name="Boundaries and next steps">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span class="tick" aria-hidden="true"></span>11 · Boundaries and next steps</p>
+      <h2>Clear from the start.</h2>
+    </div>
+    <ul class="bounds">
+      <li><b>BuildFlow stays my main priority</b><span>I'll be upfront about how much time I can give, and keep to it.</span></li>
+      <li><b>Realistic time commitments</b><span>Agreed and written down for both of us, so nobody is quietly carrying more.</span></li>
+      <li><b>A defined scope</b><span>We pick the priorities together rather than taking on everything at once.</span></li>
+      <li><b>Contributions on both sides</b><span>Meaningful, visible, and reviewed honestly.</span></li>
+      <li><b>A real review point</b><span>At six months we decide whether to continue, change shape, or stop.</span></li>
+    </ul>
+    <div class="flow" aria-label="Next steps: Talk, Align, Define responsibilities, Start, Measure, Review">
+      <span>Talk</span><i aria-hidden="true">→</i><span>Align</span><i aria-hidden="true">→</i><span>Define responsibilities</span><i aria-hidden="true">→</i><span>Start</span><i aria-hidden="true">→</i><span>Measure</span><i aria-hidden="true">→</i><span>Review</span>
+    </div>
+  </div>
+</section>
+
+<!-- 12 CLOSE -->
+<section class="band-ink close" id="talk" data-name="Let's talk">
+  <div class="wrap">
+    <p class="eyebrow"><span class="tick" aria-hidden="true"></span>12 · Before our call</p>
+    <h2>Let's <span class="em">Talk.</span></h2>
+    <p class="lead">This is simply how I'm thinking about the opportunity before our call. I'd like to hear what you think, what you would change, and whether we can shape something that makes sense for both of us.</p>
+    <div class="sign">
+      <div><div class="n">Andrew Needham</div><div class="r">Founder, YardScale Digital · building BuildFlow</div></div>
+      <div class="email">
+        <code id="emailAddr">andrew@yardscaledigital.com</code>
+        <button class="btn lime" id="copyEmail" type="button">Copy email</button>
+        <span class="toast" id="toast" role="status"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="sources">
+  <div class="wrap">
+    <h3>Where the public details come from</h3>
+    <ul>
+      <li>YouTube channel <a href="https://www.youtube.com/@SinghZima" target="_blank" rel="noopener">@SinghZima</a>: About page, video list and video descriptions (subscriber, video and view counts as shown on 23 Oct 2026).</li>
+      <li><a href="https://linkio.tech/" target="_blank" rel="noopener">linkio.tech</a>, linked from your video descriptions.</li>
+      <li>Jamaica Observer, <a href="https://www.jamaicaobserver.com/2025/02/09/linkio-digital-alternative-business-cards/" target="_blank" rel="noopener">"Linkio, the digital alternative for business cards"</a> (Feb 2025).</li>
+      <li>Jamaica Observer, <a href="https://www.jamaicaobserver.com/2021/09/03/inside-the-life-of-jamaican-youtuber-singh-zima/" target="_blank" rel="noopener">"Inside the life of Jamaican YouTuber, Singh Zima"</a> (Sep 2021).</li>
+    </ul>
+    <p>Anything tagged "From our chat" came from our conversations, not public sources. I haven't included audience demographics, revenue or user numbers because I don't have them. If anything here is wrong or out of date, tell me and I'll fix it.</p>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  /* section tracker + progress bar */
+  var secs=[].slice.call(document.querySelectorAll('main > [data-name]'));
+  var nowNum=document.getElementById('nowNum'),nowName=document.getElementById('nowName'),bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?Math.min(100,h.scrollTop/max*100):0)+'%';
+    var idx=0;
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<120)idx=i;}
+    nowNum.textContent=String(idx+1).padStart(2,'0');
+    nowName.textContent=secs[idx].getAttribute('data-name');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* business tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function selectTab(t){
+    tabs.forEach(function(x){
+      var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){selectTab(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];selectTab(n);n.focus();}
+    });
+  });
+
+  /* growth loop */
+  var L=[
+    ['Audience','People who already watch you and trust what you say.','Your 49.1K subscribers and your Summit Society community.'],
+    ['Attention','A specific video, post or moment that gets noticed.','A founder video like "I Built a Tech Company in Jamaica".'],
+    ['Product','Something that solves a real problem for the person watching.','A Linkio card and free profile page.'],
+    ['Customer','Someone who pays for it or actively uses it. This is the step where attention turns into value.','An order placed, and a card that’s actually been set up.'],
+    ['Retention','They keep using it because it keeps being useful.','Cards that keep getting tapped at meetings and on the job.'],
+    ['Referrals','Happy customers bring the next ones, often without being asked.','The person receiving a tap sees Linkio and wants their own.'],
+    ['Growth','More customers arriving through a system you can measure and repeat, not from one lucky video.','Steady, trackable orders you can plan around.']
+  ];
+  var nodes=[].slice.call(document.querySelectorAll('.node'));
+  nodes.forEach(function(n){n.addEventListener('click',function(){
+    var d=L[+n.dataset.i];
+    nodes.forEach(function(x){x.setAttribute('aria-pressed',x===n)});
+    document.getElementById('lTitle').textContent=d[0];
+    document.getElementById('lText').textContent=d[1];
+    document.getElementById('lEx').textContent=d[2];
+  })});
+
+  /* mutual loop stepper */
+  var A=[].slice.call(document.querySelectorAll('.steps[data-side="a"] li')),B=[].slice.call(document.querySelectorAll('.steps[data-side="b"] li'));
+  var notes=[
+    'You test one focused change. I make sure the right contractors and founders see BuildFlow.',
+    'Your customers get a smoother experience. BuildFlow gets feedback from people who’d actually use it.',
+    'We both learn what works, and share it. BuildFlow improves on real feedback.',
+    'Better results on both sides open up more, and better, opportunities to work together.'
+  ];
+  var step=-1,stepBtn=document.getElementById('stepBtn'),stepNote=document.getElementById('stepNote');
+  stepBtn.addEventListener('click',function(){
+    step=(step+1)%4;
+    A.forEach(function(li,i){li.classList.toggle('on',i===Math.min(step,A.length-1))});
+    B.forEach(function(li,i){li.classList.toggle('on',i===step)});
+    stepNote.textContent=notes[step];
+    stepBtn.textContent=step===3?'Start again ↺':'Next step →';
+  });
+
+  /* roadmap */
+  var M=[
+    ['Align','Align on goals, responsibilities and baseline metrics.','Agree what we’re each responsible for and how much time each of us can give. Pick one priority on your side and set starting numbers for it and for BuildFlow.','A short written agreement on scope, time and the numbers we’ll watch.'],
+    ['Identify','Identify opportunities and test messaging or customer journeys.','Map the path from a video or post to a sign-up or order. Try a few messages and see which ones people respond to.','A shortlist of the two or three opportunities most worth pursuing.'],
+    ['Experiment','Run focused growth and content experiments.','Each experiment gets one clear measure and a set end date. First BuildFlow introductions or content, if they fit.','Results, including the things that didn’t work.'],
+    ['Improve','Improve conversion and retention where the evidence supports it.','Fix the drop-off points the numbers point to, not the ones we guess at.','Changes we can show are backed by evidence.'],
+    ['Repeat','Repeat the approaches that show promise.','Put more into what worked and stop what didn’t. Write it down so it can run without us watching it.','A simple playbook either of us can repeat.'],
+    ['Review','Review results, contributions, and whether to continue.','An honest look at results and at what each of us put in. Then a decision, together.','A clear call: continue, change shape, or stop.']
+  ];
+  var mWrap=document.getElementById('months');
+  M.forEach(function(m,i){
+    var b=document.createElement('button');
+    b.className='month';b.type='button';b.setAttribute('role','tab');b.id='month-'+(i+1);
+    b.setAttribute('aria-controls','mdetail');
+    b.innerHTML='<small>Month '+(i+1)+'</small><b>'+m[0]+'</b>';
+    b.addEventListener('click',function(){selMonth(i)});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=(i+(e.key==='ArrowRight'?1:5))%6;selMonth(n);mWrap.children[n].focus();}
+    });
+    mWrap.appendChild(b);
+  });
+  function selMonth(i){
+    [].forEach.call(mWrap.children,function(b,j){b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});
+    document.getElementById('mLabel').textContent='Month '+(i+1)+' of 6';
+    document.getElementById('mTitle').textContent=M[i][1];
+    document.getElementById('mDo').textContent=M[i][2];
+    document.getElementById('mOut').textContent=M[i][3];
+  }
+  selMonth(0);
+
+  /* equity checklist: remembered per viewer only */
+  var KEY='yardscale-brief-flags',boxes=[].slice.call(document.querySelectorAll('#checklist input')),fc=document.getElementById('flagCount');
+  try{var saved=JSON.parse(localStorage.getItem(KEY)||'[]');boxes.forEach(function(b){b.checked=saved.indexOf(b.value)>-1})}catch(e){}
+  function upd(){
+    var on=boxes.filter(function(b){return b.checked});
+    fc.textContent=on.length?on.length+' flagged for the call':'Tick what you want to cover on the call';
+    try{localStorage.setItem(KEY,JSON.stringify(on.map(function(b){return b.value})))}catch(e){}
+  }
+  boxes.forEach(function(b){b.addEventListener('change',upd)});upd();
+
+  /* copy email */
+  var toast=document.getElementById('toast'),addr=document.getElementById('emailAddr');
+  document.getElementById('copyEmail').addEventListener('click',function(){
+    function sel(){var r=document.createRange();r.selectNodeContents(addr);var s=getSelection();s.removeAllRanges();s.addRange(r);toast.textContent='Selected. Copy it from here.'}
+    try{navigator.clipboard.writeText(addr.textContent).then(function(){toast.textContent='Copied'},sel)}catch(e){sel()}
+  });
+})();
+</script>
+</body>
+</html>

@@ -221,3 +221,13 @@ submissions per IP per hour. No captcha, nothing for visitors to solve.
 
 All three fonts load from Google Fonts. The lime and ink are sampled straight
 off the logo files, so the site matches the mark exactly.
+
+---
+
+## Private briefs
+
+`partnership/singh-zima/` is a one-off partnership brief, shared by link only:
+**https://yardscaledigital.com/partnership/singh-zima/** once uploaded. It is
+`noindex`, left out of `sitemap.xml`, and not linked from the main site. It
+uses the same brand tokens and fonts as `index.html` and has no dependencies.
+`build.sh` packages the whole `partnership/` folder with everything else.

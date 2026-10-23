@@ -30,7 +30,7 @@ FILES=(
   sitemap.xml
   og-image.png
 )
-DIRS=(brand)
+DIRS=(brand partnership)
 
 fail=0
 note() { printf '  %s\n' "$1"; }
