@@ -1,11 +1,12 @@
 /**
  * Newsletter signup — the build log.
  *
- * This is the ONLY place the Resend API key is ever read. It runs on Netlify,
- * server-side; the key is never sent to the browser and never appears in the
- * HTML. The page posts JSON here and gets JSON back.
+ * A Vercel Function (Node.js runtime, Web Request/Response signature). This is
+ * the ONLY place the Resend API key is ever read — it runs server-side, so the
+ * key is never sent to the browser and never appears in the HTML. The page
+ * posts JSON to /api/subscribe and gets JSON back.
  *
- * Environment variables (Netlify → Site configuration → Environment variables):
+ * Environment variables (Vercel → Project → Settings → Environment Variables):
  *
  *   RESEND_API_KEY          required. From resend.com/api-keys. Secret.
  *   RESEND_AUDIENCE_ID      required. From resend.com/audiences — the list the
@@ -28,9 +29,11 @@ const RESEND_API = 'https://api.resend.com';
 /** Deliberately conservative — Resend does the authoritative validation. */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-/* Per-instance, best-effort flood control. Netlify may run several instances,
-   so this is a speed bump for a single noisy client, not a security control —
-   the honeypot and Resend's own duplicate handling do the real work. */
+/* Per-instance, best-effort flood control. Vercel may run many concurrent
+   instances and recycle them, so this is a speed bump for a single noisy
+   client, not a security control — the honeypot and Resend's own duplicate
+   handling do the real work. For anything stronger, put Vercel's Firewall /
+   BotID in front of this route. */
 const seen = new Map();
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 5;
@@ -50,7 +53,7 @@ const json = (status, body) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   });
 
-export default async function handler(request) {
+async function handler(request) {
   if (request.method !== 'POST') {
     return json(405, { error: 'Method not allowed.' });
   }
@@ -82,8 +85,9 @@ export default async function handler(request) {
     return json(400, { error: 'That email address doesn’t look right — mind checking it?' });
   }
 
+  // Vercel sets both; x-real-ip is already the single client address.
   const ip =
-    request.headers.get('x-nf-client-connection-ip') ||
+    request.headers.get('x-real-ip') ||
     (request.headers.get('x-forwarded-for') || '').split(',')[0].trim() ||
     'unknown';
   if (rateLimited(ip)) {
@@ -166,3 +170,6 @@ export default async function handler(request) {
 
   return json(200, { ok: true, id: created?.id });
 }
+
+/* Vercel Node.js runtime: default export with a `fetch` method. */
+export default { fetch: handler };

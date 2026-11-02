@@ -710,8 +710,8 @@ var CONFIG = {
 })();
 
 /* ---- newsletter signup ----
-   Posts to a Netlify Function, which is the only thing that ever sees the
-   Resend API key. Nothing secret reaches the browser. */
+   Posts to /api/subscribe, a Vercel Function, which is the only thing that
+   ever sees the Resend API key. Nothing secret reaches the browser. */
 (function(){
   var form=document.getElementById('newsForm');
   if(!form) return;
@@ -740,7 +740,7 @@ var CONFIG = {
     btn.textContent='Subscribing…';
     say('');
 
-    fetch('/.netlify/functions/subscribe',{
+    fetch('/api/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
