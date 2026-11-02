@@ -1,6 +1,7 @@
 [build]
   publish = "."
   command = "bash ./build.sh"
+  functions = "netlify/functions"
 
 # ─────────── security + sane defaults ───────────
 [[headers]]
@@ -30,14 +31,40 @@
 
 # ─────────── tidy URLs ───────────
 [[redirects]]
-  from = "/book"
-  to = "/#book"
+  from = "/journal"
+  to = "/journal.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/agriloop"
+  to = "/#agriloop"
   status = 302
 
 [[redirects]]
-  from = "/thanks"
-  to = "/thanks.html"
-  status = 200
+  from = "/about"
+  to = "/#about"
+  status = 302
+
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 302
+
+[[redirects]]
+  from = "/newsletter"
+  to = "/#build-log"
+  status = 302
+
+# The old agency site's booking entry point, kept so existing links land somewhere.
+[[redirects]]
+  from = "/book"
+  to = "/#contact"
+  status = 301
 
 [[redirects]]
   from = "/index.html"
