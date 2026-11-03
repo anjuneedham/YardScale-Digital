@@ -88,45 +88,75 @@ instance and doesn't span concurrent ones. It's a speed bump, not a security
 control. If the endpoint ever gets seriously abused, put **Vercel Firewall** or
 **BotID** in front of `/api/subscribe` rather than trying to harden the counter.
 
-## 3. Custom domain + Resend domain setup
+## 3. The domain + Resend domain setup
 
-The site works on the `.vercel.app` address from the first deploy, and switches
-to your domain once you set it as the production domain and redeploy —
-`build.sh` reads the address from Vercel's build-time environment, so no domain
-is hard-coded anywhere and nothing has to be edited twice.
+**`yardscaledigital.com` is already owned, verified, and its DNS is hosted on
+Vercel** (nameservers `ns1`/`ns2.vercel-dns.com`), so steps 1–3 of the usual
+"buy a domain" dance are already done. What is *not* done is pointing it at this
+site and adding the email records.
 
-1. **Buy the domain.** No domain is assumed anywhere in this repo. (`yardscaledigital.com`
-   appears in the Zero-to-Revenue repo's test fixtures as the intended address —
-   worth checking before you pick something else.) You can buy it inside Vercel
-   under **Domains**, which skips the DNS step below entirely.
-2. **Vercel → your project → Settings → Domains → Add.** If the domain is
-   registered elsewhere, Vercel shows the nameserver or A/CNAME records to set at
-   your registrar. Set the new domain as the **production** domain.
-3. **Redeploy once** so `build.sh` restamps the canonical and og:image URLs from
-   `VERCEL_PROJECT_PRODUCTION_URL`. Until you redeploy, the meta tags still point
-   at the `.vercel.app` address — the pages themselves are fine, only link
-   previews are affected.
-4. **Resend → Domains → Add domain.** Enter the same domain, or a subdomain such
-   as `send.yourdomain.com`, which keeps your main domain's email reputation
-   separate.
-5. **Add the DNS records Resend gives you.** If the domain's DNS is on Vercel,
-   add them under **Domains → your domain → DNS Records**; otherwise add them at
-   your DNS host. You need the DKIM `TXT` record, the SPF `TXT` record on the
-   sending subdomain, and the `MX` record for bounce handling. Add a DMARC `TXT`
-   record at `_dmarc.yourdomain.com` too — `v=DMARC1; p=none; rua=mailto:you@yourdomain.com`
-   is a safe start.
-6. **Verify in Resend.** It can take anywhere from a few minutes to a few hours
-   for DNS to propagate.
-7. **Create the sending address** — `hello@` for replies, `updates@` for the
-   build log. Both are fine; pick one for `NEWSLETTER_FROM`.
-8. **Set `NEWSLETTER_FROM`** (and optionally `NEWSLETTER_NOTIFY_TO`) in Vercel
-   and redeploy. Environment variable changes only reach a new deployment, so
-   redeploying is not optional.
-9. **Test the signup** on the live site with a real address you control: check
-   the contact appears in the Resend audience, the welcome email arrives, it is
-   not in spam, and the unsubscribe link works.
-10. **Test the duplicate path** by subscribing the same address again — you
-    should get the success state, not an error.
+### Where the domain currently points
+
+| Host | Serves |
+| --- | --- |
+| `yardscaledigital.com` | 308 → `www.yardscaledigital.com` |
+| `www.yardscaledigital.com` | the **`yardscale-digital-funnel`** project (a Next.js app, *not* this repo) |
+| `agriloop.yardscaledigital.com` | the `agriloopmain` project, pinned to a git branch and behind Vercel SSO — a visitor gets a login screen |
+| `partners.yardscaledigital.com` | same as above |
+
+So the apex domain is serving a different YardScale site than this one. Before
+this repo can go live on it, pick one:
+
+- **Move the domain.** In the `yardscale-digital-funnel` project, remove
+  `yardscaledigital.com` and `www.yardscaledigital.com`, then add them to the
+  project built from this repo. The funnel site stops being public.
+- **Use a subdomain.** Add e.g. `studio.yardscaledigital.com` to this project and
+  leave the funnel on the apex. Lower stakes, but splits the brand.
+- **Repoint the funnel project** at this repo in its Git settings, so the
+  existing domains keep working and the content changes underneath them.
+
+There is a third project, `yardscale-digital`, whose last production deploy
+errored and which has SSO protection on. It holds no custom domain. Either reuse
+it for this repo or delete it — right now it is just a confusing decoy.
+
+### Resend email records
+
+The DNS zone currently holds only Vercel's auto-managed `ALIAS` and `CAA`
+records. **There are no `MX`, SPF, DKIM or DMARC records at all**, so no email
+can be sent from the domain yet. To fix that:
+
+1. **Resend → Domains → Add domain.** Use `yardscaledigital.com`, or a subdomain
+   such as `send.yardscaledigital.com`, which keeps the main domain's email
+   reputation separate. The subdomain is the safer default.
+2. **Add the records Resend gives you** in **Vercel → Domains →
+   yardscaledigital.com → DNS Records** (the zone is on Vercel, so this is the
+   only place to add them): the DKIM `TXT`, the SPF `TXT` on the sending
+   subdomain, and the `MX` for bounce handling.
+3. **Add a DMARC record** — `TXT` at `_dmarc`, value
+   `v=DMARC1; p=none; rua=mailto:you@yardscaledigital.com` is a safe start.
+4. **Verify in Resend.** Propagation is usually minutes on a Vercel-hosted zone.
+5. **Create the sending address** — `hello@` for replies, `updates@` for the
+   build log. Pick one for `NEWSLETTER_FROM`.
+6. **Set `NEWSLETTER_FROM`** (and optionally `NEWSLETTER_NOTIFY_TO`) in Vercel
+   and **redeploy** — environment variable changes only reach a new deployment.
+7. **Test the signup** on the live site with a real address you control: the
+   contact appears in the Resend audience, the welcome email arrives, it is not
+   in spam, and the unsubscribe link works.
+8. **Test the duplicate path** by subscribing the same address again — you should
+   get the success state, not an error.
+
+Once the domain is attached to this project and you redeploy, `build.sh` stamps
+the canonical and og:image URLs from `VERCEL_PROJECT_PRODUCTION_URL`
+automatically. Nothing in the repo hard-codes a domain.
+
+### The AgriLoop link
+
+The "Explore AgriLoop" buttons point at `https://agriloopmain.vercel.app`,
+set once in the `CONFIG` block near the bottom of `index.html`. The nicer
+`agriloop.yardscaledigital.com` is **not** usable yet — it is pinned to a git
+branch and sits behind Vercel SSO, so a visitor gets a Vercel login screen.
+When that subdomain is public and pointing at production, change
+`CONFIG.agriloop` and the `"url"` in the JSON-LD block in `<head>`.
 
 ## 4. Contact details
 

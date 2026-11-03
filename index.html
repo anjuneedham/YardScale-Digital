@@ -434,7 +434,7 @@ footer{border-top:1px solid var(--hair-dark);padding:34px 0;background:var(--ink
           <li><span class="tick"></span> Web and Android, built mobile-first</li>
         </ul>
         <div class="prod-cta">
-          <a class="btn btn-lime" href="https://agriloopmain.vercel.app" target="_blank" rel="noopener">Explore AgriLoop <span class="arw">→</span></a>
+          <a class="btn btn-lime js-agriloop" href="https://agriloopmain.vercel.app" target="_blank" rel="noopener">Explore AgriLoop <span class="arw">→</span></a>
           <a class="btn btn-ghost" href="#build-log">Follow the journey</a>
         </div>
         <p class="prod-by">Built by YardScale Digital · Built in Jamaica, designed for the Caribbean</p>
@@ -516,7 +516,7 @@ footer{border-top:1px solid var(--hair-dark);padding:34px 0;background:var(--ink
         <h3>Jamaica's farm marketplace</h3>
         <p>Farmers list produce, seeds and plants; buyers find what's close to them and arrange the order directly. Free during the beta, with no platform fees.</p>
         <div class="card-cta">
-          <a class="btn btn-lime btn-sm" href="https://agriloopmain.vercel.app" target="_blank" rel="noopener">Explore AgriLoop <span class="arw">→</span></a>
+          <a class="btn btn-lime btn-sm js-agriloop" href="https://agriloopmain.vercel.app" target="_blank" rel="noopener">Explore AgriLoop <span class="arw">→</span></a>
         </div>
       </article>
       <article class="card soon">
@@ -657,16 +657,30 @@ footer{border-top:1px solid var(--hair-dark);padding:34px 0;background:var(--ink
 /* ══════════════════════════════════════════════════════════
    SITE CONFIG — the only block you normally edit by hand.
 
-   phone: leave as "" until there is a real number to publish.
-          Set it (e.g. "+1 876 555 0123") and a tappable tel:
-          line appears in the contact section automatically.
-          Nothing is invented while it is empty.
+   phone:    leave as "" until there is a real number to publish.
+             Set it (e.g. "+1 876 555 0123") and a tappable tel:
+             line appears in the contact section automatically.
+             Nothing is invented while it is empty.
+
+   agriloop: where the "Explore AgriLoop" buttons point. It is the
+             public .vercel.app address because agriloop.yardscaledigital.com
+             is currently behind Vercel SSO and pinned to a git branch —
+             a visitor hitting it gets a Vercel login screen. Once that
+             subdomain is public and on production, change this one line
+             (and the "url" in the JSON-LD block in <head>).
    ══════════════════════════════════════════════════════════ */
 var CONFIG = {
   email: "yardscaledigital@gmail.com",
   phone: "",
   agriloop: "https://agriloopmain.vercel.app"
 };
+
+/* ---- AgriLoop CTAs take their URL from CONFIG ---- */
+(function(){
+  var url = (CONFIG.agriloop||'').trim();
+  if(!url) return;
+  document.querySelectorAll('.js-agriloop').forEach(function(a){ a.href = url; });
+})();
 
 /* ---- phone line, only when configured ---- */
 (function(){
